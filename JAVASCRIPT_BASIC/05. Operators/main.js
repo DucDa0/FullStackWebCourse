@@ -14,7 +14,7 @@
  * + Conditional (ternary) operator (Toán tử điều kiện)
  * + Comma operator (Toán tử dấu phẩy) 
  * + Unary operators (Toán tử đơn phương): có 3 loại là: delete, typeof, void
- * + Relational operators (Toán tử quan hệ) 
+ * + Relational operators (Toán tử quan hệ) : gồm 2 loại: in và instacnceof
  * 2. Truthy và Falsy
  * - Có 7 giá trị falsy trong JavaScript:
  * + false
