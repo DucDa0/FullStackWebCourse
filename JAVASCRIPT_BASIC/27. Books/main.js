@@ -13,11 +13,11 @@
     Location: vị trí giá sách trong thư viện
 */
 let BookShelves=[
-    { bookShelvesID:0, Location:'A1', books[0,1]},
-    { bookShelvesID:1, Location:'A2', books[2,3]},
-    { bookShelvesID:2, Location:'B1', books[4,5]},
-    { bookShelvesID:3, Location:'B2', books[6,7]},
-    { bookShelvesID:4, Location:'C1', books[8,9]}
+    { bookShelvesID:0, Location:'A1', books:[0,1]},
+    { bookShelvesID:1, Location:'A2', books:[2,3]},
+    { bookShelvesID:2, Location:'B1', books:[4,5]},
+    { bookShelvesID:3, Location:'B2', books:[6,7]},
+    { bookShelvesID:4, Location:'C1', books:[8,9]}
 ];
 /*
     Category: thể loại sách,
