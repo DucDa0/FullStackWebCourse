@@ -22,7 +22,7 @@ async function fetchUrlsParallel(urls) {
 }
 
 
-// 1: Dùng vòng lặp, khai báo mảnng; 2: Dùng map, PromiseAll 
+// 1: Dùng vòng lặp, khai báo mảnng; 2: Dùng map, PromiseAll
 
 // Chạy thử 2 hàm trên với đầu vào dưới đây và so sánh tốc độ
 const urls = [
@@ -37,4 +37,4 @@ console.time('Time 2');
 fetchUrlsParallel(urls).then(()=> console.log('Done 2'));
 console.timeEnd('Time 2');
 
-// 2 is faster than 1.
+// 2 cho tốc độ nhanh hơn 1. Vì 1 xử lí url của urls trong từng promise một, còn 2 xử lí url của urls trong 1 promise
