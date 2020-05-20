@@ -48,3 +48,33 @@ load('https://jsonplaceholder.typicode.com/todos/1')
   console.log(error);
 })
 console.log('End')
+
+
+/**
+ * Sử dụng Promise.all + axios để tải về 3 đường link sau cùng lúc và hiển thị ra kết quả:
+ * https://jsonplaceholder.typicode.com/todos/1
+ * https://jsonplaceholder.typicode.com/todos/2
+ * https://jsonplaceholder.typicode.com/todos/3
+ */
+console.log('Start')
+
+const axios = require('axios');
+function getData(path){
+  return new Promise((resolve,reject)=>{
+    axios.get(path)
+      .then(function(response){
+        resolve(response.data);
+      })
+      .catch(function(err){
+        reject(err.error);
+      })
+  });
+}
+
+Promise.all([getData('https://jsonplaceholder.typicode.com/todos/1'),
+getData('https://jsonplaceholder.typicode.com/todos/2'),
+getData('https://jsonplaceholder.typicode.com/todos/3')
+]).then(results=>console.log(results))
+.catch(err=>console.log(err));
+
+console.log('End')
