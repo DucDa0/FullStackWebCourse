@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="add" onclick="window.location.href='/addNew.html'">Add</button><br/><br/>
+    <table id="content">
+
+    </table>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        var addBtn=document.getElementById('add');
+        var content=document.getElementById('content');
+        var url='http://localhost:3000/myFriends';
+        var myFriends=[];
+        const render=()=>{
+            var data=myFriends.map((item,index)=>{
+                return `
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>${item.phone}</td>
+                        <td>${item.age}</td>
+                        <td><button onclick="editData(event)" data-id="${index}">Edit</button></td>
+                        <td><button onclick="deleteData(event)" data-id="${index}">Delete</button></td>
+                    </tr>
+                `
+            });
+            content.innerHTML=data.join('');
+        }
+        const getData=()=>{
+            axios.get(url)
+            .then((res)=>{
+                myFriends=res.data;
+                render();
+            })
+            .catch(err=>{
+                console.log(err.error);
+            })
+        }
+        const editData=event=>{
+            var btn=event.target;
+            var index=parseInt(btn.dataset.id);
+            var id=myFriends[index].id;
+            var edit_url='/edit.html'+'#'+id;
+            window.location.href=edit_url;
+        }
+
+        const deleteData=event=>{
+            var btn=event.target;
+            var index=parseInt(btn.dataset.id);
+            var id=myFriends[index].id;
+            deleteRequest(id);
+        }
+
+        const deleteRequest=id=>{
+            var del_url=url+'/'+id;
+            axios.delete(del_url)
+            .then(()=>{
+                return getData();
+            })
+            .catch(err=>{
+                console.log(err.error);
+            })
+        }
+        getData();
+    </script>
+</body>
+</html>

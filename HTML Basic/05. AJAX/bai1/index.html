@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Local Storage</title>
+    <meta charset="UTF=8" />
+
+</head>
+
+<body>
+    <script>
+        axios.get('https://randomuser.me/api/')
+            .then(function (res) {
+                document.write(JSON.stringify(res.data));
+            })
+            .catch(function (err) {
+                document.write(err.error);
+            });
+    </script>
+    <script>
+        fetch('https://randomuser.me/api/')
+            .then((resp) => resp.json())
+            .then(function (data) {
+                document.write(JSON.stringify(data));
+            })
+            .catch((error) => {
+                document.write(error)
+            })
+    </script>
+</body>
+
+</html>
+// 1. Sử dụng axios để tải nội dung dưới dạng json từ đường link sau về và hiển ra trình duyệt sử dụng document.write
+// Link: https://randomuser.me/api/
+// Có thể tìm link tới thư viện axios tại: https://cdnjs.com/
+// Để thêm thư viện vào jsfiddle, nhấn vào Resources ở cột trái, nhập link vào rồi ấn (+)
+// 2. Làm tương tự, thay vì dùng axios, hãy dùng fetch (google để biết cách dùng)

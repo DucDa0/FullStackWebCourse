@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <label for="name">Name:</label><br/>
+        <input type="text" id="name"/><br/>
+        <label for="Phone">Phone:</label><br/>
+        <input type="text" id="phone"/><br/>
+        <label for="age">Age:</label><br/>
+        <input type="text" id="age"/><br/>
+
+    </form>
+    <br/>
+    <button id="edit">Save</button>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        var url='http://localhost:3000/myFriends';
+        var editBtn=document.getElementById('edit');
+        var getName=document.getElementById('name');
+        var getPhone=document.getElementById('phone');
+        var getAge=document.getElementById('age');
+        var id=window.location.hash;
+        var myFriends=[];
+        axios.get(url)
+            .then((res)=>{
+                myFriends=res.data;
+                var item=myFriends.find(item=>{
+                    return item.id===parseInt(id.substr(1));
+                });
+                getName.value=item.name;
+                getPhone.value=item.phone;
+                getAge.value=item.age;
+            })
+            .catch(err=>{
+                console.log(err.error);
+            })
+        editBtn.addEventListener('click',()=>{
+            var edit_url=url+'/'+id.substr(1);
+            axios.put(edit_url,{name: getName.value,phone:parseInt(getPhone.value),age: parseInt(getAge.value)})
+            .then(()=>{
+                return window.location.href='/';
+            })
+            .catch(err=>{
+                console.log(err.error);
+            })
+        })
+    </script>
+</body>
+</html>
