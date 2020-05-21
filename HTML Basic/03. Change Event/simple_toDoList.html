@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1><strong>To Do List</strong></h1>
+    <input type="text" name="" id="input">
+    <button id="add">Add</button>
+    <hr />
+    <table id="content">
+
+    </table>
+    <script>
+        const input = document.getElementById('input');
+        const addBtn = document.getElementById('add');
+        const content = document.getElementById('content');
+        var data = [];
+
+        function render(data) {
+            var dataLoaded = data.map(item => {
+                return `<tr><td>${item}</td></tr>`
+            });
+            content.innerHTML = dataLoaded.join('');
+        }
+        render(data);
+
+        addBtn.addEventListener('click', () => {
+            data.push(input.value);
+            render(data);
+        })
+    </script>
+</body>
+
+</html>

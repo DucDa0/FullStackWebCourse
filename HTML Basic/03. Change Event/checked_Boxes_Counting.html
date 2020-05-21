@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1><strong>Select city</strong></h1>
+    <input type="checkbox" name="" class="city" onChange="Count()" value="Ha Noi">
+    <label> Ha Noi</label><br />
+    <input type="checkbox" name="" class="city" onChange="Count()" value="Hai Phong">
+    <label> Hai Phong</label><br />
+    <input type="checkbox" name="" class="city" onChange="Count()" value="Ho Chi Minh City">
+    <label> Ho Chi Minh City</label><br />
+    <input type="checkbox" name="" class="city" onChange="Count()" value="Da Nang">
+    <label> Da Nang</label><br />
+    <input type="checkbox" name="" class="city" onChange="Count()" value="Ca Mau">
+    <label> Ca Mau</label>
+    <hr>
+    <p id="showCount">You selected 0 city</p>
+    <script>
+        const showCount = document.getElementById('showCount');
+        const Count = function () {
+            var dem = document.querySelectorAll('input[type="checkbox"]:checked').length;
+            showCount.innerHTML = 'You selected ' + dem + ' city';
+        }
+    </script>
+</body>
+
+</html>

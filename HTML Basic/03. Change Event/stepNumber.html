@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1><strong>Step number</strong></h1>
+    <button id="sub">-</button><span id="count">0</span><button id="add">+</button>
+    <script>
+        const subBtn = document.getElementById('sub');
+        const addBtn = document.getElementById('add');
+        const count = document.getElementById('count');
+        var dem = 0;
+        addBtn.addEventListener('click', () => {
+            ++dem;
+            count.innerHTML = dem;
+        })
+        subBtn.addEventListener('click', () => {
+            --dem;
+            count.innerHTML = dem;
+        })
+    </script>
+</body>
+
+</html>
