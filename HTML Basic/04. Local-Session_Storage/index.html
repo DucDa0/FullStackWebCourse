@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Local Storage</title>
+    <meta charset="UTF=8" />
+</head>
+
+<body>
+    <input type="text" id="inputContent" />
+    <button id="addContent">Add</button>
+    <table id="content">
+
+    </table>
+    <script>
+        let storageKey = 'Name'; // Khai báo key để lấy dữ liệu, giống như key của object vậy
+        let dataString = localStorage.getItem(storageKey); // gán dataString(là kiểu string nha) để get dữ liệu từ local với key là "name"
+        let data;
+
+        if (dataString) { // kiểm tra dữ liệu trong local có hay không, nếu có tiến hàng gán data để get dữ liệu
+            data = JSON.parse(dataString); // lấy dữ liệu, chuyển kiểu dữ liệu json sang array
+        } else {
+            data = []; // nếu dữ liệu chưa có thì gán rỗng
+        }
+
+        let getInputContent = document.getElementById('inputContent');
+        let getAddContent = document.getElementById('addContent');
+        let getContent = document.getElementById('content');
+        getAddContent.addEventListener('click', function () {
+            data.push(getInputContent.value); // thêm dữ liệu vào data
+            render(data) //hiển thị lên web
+            localStorage.setItem(storageKey, JSON.stringify(data)); // lưu giá trị vừa nhập vào local, đồng thời chuyển đổi dữ liệu từ kiểu array sang json
+        });
+
+        function delData(event) {
+            let del = event.target;
+            let index = parseInt(del.dataset.id);
+            data.splice(index, 1);
+            render(data);
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        }
+        getInputContent.value = sessionStorage.getItem('temp');
+        getInputContent.addEventListener('keyup', function () {
+            sessionStorage.setItem('temp', getInputContent.value);
+        });
+
+        function render(data) {
+            let dataHTML = data.map((item, index) => {
+                return `<tr>
+                                <td>${item}</td>
+                                <td><button onclick="delData(event)" data-id=${index}>Delete</button></td>
+                        </tr>
+                        `
+            });
+            getContent.innerHTML = dataHTML.join('');
+        }
+        render(data);
+    </script>
+</body>
+
+</html>
