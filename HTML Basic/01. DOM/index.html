@@ -1,0 +1,156 @@
+<!--  
+Tìm hiểu các method của document:
+- getElementsByClassName
+- getElementsByTagName
+- querySelector
+- querySelectorAll
+-->
+<!-- +DOM: document object model
++getElementsByClassName: sẽ trả về tập hợp các phần tử trong trang có thuộc tính class được cung cấp khi gọi phương thức.
+Kết quả sẽ được trả về dưới dạng một đối tượng NodeList object.
++getElementsByTagName: sẽ trả về tập hợp các phần tử trong trang có tên thẻ được cung cấp khi gọi phương thức.
+Kết quả sẽ được trả về dưới dạng một đối tượng NodeList object.
++querySelector:  sẽ trả về phần tử đầu tiên trong tập hợp các kết quả được tìm thấy bởi CSS selector được cung cấp khi gọi phương thức.
+Kết quả sẽ được trả về dưới dạng một đối tượng NodeList object.
++querySelectorAll:  sẽ trả về tất cả các phần tử trong tập hợp các kết quả được tìm thấy bởi CSS selector được
+cung cấp khi gọi phương thức dưới dạng một NodeList object.
++let newTag=document.createElement('tagName'): tao the
++(get id cua 1 the nao do).appendChild(newTag) them 1 the vao cuoi
++remove(): xoa mot the
++document: là một biến global -->
+<!--
+ DOM: Document Object Model
+ Gồm 3 phần: Element, Attribute, Text
+ DOM không phải là của JS, mà JS chỉ cung cấp 1 bộ công cụ(document) giúp truy xuất, đi sâu vào trong DOM
+ -->
+<!--getElementsByClassName example-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+            #result{
+                color: red;
+                font-size: 20px;
+                font-weight: bold;
+            }
+        </style>
+    <body>
+        <h1>Học lập trình miễn phí tại freetuts.net</h1>    
+         <ul class="freetut">
+            <h3>Khóa học 1</h3>
+            <h3 class="demo"> Name: PHP</h3>
+            <h3 class="demo">Time: 48 Videos</h3>
+            <h3 class="demo">Author: Nguyễn Văn A</h3>
+        </ul>
+        <p id="result"></p>
+        <button onclick="myFunction()">Xem kết quả</button>
+        <script>
+            function myFunction(){
+                var NodeObject = document.getElementsByClassName("demo");
+                NodeObject[0].style.color = "red";
+                NodeObject[1].style.color = "blue";
+                NodeObject[2].style.color = "yellow";
+            }
+        </script>
+    </body>
+</html>
+
+
+<!--getElementsByTagName example-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+            #result{
+                color: red;
+                font-size: 20px;
+                font-weight: bold;
+            }
+        </style>
+    <body>
+        <h1>Học lập trình miễn phí tại freetuts.net</h1>    
+         <ul class="freetut">
+            <h3>Khóa học 1</h3>
+            <h3 name="demo"> Name: PHP</h3>
+            <h3 name="demo">Time: 48 Videos</h3>
+            <h3 name="demo">Author: Nguyễn Văn A</h3>
+        </ul>
+        <p id="result"></p>
+        <button onclick="myFunction()">Xem kết quả</button>
+        <script>
+            function myFunction(){
+                var NodeObject = document.getElementsByTagName("h3");
+                NodeObject[0].style.color = "red";
+                NodeObject[1].style.color = "blue";
+                NodeObject[2].style.color = "yellow";
+            }
+        </script>
+    </body>
+</html>
+
+
+<!--querySelector example-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+            #result{
+                color: red;
+                font-size: 20px;
+                font-weight: bold;
+            }
+        </style>
+    <body>
+        <h1>Học lập trình miễn phí tại freetuts.net</h1>    
+         <ul class="freetut">
+            <h3>Khóa học 1</h3>
+            <h3 class="demo"> Name: PHP</h3>
+            <h3 class="demo">Time: 48 Videos</h3>
+            <h3 class="demo">Author: Nguyễn Văn A</h3>
+        </ul>
+        <p id="result"></p>
+        <button onclick="myFunction()">Xem kết quả</button>
+        <script>
+            function myFunction(){
+                document.querySelector(".demo").style.color = "red";
+            }
+        </script>
+    </body>
+</html>
+
+
+<!--querySelectorAll example-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+            #result{
+                color: red;
+                font-size: 20px;
+                font-weight: bold;
+            }
+        </style>
+    <body>
+        <h1>Học lập trình miễn phí tại freetuts.net</h1>    
+         <ul class="freetut">
+            <h3>Khóa học 1</h3>
+            <h3 class="demo"> Name: PHP</h3>
+            <h3 class="demo">Time: 48 Videos</h3>
+            <h3 class="demo">Author: Nguyễn Văn A</h3>
+        </ul>
+        <p id="result"></p>
+        <button onclick="myFunction()">Xem kết quả</button>
+        <script>
+            function myFunction(){
+                var NodeObject = document.querySelectorAll(".demo");
+                NodeObject.forEach(function(item){
+                    item.style.color = "red";
+                });
+            }
+        </script>
+    </body>
+</html>
