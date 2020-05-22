@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Git Tutorial</title>
+    </head>
+    <body>
+        <h1>Git Basic</h1>
+        <p>git --global user.name(email) "ghi ở đây"</p>
+        <p>1. git init: tạo 1 ẩn file trong thư mục</p>
+        <p>2. git status: kiểm tra sự thay đổi của project</p>
+        <p>3. git add: add 1 file mới thêm vào(ex: git add ducmad.js(. để thêm tất cả))</p>
+        <p>4. git commit: commit những thay đổi(ex: git commit -m "ghi mô tả thay đổi trong này")</p>
+        <p>5. git log: hiển thị mô tả của từng file và mã tem của chúng</p>
+        <p>6. git show: hiện ra những thay đổi trong 1 file(ex: git show xxxxxxxx(x: là mã tem))</p>
+        <p>7. git diff: hiển thị những file modified, những thay đổi trong file</p>
+        <p>8. gitk: mở giao diện quản lý</p>
+        <p>9. git checkout: bỏ những thay đổi của 1 file chưa lên staging area, tức chưa git add(ex: git checkout -- hayKhamPhaTheGio.js
+            (nó sẽ bỏ đoạn code vừa được viết thêm vào))</p>
+        <p>10. git reset HEAD: bỏ mọi sự thay đổi dù ở trong staging area, tức đã git add(ex: git reset HEAD hayKhamPhaTheGioi.js)</p>
+        <p>11. git checkout -b 'tên nhánh': tạo 1 nhánh(branch) mới, nên đặt tên nhánh như sau: feature/têm branch </p>
+        <p>12. git checkout tên nhánh: chuyển sang nhánh này để làm việc</p>
+        <p>13. git branch: ckeck xem dang o nhanh nao</p>
+        <p>14. git merge 'tên branch': gộp branch vào branch đang ở hiện tại</p>
+        <p>15. git branch -D 'tên branch': xóa branch</p>
+        <p>16. git reset --soft 'mã tem của commit đó': quay lại trạng thái trc khi commit, tức đang ở staging area</p>
+        <p>17. git reset --mixed 'mã tem của commit đó': quay lại trạng thái trc khi add, tức đang ở working diretory</p>
+        <p>18. git reset --hard 'mã tem của commit đó': bỏ hẳn cái commit luôn</p>
+        <p>19. git revert 'mã tem của commit đó': tạo ra 1 commit mới mà commit mới này nó sẽ lưu những
+             thay đổi của trc đó của commit cũ(bỏ những dòng + thành -)</p>
+        <strong>tạo 1 file '.gitignore' và thêm các tên file ko muốn git add hay git commit, khi cài npm nhớ --save để lưu dependecies,
+            khi ng khác sử dụng, chỉ cần gõ npm install là cài tất cả các module trong file package.json
+        </strong>
+        <di id="Tải source code lên git hub và tải xuống">
+            <p>20. git remote add origin link: deploy source code lên git hub</p>
+            <p>21. git push -u origin master: đẩy code lên git hub</p>
+            <p>Nếu đã push 1 lần r, thì lần sau push chỉ cần ghi git push</p>
+            <p>22. git config --global credential.helper "cache --timeout=mili giây: lưu tài khoản , mk khi push code lên hub, trong khoảng tg"</p>
+        </di>
+        <p>23. git clone đường link download: clone repository về 1 máy khác</p>
+        <p>24. git pull: tải thay đổi từ phía repository</p>
+        <div id="Quy trình làm việc nhóm với Git Pull Request">
+            <p>git checkout -b branch_name</p>
+            <p>git push origin branch_name</p>
+            <p>Create a pull request on github</p>
+            <p>review code</p>
+            <p>merge to master</p>
+        </div>
+        <p>Trường hợp phía ng tạo project(*) push branch và pull request lên github, ng sài ké(+)
+             muốn tải source code mà (*) đã tải lên thì làm như sau: git fetch orgigin tên branch(gõ git remote -v để xem link), thì branch tải về
+            sẽ ko có trên local, nhưng vẫn switch qua đc. Bên (+) sau khi check bên local, thì approve review. Thấy (+) response review ok rồi
+        thì merge(xog xuôi r nhớ remove branch, cả trên local lẫn github, (*) và (+) cùng làm nhé!)<strong>À mà 1 điều quan trọng là (+) nhớ git pull
+            để tải thay đổi về
+        </strong></p>
+        <div id="Resolve Conflict">
+            <p>Tình huống: cả 2 bên (*) và (+) đều modify 1 file cùng 1 hàng sẽ sinh ra File Conflict.
+                (+) push modified lên, sau đó merge. Bên (*) sẽ ko merge được do phát sinh File Conflict
+            </p>
+            <p>Giải quyết: Bên (*) gải quyết như sau. Đầu tiên git checkout master sau đó git pull, sau đó quay lại branch kia CỦA MÌNH. Sau đó
+            git merge master, nhớ là resolve conflict trên file rồi mới merge. Sau đó add->commit->push branch lên</p>
+        </div>
+
+
+        <h1>Các thuật ngữ</h1>
+        <p>Working Directory: thư mục/project đang làm việc với nó</p>
+        <p>staging are: những file thay đổi trong project khi đc git add sẽ đc thêm vào đây</p>
+        <p>git repository: những thay đổi ở staging area khi đc git commit sẽ ở đây(dùng git log)</p>
+    </body>
+</html>
