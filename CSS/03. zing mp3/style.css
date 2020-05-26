@@ -1,0 +1,82 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.weekly-item{
+    display: flex;
+    width: 400px;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #DDD;
+}
+
+.weekly-item .rank{
+    font-size: 23px;
+    padding: 0 13px;
+}
+
+.weekly-item .content{
+    flex-grow: 1;
+}
+
+.weekly-item .song{
+    font-size: 18px;
+    padding-bottom: 8px;
+}
+
+.weekly-item .singer{
+    font-size: 14px;
+    color: #999;
+}
+
+.weekly-item .view{
+    font-size: 12px;
+    color: #999;
+}
+
+.container{
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container .album{
+    font-family: Arial, Helvetica, sans-serif; 
+    width: 128px;
+    height: 128px;
+    background-image: url('https://photo-resize-zmp3.zadn.vn/w480_r1x1_jpeg/cover/3/e/7/f/3e7f077a9bf624aaf1ce9e2e8ec14069.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.container .album .order{
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    color: #FFF;
+    padding: 8px;
+    box-sizing: border-box;
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+}
+.album-hover{
+    width: 128px;
+    height: 128px;
+    background-image: url('https://photo-resize-zmp3.zadn.vn/w480_r1x1_jpeg/cover/3/e/7/f/3e7f077a9bf624aaf1ce9e2e8ec14069.jpg');
+    background-size: cover;
+    background-position: center;
+    font-size: 35px;
+    color: #FFF;
+}
+
+.album-hover .overlay{
+    height: 100%;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.album-hover .overlay:hover{
+    opacity: 1;
+    background-color: rgba(0,0,0,0.7);
+}
