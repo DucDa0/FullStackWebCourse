@@ -1,0 +1,11 @@
+.header{
+    width: 100px;
+    height: 100px;
+    background-color: #333;  
+    transform: scale(0.5);
+    transition: all 0.3s;/*giá trị nhận vào: property time*/
+}
+
+.header:hover{
+    transform: scale(1); 
+}
