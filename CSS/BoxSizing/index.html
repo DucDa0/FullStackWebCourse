@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body{
+            margin: 0;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            color: #FFF;
+            background-color: tomato;
+            padding: 42px;/*nếu những kích thước lớn quá thì box-sizing sẽ ko có tác dụng*/
+            border: 2px solid #333;
+            box-sizing: border-box;/*được dùng để giữ nguyên width,height của element ko bị thay đổi, thay vào đó = tổng các value khác sao cho = với
+            value ban đầu. Vd: ở trường hợp này là 64+32+4=100px*/
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        Nothing
+    </div>
+</body>
+</html>
