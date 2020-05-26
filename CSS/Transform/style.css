@@ -1,0 +1,19 @@
+.header{
+    width: 100px;
+    height: 100px;
+    background-color: #333;
+    
+}
+
+.header:hover{
+    /*dịch chuyển vị trị của component theo tọa độ x y*/
+    transform: translate(20px,20px);
+    /*đảo ngược*/
+    transform: rotate(30deg);
+    /*phóng to, thu nhỏ*/
+    transform: scaleX(0.5);
+    /*làm biến dạng, làm méo đi*/
+    transform: skew(20deg);
+    /*kết hợp tất cả các phương thức biến đổi 2D thành 1, có 6 tham số (scaleX(),skewY(),skewX(),scaleY(),translateX(),translateY())*/
+    transform: matrix(1, -0.3, 0, 1, 0, 0);
+}
