@@ -1,0 +1,33 @@
+body{
+    width: 1500px;
+    margin: 0 auto;
+}
+.header{
+    background-color: green;
+    color: #FFF;
+    height: 100px;
+}
+.main{
+    background-color: #333;
+    color: #FFF;
+    margin-left: 20%;
+    height: 200px;
+}
+.side{
+    float: left;
+    background-color: blue;
+    color: #FFF;
+    width: 20%;
+    height: 200px;
+}
+/* .wrapper::after{
+    content: '';
+    display: block;
+    clear: both;
+    height: 100px;
+} */
+.footer{
+    background-color: red;
+    color: #FFF;
+    height: 200px;
+}
