@@ -1,0 +1,30 @@
+.menu{
+    padding: 0;
+    display: flex;
+    
+}
+.menu li{
+    list-style: none;
+    padding: 8px 16px;
+}
+.menu li:hover{
+    background-color: #EEE;
+}
+
+.home{
+    position: relative;
+}
+.home:hover .sub-menu{
+    display: block;
+}
+.sub-menu{
+    padding: 0;
+    position: absolute;
+    display: none;
+    left: 0;
+    top: 100%;
+}
+.sub-menu li{
+    width: auto;
+}
+
