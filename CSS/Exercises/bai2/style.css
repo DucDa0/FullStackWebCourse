@@ -1,0 +1,121 @@
+body{
+    display: flex;
+    height: 600px;
+}
+html{
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'courier,arial,helvetica', sans-serif;
+    box-sizing: border-box;
+}
+.wrap{
+    margin: auto;
+    display: flex;
+    width: 450px;
+    height: 330px;
+    border-radius: 25px;
+    background-color: #e1f3e8;
+}
+.content{
+    width: 350px;
+    margin: auto;
+}
+/* line-1 */
+.line-1{
+    border-bottom: 1px solid #bddac8;
+}
+.line-1_contaniner{
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    align-items: center;
+}
+.line-1_icon{
+    flex: 1;
+}
+.line-1_content{
+    flex: 6;
+    margin-left: 10px;
+}
+.line-1_content-item{
+    padding-left: 0;
+}
+.line-1_content-item-title{
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #627d6e;
+}
+.line-1_content-item-date{
+    font-size: 1.4rem;
+    color: #94aa9e;
+}
+/* line-2 and 3 */
+.line-2{
+    border-bottom: 1px solid #bddac8;
+}
+.line-2_contaniner{
+    list-style: none;
+    padding-left: 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: flex;
+}
+.line-2_item-svg{
+    flex: 1;
+    display: flex;
+}
+.line-2_item-svg-item{
+    align-items: center;
+}
+.line-2_item-title{
+    flex: 5;
+    font-size: 1.4rem;
+    color: #627d6e;
+    padding-left: 20px;
+    display: flex;
+}
+
+.line-2_item-title-text{
+    align-items: center;
+}
+.line-2_item-list-person{
+    flex: 1;
+    display: flex;
+    margin-right: 29px;
+}
+.line-3_item-list-person{
+    flex: 1;
+    display: flex;
+}
+.line-2_person{
+    list-style: none;
+    padding-left: 0;
+    align-items: center;
+    display: flex;
+}
+.line-2_person-item{
+    padding-right: 5px;
+}
+.line-2_person-item-link{
+    text-decoration: none;
+    display: flex;
+}
+.line-2_person-item-img{
+    border-radius: 5px;
+}
+.line-2_person-item-no-img{
+    width: 25px;
+    height: 25px;
+    background-color: #505e6a;
+    border-radius: 5px;
+}
+.number{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.number-item{
+    color:#c5c9cc;
+    font-size: 1.2rem;
+}
+
