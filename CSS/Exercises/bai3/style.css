@@ -1,6 +1,6 @@
 body{
     display: flex;
-    height: 600px;
+    height: 1000px;
 }
 html{
     font-size: 62.5%;
@@ -11,18 +11,38 @@ html{
 .wrap{
     margin: auto;
     display: flex;
-    width: 450px;
-    height: 330px;
+    justify-content: center;
+    width: 600px;
+    height: 800px;
 }
 .content{
-    width: 350px;
+    width: 100%;
+}
+.title{
+    border-bottom: 2px dashed #dfdada;
+    margin-bottom: 20px;
+}
+.title-text{
+    font-size: 2.2rem;
+    color: #403c38;
 }
 .account-items{
-    border: 1px solid #DDD;
+    border: 1px solid #dfdada;
     border-radius: 8px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
 }
 .account-list{
     list-style: none;
+    display: flex;
+    padding-left: 20px;
+    align-items: center;
+}
+.account-list_item-infor{
+    flex: 1;
+}
+.account-list_item{
     display: flex;
 }
 .account-list_item-img{
@@ -30,4 +50,15 @@ html{
 }
 .account-list_item-container{
     list-style: none;
+}
+.account-list_item-content-name{
+    font-size: 2.2rem;
+    color: #403c38;
+}
+.account-list_item-content-mail{
+    font-size: 1.6rem;
+    color: #babcba;
+}
+.account-list_item-trash{
+    padding-right: 20px;
 }
