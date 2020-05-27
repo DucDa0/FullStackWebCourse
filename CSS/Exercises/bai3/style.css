@@ -1,0 +1,33 @@
+body{
+    display: flex;
+    height: 600px;
+}
+html{
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'courier,arial,helvetica', sans-serif;
+    box-sizing: border-box;
+}
+.wrap{
+    margin: auto;
+    display: flex;
+    width: 450px;
+    height: 330px;
+}
+.content{
+    width: 350px;
+}
+.account-items{
+    border: 1px solid #DDD;
+    border-radius: 8px;
+}
+.account-list{
+    list-style: none;
+    display: flex;
+}
+.account-list_item-img{
+    border-radius: 50%;
+}
+.account-list_item-container{
+    list-style: none;
+}

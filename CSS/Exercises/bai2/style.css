@@ -30,12 +30,12 @@ html{
     display: flex;
     align-items: center;
 }
-.line-1_icon{
+.line-1_content{
     flex: 1;
 }
-.line-1_content{
-    flex: 6;
-    margin-left: 10px;
+.line-1_content-list{
+    list-style: none;
+    padding-left: 10px;
 }
 .line-1_content-item{
     padding-left: 0;
@@ -61,14 +61,13 @@ html{
     display: flex;
 }
 .line-2_item-svg{
-    flex: 1;
     display: flex;
 }
 .line-2_item-svg-item{
     align-items: center;
 }
 .line-2_item-title{
-    flex: 5;
+    flex: 1;
     font-size: 1.4rem;
     color: #627d6e;
     padding-left: 20px;
@@ -79,13 +78,11 @@ html{
     align-items: center;
 }
 .line-2_item-list-person{
-    flex: 1;
     display: flex;
-    margin-right: 29px;
 }
-.line-3_item-list-person{
-    flex: 1;
+.line-2_item-list-person.fix{
     display: flex;
+    margin-right: 30px;
 }
 .line-2_person{
     list-style: none;
