@@ -1,0 +1,183 @@
+body{
+    display: flex;
+    height: 600px;
+}
+html{
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'courier,arial,helvetica', sans-serif;
+    box-sizing: border-box;
+}
+.wrap{
+    margin: auto;
+    width: 500px;
+    height: 360px;
+}
+.content{
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 3px;
+    border: 1px solid #d4d4d7;
+    display: flex;
+    flex-direction: column;
+}
+/* Head */
+.head{
+    border-bottom: 1px solid #d4d4d7;
+}
+.head-content{
+    list-style: none;
+    display: flex;
+    padding-left: 0;
+    justify-content: space-between;
+}
+.head-content_item{
+    display: flex;
+    align-items: center;
+}
+.head-content_item-title{
+    font-size: 2.0rem;
+    color: #33424d;
+    padding-left: 25px;
+    font-weight: 600;
+}
+.head-content_item-questionIcon{
+    padding-right: 25px;
+}
+
+/* Container list */
+.container{
+    padding-top: 10px;
+    width: 90%;
+    margin: auto;
+}
+.container-list{
+    list-style: none;
+    padding-left: 0;
+    width: 100%;
+}
+.container-list_item{
+    padding-bottom: 25px;
+}
+.container-list_item-icon-container{
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+}
+.container-list_item-container-icon{
+    margin-right: 10px;
+}
+.visaIcon{
+    display: flex;
+    height: 40px;
+    width: 70px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    border: 1px solid #a8daff;
+}
+.mcIcon{
+    display: flex;
+    height: 40px;
+    width: 70px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    border: 1px solid #a8daff;
+}
+.container-list_item-content{
+    list-style: none;
+    padding-left: 0;
+}
+.cardHolderName{
+    font-size: 1.4rem;
+    color: #33424d;
+}
+.cardHolderName-input{
+    border: 1px solid #a8daff;
+    outline: none;
+    height: 28px;
+    border-radius: 3px;
+    width: 99%;
+}
+.container-list_item-cardInfor{
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+}
+.container-list_item-cardInfor-item-cardNumber{
+    list-style: none;
+    padding-left: 0;
+    width: 250px;
+}
+.container-list_item-cardInfor-item-date{
+    list-style: none;
+    padding-left: 0;
+    width: 90px;
+    margin-left: 8px;
+}
+.container-list_item-cardInfor-item-ccv{
+    list-style: none;
+    padding-left: 0;
+    width: 90px;
+    margin-left: 12px;
+}
+.container-list_item-cardInfor-cardNumber-title{
+    font-size: 1.4rem;
+    color: #33424d;
+}
+.cardNumber-input{
+    border: 1px solid #a8daff;
+    outline: none;
+    height: 28px;
+    border-radius: 3px;
+    width: 97%;
+}
+.container-list_item-cardInfor-item-date{
+    list-style: none;
+    padding-left: 0;
+}
+.container-list_item-cardInfor-item-date-title{
+    font-size: 1.4rem;
+    color: #33424d;
+}
+.dateValue{
+    border: 1px solid #a8daff;
+    outline: none;
+    height: 28px;
+    border-radius: 3px;
+    width: 97%;
+
+}
+.container-list_item-cardInfor-item-ccv{
+    list-style: none;
+    padding-left: 0;
+}
+.container-list_item-cardInfor-item-ccv-title{
+    font-size: 1.4rem;
+    color: #33424d;
+}
+.ccvValue{
+    border: 1px solid #a8daff;
+    outline: none;
+    height: 28px;
+    border-radius: 3px;
+    width: 97%;
+}
+.container-list_item-footer{
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+}
+.container-list_item-footer-icon{
+    display: flex;
+    align-items: center;
+    padding-right: 5px;
+}
+.container-list_item-footer-text{
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    color: #33424d;
+}
