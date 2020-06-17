@@ -1,7 +1,12 @@
 h1 List item
 form(action="/todos/search", method="GET")
-    input(type="text", name="q")
+    label Search
+    input(type="text" name="q" value=searchKey)
     button Search
+form(action="/todos/create" method="POST")
+    label Item Name
+    input(type="text" name="todo")
+    button Create
 ul
     each item in items
-        li= item.name
+        li= item.todo

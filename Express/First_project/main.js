@@ -3,16 +3,18 @@ const app = express();
 const port = 3000;
 
 app.set('view engine','pug');
-app.set('views','./views')
+app.set('views','./views');
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // app.get('/todos',(req,res)=>{
 //     res.send('<ul><li>Item</li></ul>')
 // })
 const items=[
-    {id: 1,name: 'Đi chợ'},
-    {id: 2,name: 'Nấu cơm'},
-    {id: 3,name: 'Rửa bát'},
-    {id: 4,name: 'Học code tại CodersX'}
+    {id: 1,todo: 'Đi chợ'},
+    {id: 2,todo: 'Nấu cơm'},
+    {id: 3,todo: 'Rửa bát'},
+    {id: 4,todo: 'Học code tại CodersX'}
 ];
 // render items
 app.get('/todos',(req,res)=>{
@@ -23,11 +25,22 @@ app.get('/todos',(req,res)=>{
 // find items
 app.get('/todos/search',(req,res)=>{
     let q=req.query.q;
-    let findItem = items.filter(item=> nonAccentVietnamese(item.name).indexOf(nonAccentVietnamese(q)) !==-1);
+    let findItem = items.filter(item=> nonAccentVietnamese(item.todo).indexOf(nonAccentVietnamese(q)) !==-1);
     res.render('todos/index',{
-        items: findItem
+        items: findItem,
+        searchKey: q
     });
 });
+// Add items
+app.get('/todos/create',(req,res)=>{
+    res.render('todos/create');
+})
+app.post('/todos/create',(req,res)=>{
+    items.push(req.body);
+    res.redirect('back');
+})
+
+
 
 app.listen(port,()=>{
     console.log('Server listening on port ' + port);
