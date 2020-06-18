@@ -11,7 +11,7 @@ const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 const adapter = new FileSync('db.json');
 const db = low(adapter);
-
+const shortid = require('shortid');
 
 // app.get('/todos',(req,res)=>{
 //     res.send('<ul><li>Item</li></ul>')
@@ -31,7 +31,7 @@ app.get('/todos',(req,res)=>{
 // find items
 app.get('/todos/search',(req,res)=>{
     let q=req.query.q;
-    let findItem = items.filter(item=> nonAccentVietnamese(item.text).indexOf(nonAccentVietnamese(q)) !==-1);
+    let findItem = db.get('todos').value().filter(item=> nonAccentVietnamese(item.text).indexOf(nonAccentVietnamese(q)) !==-1);
     res.render('todos/index',{
         items: findItem,
         searchKey: q
@@ -43,10 +43,16 @@ app.get('/todos/create',(req,res)=>{
 })
 app.post('/todos/create',(req,res)=>{
     // items.push(req.body);
+    req.body.id=shortid.generate();
     db.get('todos').push(req.body).write();
     res.redirect('back');
 })
-
+// Delete items
+app.get('/todos/:id/delete',(req,res)=>{
+    let id=req.params.id;
+    db.get('todos').remove({id : id}).write();
+    res.redirect('back');
+})
 
 
 

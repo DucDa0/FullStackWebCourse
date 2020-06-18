@@ -9,4 +9,7 @@ form(action="/todos/create" method="POST")
     button Create
 ul
     each item in items
-        li= item.text
+        li
+            span=item.text
+            span &nbsp;
+            a(href="/todos/" + item.id +"/delete") Delete
