@@ -1,0 +1,13 @@
+h1 List Users
+form(action="/users/add" method="POST")
+    label Users
+    input(type="text" name="name")
+    button Add
+ul
+    each user in users
+        li
+            span=user.name
+            span &nbsp;
+            a(href="/users/" + user.id +"/edit") Edit
+            span &nbsp;
+            a(href="/users/" + user.id +"/delete") Delete

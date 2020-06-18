@@ -1,57 +1,17 @@
 const express = require('express');
-const app = express();
 const port = 3000;
+const booksRoute=require('./routes/books_route');
+const usersRoute=require('./routes/user_route');
+const transRoute=require('./routes/transactions_route');
 
+const app = express();
 app.set('view engine','pug');
 app.set('views','./views');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-const low = require('lowdb');
-const FileSync = require('lowdb/adapters/FileSync');
-const adapter = new FileSync('db.json');
-const db = low(adapter);
-const shortid = require('shortid');
-
-// show list books
-app.get('/books',(req,res)=>{
-    res.render('books/index',{
-        books: db.get('books').value()
-    })
-})
-// add books
-app.post('/books/add',(req,res)=>{
-    req.body.id=shortid.generate();
-    db.get('books').push(req.body).write();
-    res.redirect('back');
-})
-// edit books
-let id;
-app.get('/books/:id/edit',(req,res)=>{
-    id=req.params.id;
-    let book=db.get('books').find({id:id}).value();
-    res.render('books/edit',{
-        books: book
-    })
-})
-app.post('/books/save',(req,res)=>{
-    db.get('books').find({id:id}).assign({title: req.body.title}).write();
-    res.redirect('/books');
-})
-// delete books
-app.get('/books/:id/delete',(req,res)=>{
-    let id=req.params.id;
-    db.get('books').remove({id : id}).write();
-    res.redirect('back');
-})
-
-
-
-
-
-
-
-
+app.use('/books', booksRoute);
+app.use('/users', usersRoute);
+app.use('/transactions', transRoute);
 
 
 app.listen(port,()=>{
