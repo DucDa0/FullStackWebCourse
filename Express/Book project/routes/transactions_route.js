@@ -1,20 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const db=require('../db');
-const shortid = require('shortid');
+// controller
+const transController=require('../controller/transactions_controller');
 // show transactions
-router.get('/',(req,res)=>{
-    res.render('transactions/index',{
-        transactions: db.get('transactions').value(),
-        users: db.get('users').value(),
-        books: db.get('books').value()
-    })
-})
+router.get('/', transController.home);
 //  add transactions
-router.post('/create',(req,res)=>{
-    req.body.id=shortid.generate();
-    db.get('transactions').push(req.body).write();
-    res.redirect('back');
-})
-
+router.post('/create', transController.create);
+//  complete trans
+router.get('/:id/complete', transController.isComplete);
 module.exports=router;

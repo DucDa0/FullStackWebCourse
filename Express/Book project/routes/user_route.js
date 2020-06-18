@@ -1,37 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const db=require('../db');
-const shortid = require('shortid');
+// controller
+const usersController=require('../controller/users_controller');
 // show users list
-router.get('/',(req,res)=>{
-    res.render('users/index',{
-        users: db.get('users').value()
-    })
-})
+router.get('/', usersController.home);
 // add users
-router.post('/add',(req,res)=>{
-    req.body.id=shortid.generate();
-    db.get('users').push(req.body).write();
-    res.redirect('back');
-})
+router.post('/add', usersController.add);
 // edit user
-let id;
-router.get('/:id/edit',(req,res)=>{
-    id=req.params.id;
-    let user=db.get('users').find({id:id}).value();
-    res.render('users/edit',{
-        users: user
-    })
-})
-router.post('/save',(req,res)=>{
-    db.get('users').find({id:id}).assign({name: req.body.name}).write();
-    res.redirect('/users');
-})
+router.get('/:id/edit', usersController.editHome);
+router.post('/save', usersController.editSave);
 // delete user
-router.get('/:id/delete',(req,res)=>{
-    id=req.params.id;
-    db.get('users').remove({id:id}).write();
-    res.redirect('back');
-})
+router.get('/:id/delete', usersController.delete);
 
 module.exports=router;
