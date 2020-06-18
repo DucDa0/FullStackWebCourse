@@ -1,0 +1,15 @@
+h1 List Books
+form(action="/books/add" method="POST")
+    label Title
+    input(type="text" name="title")
+    label Description
+    input(type="text" name="description")
+    button Add
+ul
+    each book in books
+        li
+            span=book.title
+            span &nbsp;
+            a(href="/books/" + book.id +"/edit") Edit
+            span &nbsp;
+            a(href="/books/" + book.id +"/delete") Delete
