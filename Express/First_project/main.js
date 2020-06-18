@@ -7,25 +7,31 @@ app.set('views','./views');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const low = require('lowdb');
+const FileSync = require('lowdb/adapters/FileSync');
+const adapter = new FileSync('db.json');
+const db = low(adapter);
+
+
 // app.get('/todos',(req,res)=>{
 //     res.send('<ul><li>Item</li></ul>')
 // })
-const items=[
-    {id: 1,todo: 'Đi chợ'},
-    {id: 2,todo: 'Nấu cơm'},
-    {id: 3,todo: 'Rửa bát'},
-    {id: 4,todo: 'Học code tại CodersX'}
-];
+// const items=[
+//     {id: 1,todo: 'Đi chợ'},
+//     {id: 2,todo: 'Nấu cơm'},
+//     {id: 3,todo: 'Rửa bát'},
+//     {id: 4,todo: 'Học code tại CodersX'}
+// ];
 // render items
 app.get('/todos',(req,res)=>{
     res.render('todos/index',{
-        items: items
+        items: db.get('todos').value()
     });
 });
 // find items
 app.get('/todos/search',(req,res)=>{
     let q=req.query.q;
-    let findItem = items.filter(item=> nonAccentVietnamese(item.todo).indexOf(nonAccentVietnamese(q)) !==-1);
+    let findItem = items.filter(item=> nonAccentVietnamese(item.text).indexOf(nonAccentVietnamese(q)) !==-1);
     res.render('todos/index',{
         items: findItem,
         searchKey: q
@@ -36,18 +42,19 @@ app.get('/todos/create',(req,res)=>{
     res.render('todos/create');
 })
 app.post('/todos/create',(req,res)=>{
-    items.push(req.body);
+    // items.push(req.body);
+    db.get('todos').push(req.body).write();
     res.redirect('back');
 })
+
+
+
 
 
 
 app.listen(port,()=>{
     console.log('Server listening on port ' + port);
 });
-
-
-
 function nonAccentVietnamese(str) {
     str = str.toLowerCase();
 //     We can also use this instead of from line 11 to line 17

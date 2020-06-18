@@ -5,8 +5,8 @@ form(action="/todos/search", method="GET")
     button Search
 form(action="/todos/create" method="POST")
     label Item Name
-    input(type="text" name="todo")
+    input(type="text" name="text")
     button Create
 ul
     each item in items
-        li= item.todo
+        li= item.text
