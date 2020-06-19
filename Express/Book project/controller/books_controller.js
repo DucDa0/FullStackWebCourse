@@ -11,7 +11,7 @@ module.exports.home=(req,res)=>{
 module.exports.add=(req,res)=>{
     req.body.id=shortid.generate();
     db.get('books').push(req.body).write();
-    res.redirect('back');
+    res.redirect('/books');
 };
 // edit books
 let id;
@@ -30,5 +30,5 @@ module.exports.editSave=(req,res)=>{
 module.exports.delete=(req,res)=>{
     id=req.params.id;
     db.get('books').remove({id : id}).write();
-    res.redirect('back');
+    res.redirect('/books');
 };

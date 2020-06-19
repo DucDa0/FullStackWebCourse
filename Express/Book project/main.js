@@ -14,7 +14,9 @@ app.use('/books', booksRoute);
 app.use('/users', usersRoute);
 app.use('/transactions', transRoute);
 
-
+app.get('/',(req,res)=>{
+    res.render('layouts/main_layout');
+});
 app.listen(port,()=>{
     console.log('Server listening on port ' + port);
 });
