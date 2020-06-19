@@ -1,6 +1,7 @@
-h1 Edit User
-form(action="/users/save" method="POST")
-    label Name
-    span &nbsp;
-    input(type="text" name="name" value=users.name)
-    button Save
+extends ../layouts/main_layout
+block content
+    h1(class="ml-2") Edit User
+    form(action="/users/save" method="POST" class="form-inline")
+        label(class="ml-2") Name
+        input(type="text" name="name" value=users.name class="form-control ml-2")
+        button(class="btn btn-success ml-2") Save

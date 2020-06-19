@@ -1,6 +1,7 @@
-h1 Edit book
-form(action="/books/save" method="POST")
-    label Title
-    span &nbsp;
-    input(type="text" name="title" value=books.title)
-    button Save
+extends ../layouts/main_layout
+block content
+    h1(class="ml-2") Edit book
+    form(action="/books/save" method="POST" class="form-inline")
+        label(class="ml-2") Title
+        input(type="text" name="title" value=books.title class="form-control ml-2")
+        button(class="btn btn-success ml-2") Save

@@ -1,13 +1,13 @@
-h1 List Users
-form(action="/users/add" method="POST")
-    label Users
-    input(type="text" name="name")
-    button Add
-ul
-    each user in users
-        li
-            span=user.name
-            span &nbsp;
-            a(href="/users/" + user.id +"/edit") Edit
-            span &nbsp;
-            a(href="/users/" + user.id +"/delete") Delete
+extends ../layouts/main_layout
+block content
+    h1(class="ml-2") List Users
+    form(action="/users/add" method="POST" class="form-inline")
+        label(class="ml-2") Users
+        input(type="text" name="name" class="form-control ml-2")
+        button(class="btn btn-success ml-2") Add
+    ul(class="list-group")
+        each user in users
+            li(class="list-group-item")
+                span=user.name
+                a(href="/users/" + user.id +"/edit" class="btn btn-primary ml-2") Edit
+                a(href="/users/" + user.id +"/delete" class="btn btn-danger ml-2") Delete

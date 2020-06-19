@@ -1,26 +1,22 @@
-h1 List Transactions
-form(action="/transactions/create" method="POST")
-    label Users
-    select(name="userId")
-        each user in users
-            option(value=user.id)=user.name
-    span &nbsp;
-    label Books
-    select(name="bookId")
-        each book in books
-            option(value=book.id)=book.title
-    button Create
-ul
-    each trans in transactions
-        li
-            span userId:
-            span &nbsp;
-            span=trans.userId
-            span &nbsp;
-            span //
-            span &nbsp;
-            span bookId:
-            span &nbsp;
-            span=trans.bookId
-            span &nbsp;
-            a(href="/transactions/"+trans.id+"/complete") Complete
+extends ../layouts/main_layout
+block content
+    h1(class="ml-2") List Transactions
+    form(action="/transactions/create" method="POST" class="form-inline")
+        label(class="ml-2") Users
+        select(name="userId" class="form-control ml-2")
+            each user in users
+                option(value=user.id)=user.name
+        label(class="ml-2") Books
+        select(name="bookId" class="form-control ml-2")
+            each book in books
+                option(value=book.id)=book.title
+        button(class="btn btn-success ml-2") Create
+    ul(class="list-group")
+        each trans in transactions
+            li(class="list-group-item")
+                span(class="font-weight-bold") userId:
+                span(class="ml-2")= trans.userId
+                span(class="ml-5")
+                span(class="font-weight-bold") bookId:
+                span(class="ml-2")= trans.bookId
+                a(href="/transactions/"+trans.id+"/complete" class="btn btn-primary ml-2") Complete
