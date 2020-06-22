@@ -5,7 +5,9 @@ const booksRoute=require('./routes/books_route');
 const usersRoute=require('./routes/user_route');
 const transRoute=require('./routes/transactions_route');
 const homeRoute=require('./routes/home_route');
-const cookiesValidate=require('./validate/cookies_validate');
+const authRoute=require('./routes/auth_route');
+// const cookiesValidate=require('./validate/cookies_validate');
+const authMiddlewares = require('./middlewares/auth_middlewares');
 
 const app = express();
 app.set('view engine','pug');
@@ -14,10 +16,12 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
-app.use('/', cookiesValidate.countCookies, homeRoute);
-app.use('/books', booksRoute);
-app.use('/users', usersRoute);
-app.use('/transactions', transRoute);
+// app.use('/', cookiesValidate.countCookies, homeRoute);
+app.use('/', homeRoute);
+app.use('/books', authMiddlewares.authRequire, booksRoute);
+app.use('/users', authMiddlewares.authRequire, usersRoute);
+app.use('/transactions', authMiddlewares.authRequire, transRoute);
+app.use('/auth', authRoute);
 
 app.listen(port,()=>{
     console.log('Server listening on port ' + port);

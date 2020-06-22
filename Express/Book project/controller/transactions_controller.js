@@ -1,9 +1,17 @@
 const db=require('../db');
 const shortid = require('shortid');
 // show transactions
+let data;
 module.exports.home=(req,res)=>{
+    let user= db.get('users').find({id: req.cookies.userId}).value();
+    if(user.isAdmin){
+        data=db.get('transactions').value();
+    }
+    else{
+        data=db.get('transactions').value().filter(item=>item.userId===user.id);
+    }
     res.render('transactions/index',{
-        transactions: db.get('transactions').value(),
+        transactions: data,
         users: db.get('users').value(),
         books: db.get('books').value()
     });
@@ -26,7 +34,7 @@ module.exports.isComplete=(req,res)=>{
     if(errors.length){
         res.render('transactions/index',{
             errors: errors,
-            transactions: db.get('transactions').value(),
+            transactions: data,
             users: db.get('users').value(),
             books: db.get('books').value()
         });

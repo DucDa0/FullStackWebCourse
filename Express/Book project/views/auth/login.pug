@@ -1,0 +1,12 @@
+extends ../layouts/main_layout
+block content
+    h1(class="ml-2") Login
+    if errors
+        each err in errors
+            .alert.alert-danger= err
+    form(action="/auth/login" method="POST" class="form-inline")
+        label(class="ml-2") Email
+        input(type="text" name="email" class="form-control ml-2")
+        label(class="ml-2") Password
+        input(type="text" name="pwd" class="form-control ml-2")
+        button(class="btn btn-success ml-2") Login

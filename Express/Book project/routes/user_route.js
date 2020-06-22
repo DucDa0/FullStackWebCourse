@@ -4,6 +4,7 @@ const router = express.Router();
 const validateUsers=require('../validate/users_validate');
 // controller
 const usersController=require('../controller/users_controller');
+
 // show users list
 router.get('/', usersController.home);
 // add users

@@ -24,23 +24,34 @@
   "users": [
     {
       "name": "Bao",
-      "id": "ZFwbexq-d"
+      "id": "ZFwbexq-d",
+      "email": "baomad@gmail.com",
+      "pwd": "123456",
+      "isAdmin": true
     },
     {
       "name": "Nam",
-      "id": "nYcMSqxyU"
+      "id": "nYcMSqxyU",
+      "email": "nambede@gmail.com",
+      "pwd": "123456"
     },
     {
       "name": "Phu",
-      "id": "i8SJ-Hk4z"
+      "id": "i8SJ-Hk4z",
+      "email": "phufat@gmail.com",
+      "pwd": "123456"
     },
     {
       "name": "Dat 007",
-      "id": "JRyafBRy1"
+      "id": "JRyafBRy1",
+      "email": "datcoi@gmail.com",
+      "pwd": "123456"
     },
     {
       "name": "Kien gay",
-      "id": "mupEMW6tD"
+      "id": "mupEMW6tD",
+      "email": "kiengay@gmail.com",
+      "pwd": "123456"
     }
   ],
   "transactions": [
