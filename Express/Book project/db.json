@@ -31,32 +31,37 @@
       "name": "Bao",
       "id": "ZFwbexq-d",
       "email": "baomad@gmail.com",
-      "pwd": "e10adc3949ba59abbe56e057f20f883e",
-      "isAdmin": true
+      "pwd": "$2b$10$sB.PV9J.HGgR09UDsQLR.ui.mAM1f8mkDdjPSBEuZ6n5ZFitQ7ybq",
+      "isAdmin": true,
+      "wrongLoginCount": 1
     },
     {
       "name": "Nam",
       "id": "nYcMSqxyU",
       "email": "nambede@gmail.com",
-      "pwd": "e10adc3949ba59abbe56e057f20f883e"
+      "pwd": "$2b$10$sB.PV9J.HGgR09UDsQLR.ui.mAM1f8mkDdjPSBEuZ6n5ZFitQ7ybq",
+      "wrongLoginCount": 0
     },
     {
       "name": "Phu",
       "id": "i8SJ-Hk4z",
       "email": "phufat@gmail.com",
-      "pwd": "e10adc3949ba59abbe56e057f20f883e"
+      "pwd": "$2b$10$sB.PV9J.HGgR09UDsQLR.ui.mAM1f8mkDdjPSBEuZ6n5ZFitQ7ybq",
+      "wrongLoginCount": 0
     },
     {
       "name": "Dat 007",
       "id": "JRyafBRy1",
       "email": "datcoi@gmail.com",
-      "pwd": "e10adc3949ba59abbe56e057f20f883e"
+      "pwd": "$2b$10$sB.PV9J.HGgR09UDsQLR.ui.mAM1f8mkDdjPSBEuZ6n5ZFitQ7ybq",
+      "wrongLoginCount": 0
     },
     {
       "name": "Kien gay",
       "id": "mupEMW6tD",
       "email": "kiengay@gmail.com",
-      "pwd": "e10adc3949ba59abbe56e057f20f883e"
+      "pwd": "$2b$10$sB.PV9J.HGgR09UDsQLR.ui.mAM1f8mkDdjPSBEuZ6n5ZFitQ7ybq",
+      "wrongLoginCount": 6
     }
   ],
   "transactions": [
