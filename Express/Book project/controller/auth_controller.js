@@ -17,7 +17,11 @@ module.exports.postLogin=(req,res)=>{
             res.render('auth/login',{
                 errors: ['Wrong username or password over 3 times, your account is blocked!']
             });
-            db.get('users').find({id: user.id}).assign({wrongLoginCount: ++user.wrongLoginCount}).write();
+            bcrypt.compare(req.body.pwd, user.pwd, function(error, result) {
+                if(!result){
+                    db.get('users').find({id: user.id}).assign({wrongLoginCount: ++user.wrongLoginCount}).write();
+                }
+            });
             return;
         }
         bcrypt.compare(req.body.pwd, user.pwd, function(error, result) {
@@ -39,14 +43,10 @@ module.exports.postLogin=(req,res)=>{
         });
         return;
     }
-   
-
-
     // if(md5(req.body.pwd)!==user.pwd){
     //     res.render('auth/login',{
     //         errors: ['Wrong password!']
     //     });
     //     return;
     // }
-   
 };
