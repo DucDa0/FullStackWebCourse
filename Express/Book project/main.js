@@ -1,5 +1,6 @@
 const express = require('express');
-var cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const port = 3000;
 const booksRoute=require('./routes/books_route');
 const usersRoute=require('./routes/user_route');
@@ -7,14 +8,14 @@ const transRoute=require('./routes/transactions_route');
 const homeRoute=require('./routes/home_route');
 const authRoute=require('./routes/auth_route');
 // const cookiesValidate=require('./validate/cookies_validate');
-const authMiddlewares = require('./middlewares/auth_middlewares');
+const authMiddlewares = require('./validate/auth_validate');
 
 const app = express();
 app.set('view engine','pug');
 app.set('views','./views');
 app.use(cookieParser());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 // app.use('/', cookiesValidate.countCookies, homeRoute);
 app.use('/', homeRoute);
