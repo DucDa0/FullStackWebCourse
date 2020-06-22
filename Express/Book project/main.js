@@ -1,22 +1,24 @@
 const express = require('express');
+var cookieParser = require('cookie-parser');
 const port = 3000;
 const booksRoute=require('./routes/books_route');
 const usersRoute=require('./routes/user_route');
 const transRoute=require('./routes/transactions_route');
+const homeRoute=require('./routes/home_route');
+const cookiesValidate=require('./validate/cookies_validate');
 
 const app = express();
 app.set('view engine','pug');
 app.set('views','./views');
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use('/', cookiesValidate.countCookies, homeRoute);
 app.use('/books', booksRoute);
 app.use('/users', usersRoute);
 app.use('/transactions', transRoute);
 
-app.get('/',(req,res)=>{
-    res.render('layouts/main_layout');
-});
 app.listen(port,()=>{
     console.log('Server listening on port ' + port);
 });
