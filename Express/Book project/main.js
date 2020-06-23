@@ -13,7 +13,7 @@ const authMiddlewares = require('./validate/auth_validate');
 const app = express();
 app.set('view engine','pug');
 app.set('views','./views');
-app.use(cookieParser());
+app.use(cookieParser('xnhnytnmfkormgjdqfng15489410'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));

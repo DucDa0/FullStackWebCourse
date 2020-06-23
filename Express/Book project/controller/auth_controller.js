@@ -26,7 +26,9 @@ module.exports.postLogin=(req,res)=>{
         }
         bcrypt.compare(req.body.pwd, user.pwd, function(error, result) {
             if(result) {
-                res.cookie('userId', user.id);
+                res.cookie('userId', user.id,{
+                    signed: true
+                });
                 res.redirect('/');
             } else {
                 res.render('auth/login',{

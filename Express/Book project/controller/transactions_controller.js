@@ -3,7 +3,7 @@ const shortid = require('shortid');
 // show transactions
 let data;
 module.exports.home=(req,res)=>{
-    let user= db.get('users').find({id: req.cookies.userId}).value();
+    let user= db.get('users').find({id: req.signedCookies.userId}).value();
     if(user.isAdmin){
         data=db.get('transactions').value();
     }
