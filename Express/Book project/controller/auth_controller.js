@@ -1,6 +1,7 @@
 const db=require('../db');
-const sgMail=require('@sendgrid/mail');
-sgMail.setApiKey(process.env.API_KEY);
+const nodemailer =  require('nodemailer');
+// const sgMail=require('@sendgrid/mail');
+// sgMail.setApiKey(process.env.API_KEY);
 const md5=require('md5');
 const bcrypt = require('bcrypt');
 // const saltRounds = 10;
@@ -10,19 +11,52 @@ const bcrypt = require('bcrypt');
 module.exports.login=(req,res)=>{
     res.render('auth/login');
 };
-
 module.exports.postLogin=(req,res)=>{
-    let user = db.get('users').find({email: req.body.email}).value();
-    if(user){
-        if(user.wrongLoginCount>=4){
-            res.render('auth/login',{
-                errors: ['Wrong username or password over 3 times, your account is blocked!']
-            });
-            bcrypt.compare(req.body.pwd, user.pwd, function(error, result) {
+    let userFind = db.get('users').find({email: req.body.email}).value();
+    if(userFind){
+        if(userFind.wrongLoginCount>=4){
+            bcrypt.compare(req.body.pwd, userFind.pwd, function(error, result) {
                 if(!result){
-                    db.get('users').find({id: user.id}).assign({wrongLoginCount: ++user.wrongLoginCount}).write();
+                    db.get('users').find({id: userFind.id}).assign({wrongLoginCount: ++userFind.wrongLoginCount}).write();
                 }
             });
+            const transporter = nodemailer.createTransport({
+                host: 'smtp.gmail.com',
+                auth: {
+                    user: 'naruto9xbmt3@gmail.com',
+                    pass: 'xuandat123'
+                }
+            });
+            let content = `
+                <div style="padding: 10px; background-color: #003375">
+                    <div style="padding: 10px; background-color: white;">
+                        <h4 style="color: #0085ff">Your Account is blocked</h4>
+                        <span style="color: black">If you want to unblock your account, contact <strong>0385639830</strong></span>
+                    </div>
+                </div>
+            `;
+            let mainOptions = { 
+                from: "Admin",
+                to: userFind.email,
+                subject: "Test Nodemailer",
+                html: content
+            };
+            transporter.sendMail(mainOptions, function(err, info){
+                if(err){
+                    res.render('auth/login',{
+                        errors: ['Loi gui mail']
+                    });
+                    return;
+                }
+                res.render('auth/login',{
+                    errors: ['Mot email da duoc gui den tai khoan cua ban']
+                });
+                return;
+            });
+            // res.render('auth/login',{
+            //     errors: ['Wrong username or password over 3 times, your account is blocked!']
+            // });
+
             // const msg = {
             //     to: 'test@example.com',
             //     from: 'test@example.com',
@@ -31,11 +65,11 @@ module.exports.postLogin=(req,res)=>{
             //     html: '<strong>and easy to do anywhere, even with Node.js</strong>',
             // };
             // sgMail.send(msg);
-            // return;
+            return;
         }
-        bcrypt.compare(req.body.pwd, user.pwd, function(error, result) {
+        bcrypt.compare(req.body.pwd, userFind.pwd, function(error, result) {
             if(result) {
-                res.cookie('userId', user.id,{
+                res.cookie('userId', userFind.id,{
                     signed: true
                 });
                 res.redirect('/');
@@ -43,7 +77,7 @@ module.exports.postLogin=(req,res)=>{
                 res.render('auth/login',{
                     errors: ['Wrong username or password!']
                 });
-                db.get('users').find({id: user.id}).assign({wrongLoginCount: ++user.wrongLoginCount}).write();
+                db.get('users').find({id: userFind.id}).assign({wrongLoginCount: ++userFind.wrongLoginCount}).write();
                 return;
             } 
         });
