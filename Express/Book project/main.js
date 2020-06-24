@@ -8,6 +8,7 @@ const usersRoute=require('./routes/user_route');
 const transRoute=require('./routes/transactions_route');
 const homeRoute=require('./routes/home_route');
 const authRoute=require('./routes/auth_route');
+const productsRoute=require('./routes/products_route');
 // const cookiesValidate=require('./validate/cookies_validate');
 const authMiddlewares = require('./validate/auth_validate');
 
@@ -23,6 +24,7 @@ app.use('/', homeRoute);
 app.use('/books', authMiddlewares.authRequire, booksRoute);
 app.use('/users', authMiddlewares.authRequire, usersRoute);
 app.use('/transactions', authMiddlewares.authRequire, transRoute);
+app.use('/products', productsRoute);
 app.use('/auth', authRoute);
 
 app.listen(port,()=>{
@@ -42,3 +44,6 @@ function nonAccentVietnamese(str) {
     str = str.replace(/\u02C6|\u0306|\u031B/g, ""); // Â, Ê, Ă, Ơ, Ư
     return str;
 }
+/**
+ * LowDb được xây dựng trên Lodash, xem qua lodash để dùng được nhiều cái hay
+ */

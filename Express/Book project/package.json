@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon main.js",
+    "start": "nodemon --inspect main.js",
     "start_windows": "set NODE_ENV=production&&node main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

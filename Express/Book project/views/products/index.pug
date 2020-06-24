@@ -1,0 +1,35 @@
+extends ../layouts/main_layout
+block content
+    h1(class="ml-2") List Products
+    .col
+        .row
+            each product in products
+                .col-12.col-md-6.col-lg-3
+                    .card
+                        img.card-img-top(src=product.image, alt='Card image cap')
+                        .card-body
+                            h5.card-title= product.name
+                            p.card-text= product.desciptions
+                            a.btn.btn-primary(href='#') Add to cart
+        nav(aria-label='Page navigation example')
+            ul.pagination.justify-content-center
+                if currentPage >= 4
+                    li.page-item
+                        a.page-link(href='/products?page='+(currentPage-1), tabindex='-1') Previous
+                else
+                    li.page-item.disabled
+                        a.page-link(href='/products?page='+(currentPage-1), tabindex='-1') Previous
+                each page in showPage
+                    if currentPage===page
+                        li.page-item.active
+                            a.page-link(href='/products?page='+page)= page
+                    else
+                        li.page-item
+                            a.page-link(href='/products?page='+page)= page
+                    
+                if (pageSize - currentPage) <= 2
+                    li.page-item.disabled
+                        a.page-link(href='/products?page='+(currentPage+1)) Next
+                else
+                    li.page-item
+                        a.page-link(href='/products?page='+(currentPage+1)) Next
