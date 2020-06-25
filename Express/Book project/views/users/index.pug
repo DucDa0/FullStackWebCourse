@@ -1,19 +1,27 @@
 extends ../layouts/main_layout
 block content
-    h1(class="ml-2") List Users
+    h1 List Users
     if errors
         each err in errors
             .alert.alert-danger= err
-    form(action="/users/add" method="POST" class="form-inline")
-        label(class="ml-2") Users
-        input(type="text" name="name" class="form-control ml-2")
-        button(class="btn btn-success ml-2") Add
+    .col-3
+        form(action="/users/add" method="POST" enctype="multipart/form-data")
+            .form-group
+                label(for="name") Name
+                input(type="text" name="name" class="form-control")
+            .form-group
+                label(for="avatar") Avatar
+                input(type="file" name="avatar" class="form-control-file")
+            button(class="btn btn-success") Add
     table.table
         tr
+            th Avatar
             th Name
         each user in users
             tr
+                td
+                    img(src=user.avatarUrl alt="no image" width="48" height="48" style="border-radius: 50%")
                 td=user.name
                 td
-                    a(href="/users/" + user.id +"/edit" class="btn btn-primary ml-2") Edit
                     a(href="/users/" + user.id +"/delete" class="btn btn-danger ml-2") Delete
+                    a(href="/users/profile/" + user.id class="btn btn-primary ml-2") View

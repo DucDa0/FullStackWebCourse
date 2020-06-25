@@ -3,15 +3,15 @@ const db=require('../db');
 
 let productTotal=db.get('products').size();
 let perPage=8;
-let pagesize;
-let pagelength=5;
+let pageSize;
+let pageLength=5;
 if(productTotal/perPage - parseInt(productTotal/perPage) > 0){
-    pagesize=parseInt(productTotal/perPage)+1;
+    pageSize=parseInt(productTotal/perPage)+1;
 }
 else{
-    pagesize=parseInt(productTotal/perPage);
+    pageSize=parseInt(productTotal/perPage);
 }
-function getPagingRange(current, {min = 1, total = pagesize, length = pagelength} = {}) {
+function getPagingRange(current, {min = 1, total = pageSize, length = pageLength} = {}) {
     if (length > total) length = total;
   
     let start = current - Math.floor(length / 2);
@@ -29,7 +29,7 @@ module.exports.home=(req,res)=>{
         products: db.get('products').value().slice(start,end),
         showPage: getPagingRange(page),
         currentPage: page,
-        pageSize: pagesize,
-        pageLength: pagelength
+        pageSize: pageSize,
+        pageLength: pageLength
     });
 };

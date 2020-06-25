@@ -25,7 +25,7 @@ module.exports.edit=(req,res,next)=>{
         errors.push('Phai co it nhat 3 ki tu');
     }
     if(errors.length){
-        res.render('users/edit',{
+        res.render('users/profile',{
             users: db.get('users').value(),
             errors: errors
         });

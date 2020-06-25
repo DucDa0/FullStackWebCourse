@@ -1,0 +1,15 @@
+extends ../layouts/main_layout
+block content
+    h1 User Profile
+    if errors
+        each err in errors
+            .alert.alert-danger= err
+    .col-3
+        img(src=users.avatarUrl alt="no image" width="64" height="64" style="border-radius: 50%")
+        a(href="/users/profileAvatar/" + users.id class="btn btn-secondary ml-2") Upload Avt
+    .col-3
+        form(action="/users/save" method="POST")
+            .form-group
+                label(for="name") Name
+                input(type="text" name="name" value=users.name class="form-control")
+            button(class="btn btn-success") Save
