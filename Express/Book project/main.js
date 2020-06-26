@@ -9,15 +9,19 @@ const transRoute=require('./routes/transactions_route');
 const homeRoute=require('./routes/home_route');
 const authRoute=require('./routes/auth_route');
 const productsRoute=require('./routes/products_route');
+const cartRoute=require('./routes/cart_route');
 // const cookiesValidate=require('./validate/cookies_validate');
 const authMiddlewares = require('./validate/auth_validate');
+const sessionMiddleware=require('./validate/session_validate');
 
 const app = express();
+
 app.set('view engine','pug');
 app.set('views','./views');
 app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(sessionMiddleware);
 app.use(express.static('public'));
 // app.use('/', cookiesValidate.countCookies, homeRoute);
 app.use('/', homeRoute);
@@ -26,6 +30,7 @@ app.use('/users', authMiddlewares.authRequire, usersRoute);
 app.use('/transactions', authMiddlewares.authRequire, transRoute);
 app.use('/products', productsRoute);
 app.use('/auth', authRoute);
+app.use('/cart', cartRoute);
 
 app.listen(port,()=>{
     console.log('Server listening on port ' + port);

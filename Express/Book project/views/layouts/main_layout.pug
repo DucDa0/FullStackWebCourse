@@ -14,7 +14,10 @@ html
                         a.nav-link(href='/users') Users
                     li.nav-item
                         a.nav-link(href='/transactions') Transactions
-            if(user)
+                    li.nav-item
+                        a.nav-link(href='/products') Buy Books
+            a.navbar-brand.mr-3(href='/cart') Cart
+            if user
                 span.navbar-brand= user.name
         .container
             block content

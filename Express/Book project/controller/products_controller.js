@@ -1,7 +1,7 @@
 const db=require('../db');
 
 
-let productTotal=db.get('products').size();
+let productTotal=db.get('books').size();
 let perPage=8;
 let pageSize;
 let pageLength=5;
@@ -26,7 +26,7 @@ module.exports.home=(req,res)=>{
     let end=page*perPage;
    
     res.render('products/index',{
-        products: db.get('products').value().slice(start,end),
+        products: db.get('books').value().slice(start,end),
         showPage: getPagingRange(page),
         currentPage: page,
         pageSize: pageSize,

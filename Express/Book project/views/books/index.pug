@@ -1,17 +1,26 @@
 extends ../layouts/main_layout
 block content
     h1 List Books
-    form(action="/books/add" method="POST" class="form-inline")
-        label(class="ml-2") Title
-        input(type="text" name="title" class="form-control ml-2")
-        label(class="ml-2") Description
-        input(type="text" name="description" class="form-control ml-2")
-        button(class="btn btn-success ml-2") Add
+    .col-3
+        form(action="/books/add" method="POST" enctype="multipart/form-data")
+            .form-group
+                label(for="title") Title
+                input(type="text" name="title" class="form-control ml-2")
+            .form-group
+                label(for="description") Description
+                input(type="text" name="description" class="form-control ml-2")
+            .form-group
+                label(for="bookImg") Book Image
+                input(type="file" name="bookImg" class="form-control-file")
+            button(class="btn btn-success") Add
     table.table
         tr
+            th Image
             th Title
         each book in books
             tr
+                td
+                    img(src=book.bookImgUrl alt='Card image cap' width="64" height="64")
                 td=book.title
                 td
                     a(href="/books/" + book.id +"/edit" class="btn btn-primary ml-2") Edit
