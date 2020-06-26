@@ -1,0 +1,21 @@
+extends ../layouts/main_layout
+block content
+    if !Cart
+        h1 Your Cart is empty!
+    else
+        h1 Your Cart
+        table.table
+            tr
+                th Image
+                th Products Name
+                th Amount
+            each cart in Cart
+                tr
+                    td
+                        img(src=cart.book.bookImgUrl alt='Card image cap' width="64" height="64")
+                    td=cart.book.title
+                    td=cart.amount
+        a.float-right(href="/cart/complete" class="btn btn-success" style="width:150px") Order
+        
+   
+    

@@ -16,7 +16,7 @@ html
                         a.nav-link(href='/transactions') Transactions
                     li.nav-item
                         a.nav-link(href='/products') Buy Books
-            a.navbar-brand.mr-3(href='/cart') Cart
+            a.navbar-brand.mr-3(href='/cart/index')= 'Cart('+cart+')'
             if user
                 span.navbar-brand= user.name
         .container

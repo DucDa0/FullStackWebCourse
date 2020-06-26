@@ -72,6 +72,11 @@ module.exports.postLogin=(req,res)=>{
                 res.cookie('userId', userFind.id,{
                     signed: true
                 });
+                let yourCart=db.get('sessions').find({id : req.signedCookies.sessionId}).get('cart').value();
+                if(yourCart){
+                    res.redirect('/cart/index');
+                    return;
+                }
                 res.redirect('/');
             } else {
                 res.render('auth/login',{
