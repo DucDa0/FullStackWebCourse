@@ -1,7 +1,7 @@
-const db=require('../db');
+// const db=require('../db');
+const Book = require('../models/books_model');
 
-
-let productTotal=db.get('books').size();
+let productTotal=Book.estimatedDocumentCount();
 let perPage=8;
 let pageSize;
 let pageLength=5;
@@ -20,16 +20,24 @@ function getPagingRange(current, {min = 1, total = pageSize, length = pageLength
    
     return Array.from({length: length}, (el, i) => start + i);
 }
-module.exports.home=(req,res)=>{
+module.exports.home = async (req,res)=>{
     let page=parseInt(req.query.page) || 1;
     let start=(page-1)*perPage;
     let end=page*perPage;
    
+    // res.render('products/index',{
+    //     products: db.get('books').value().slice(start,end),
+    //     showPage: getPagingRange(page),
+    //     currentPage: page,
+    //     pageSize: pageSize,
+    //     pageLength: pageLength
+    // });
+    let books = await Book.find();
     res.render('products/index',{
-        products: db.get('books').value().slice(start,end),
+        products: books.slice(start,end),
         showPage: getPagingRange(page),
         currentPage: page,
         pageSize: pageSize,
         pageLength: pageLength
-    });
+    })
 };
