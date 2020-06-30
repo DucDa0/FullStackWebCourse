@@ -1,8 +1,10 @@
-const db=require('../db');
+// const db=require('../db');
+const User = require('../models/users_model');
+const Session=require('../models/sessions_model');
 const nodemailer =  require('nodemailer');
 // const sgMail=require('@sendgrid/mail');
 // sgMail.setApiKey(process.env.API_KEY);
-const md5=require('md5');
+// const md5=require('md5');
 const bcrypt = require('bcrypt');
 // const saltRounds = 10;
 // const myPlaintextPassword = 's0/\/\P4$$w0rD';
@@ -11,13 +13,15 @@ const bcrypt = require('bcrypt');
 module.exports.login=(req,res)=>{
     res.render('auth/login');
 };
-module.exports.postLogin=(req,res)=>{
-    let userFind = db.get('users').find({email: req.body.email}).value();
+module.exports.postLogin=async(req,res)=>{
+    // let userFind = db.get('users').find({email: req.body.email}).value();
+    let userFind=await User.findOne({email:req.body.email}).exec();
     if(userFind){
         if(userFind.wrongLoginCount>=4){
-            bcrypt.compare(req.body.pwd, userFind.pwd, function(error, result) {
+            bcrypt.compare(req.body.pwd, userFind.pwd, async function(error, result) {
                 if(!result){
-                    db.get('users').find({id: userFind.id}).assign({wrongLoginCount: ++userFind.wrongLoginCount}).write();
+                    // db.get('users').find({id: userFind.id}).assign({wrongLoginCount: ++userFind.wrongLoginCount}).write();
+                    await User.findOneAndUpdate({_id:userFind.id},{wrongLoginCount: ++userFind.wrongLoginCount}).exec();
                 }
             });
             const transporter = nodemailer.createTransport({
@@ -67,13 +71,14 @@ module.exports.postLogin=(req,res)=>{
             // sgMail.send(msg);
             return;
         }
-        bcrypt.compare(req.body.pwd, userFind.pwd, function(error, result) {
+        bcrypt.compare(req.body.pwd, userFind.pwd, async function(error, result) {
             if(result) {
                 res.cookie('userId', userFind.id,{
                     signed: true
                 });
-                let yourCart=db.get('sessions').find({id : req.signedCookies.sessionId}).get('cart').value();
-                if(yourCart){
+                // let yourCart=db.get('sessions').find({id : req.signedCookies.sessionId}).get('cart').value();
+                let Cart=await Session.findById({_id:req.signedCookies.sessionId}).exec();
+                if(Cart.get('cart')){
                     res.redirect('/cart/index');
                     return;
                 }
@@ -82,7 +87,9 @@ module.exports.postLogin=(req,res)=>{
                 res.render('auth/login',{
                     errors: ['Wrong username or password!']
                 });
-                db.get('users').find({id: userFind.id}).assign({wrongLoginCount: ++userFind.wrongLoginCount}).write();
+                // db.get('users').find({id: userFind.id}).assign({wrongLoginCount: ++userFind.wrongLoginCount}).write();
+ 
+                await User.findOneAndUpdate({_id:userFind.id},{wrongLoginCount: ++userFind.wrongLoginCount}).exec();
                 return;
             } 
         });

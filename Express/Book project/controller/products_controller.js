@@ -1,16 +1,21 @@
 // const db=require('../db');
 const Book = require('../models/books_model');
 
-let productTotal=Book.estimatedDocumentCount();
 let perPage=8;
 let pageSize;
 let pageLength=5;
-if(productTotal/perPage - parseInt(productTotal/perPage) > 0){
-    pageSize=parseInt(productTotal/perPage)+1;
-}
-else{
-    pageSize=parseInt(productTotal/perPage);
-}
+Book.estimatedDocumentCount((err, count) => { 
+    if (err){ 
+        console.log(err) 
+    }else{
+        if(count/perPage - parseInt(count/perPage) > 0){
+            pageSize=parseInt(count/perPage)+1;
+        }
+        else{
+            pageSize=parseInt(count/perPage);
+        }
+    }
+}); 
 function getPagingRange(current, {min = 1, total = pageSize, length = pageLength} = {}) {
     if (length > total) length = total;
   

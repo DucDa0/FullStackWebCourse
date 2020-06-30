@@ -1,22 +1,26 @@
-const db=require('../db');
+// const db=require('../db');
 const shortid = require('shortid');
-module.exports.cartHome=(req,res)=>{
-    var yourCart=db.get('sessions').find({id : req.signedCookies.sessionId}).get('cart').value();
-    if(!yourCart){
+const Session=require('../models/sessions_model');
+const Book = require('../models/books_model');
+module.exports.cartHome=async (req,res)=>{
+    // var yourCart=db.get('sessions').find({id : req.signedCookies.sessionId}).get('cart').value();
+    var yourCart= await Session.findById({_id:req.signedCookies.sessionId});
+    if(!yourCart.get('cart')){
         res.render('cart/index',{
             Cart: false
         });
         return;
     }
-    var books=db.get('books').value();
+    // var books=db.get('books').value();
+    var books=await Book.find();
     var data=[];
     var tmp={};
     for(var book of books){
-        if(book.id in yourCart){
+        if(book.id in yourCart.get('cart')){
             
             tmp={
                 book: book,
-                amount: yourCart[book.id]
+                amount: yourCart.get('cart')[book.id]
             }
             data.push(tmp);
         }
@@ -25,15 +29,28 @@ module.exports.cartHome=(req,res)=>{
         Cart: data
     });
 }
-module.exports.addToCart=(req,res,next)=>{
+module.exports.addToCart=async (req,res,next)=>{
     let productId=req.params.productId;
     let sessionId=req.signedCookies.sessionId;
     if(!sessionId){
         res.redirect('/products');
         return;
     }
-    let count=db.get('sessions').find({id : sessionId}).get('cart.'+ productId, 0).value();
-    db.get('sessions').find({id : sessionId}).set('cart.'+ productId, count + 1).write();
+    // let count=db.get('sessions').find({id : sessionId}).get('cart.'+ productId, 0).value();
+    let yourCart=await Session.findById({_id:sessionId}).exec();
+    
+    if(!yourCart.get('cart')){
+        yourCart.get('cart')[productId] = 1;
+    }
+    else if(productId in yourCart.get('cart')){
+        yourCart.get('cart')[productId]=++yourCart.get('cart')[productId];
+    }
+    else{
+        yourCart.get('cart')[productId] = 1;
+        let newCart=yourCart.get('cart');
+        await Session.findByIdAndUpdate({_id:sessionId},{cart:newCart}).exec();
+    }
+    // db.get('sessions').find({id : sessionId}).set('cart.'+ productId, count + 1).write();
     res.redirect('/products');
 }
 module.exports.cartComplete=(req,res)=>{

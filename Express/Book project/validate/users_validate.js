@@ -1,5 +1,6 @@
-const db=require('../db');
-module.exports.add=(req,res,next)=>{
+// const db=require('../db');
+const User = require('../models/users_model');
+module.exports.add=async(req,res,next)=>{
     let errors=[];
     if(req.body.name.length>10){
         errors.push('Ten qua dai, chi duoi 31 ki tu, moi nhap lai');
@@ -9,14 +10,14 @@ module.exports.add=(req,res,next)=>{
     }
     if(errors.length){
         res.render('users/index',{
-            users: db.get('users').value(),
+            users: await User.find(),
             errors: errors
         });
         return;
     }
     next();
 }
-module.exports.edit=(req,res,next)=>{
+module.exports.edit=async(req,res,next)=>{
     let errors=[];
     if(req.body.name.length>10){
         errors.push('Ten qua dai, chi duoi 31 ki tu, moi nhap lai');
@@ -26,7 +27,7 @@ module.exports.edit=(req,res,next)=>{
     }
     if(errors.length){
         res.render('users/profile',{
-            users: db.get('users').value(),
+            users: await User.find(),
             errors: errors
         });
         return;

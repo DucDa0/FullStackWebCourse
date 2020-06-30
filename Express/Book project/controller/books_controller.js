@@ -1,6 +1,6 @@
-const db=require('../db');
-const Book = require('../models/books_model');
+// const db=require('../db');
 // const shortid = require('shortid');
+const Book = require('../models/books_model');
 const cloudinary = require('cloudinary').v2;
 cloudinary.config({ 
     cloud_name: process.env.CLOUD_NAME, 
@@ -38,7 +38,7 @@ let id;
 module.exports.editHome=async (req,res)=>{
     id=req.params.id;
     // let book=db.get('books').find({id:id}).value();
-    let book= await Book.findOne({_id : id}).exec();
+    let book= await Book.findById({_id : id}).exec();
     res.render('books/edit',{
         books: book
     });
