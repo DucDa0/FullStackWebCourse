@@ -49,6 +49,6 @@ module.exports.isComplete=async (req,res)=>{
         return;
     }
     // db.get('transactions').find({id: id}).assign({isComplete: true}).write();
-    Tran.findOneAndUpdate({_id:id},{isComplete: true}).exec();
+    await Tran.findOneAndUpdate({_id:id},{isComplete: true}).exec();
     res.redirect('/transactions');
 }

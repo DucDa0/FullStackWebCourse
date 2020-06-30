@@ -19,7 +19,7 @@ module.exports=async(req,res,next)=>{
     if(req.signedCookies.sessionId){
         var Cart=await Session.findById({_id:req.signedCookies.sessionId}).exec();
         if(Cart.get('cart')){
-            countCart = Object.keys(Cart.get('cart')).length;
+            countCart = Cart.get('cart').length;
         }
         else{
             countCart=0;

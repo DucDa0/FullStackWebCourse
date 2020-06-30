@@ -2,9 +2,11 @@
 const shortid = require('shortid');
 const Session=require('../models/sessions_model');
 const Book = require('../models/books_model');
+const User = require('../models/users_model');
+const Tran = require('../models/transactions_model');
 module.exports.cartHome=async (req,res)=>{
     // var yourCart=db.get('sessions').find({id : req.signedCookies.sessionId}).get('cart').value();
-    var yourCart= await Session.findById({_id:req.signedCookies.sessionId});
+    var yourCart= await Session.findById({_id:req.signedCookies.sessionId}).exec();
     if(!yourCart.get('cart')){
         res.render('cart/index',{
             Cart: false
@@ -16,50 +18,56 @@ module.exports.cartHome=async (req,res)=>{
     var data=[];
     var tmp={};
     for(var book of books){
-        if(book.id in yourCart.get('cart')){
-            
-            tmp={
-                book: book,
-                amount: yourCart.get('cart')[book.id]
+        for(item of yourCart.get('cart')){
+            if(book.id === item.bookId){
+                tmp={
+                    book: book,
+                    amount: item.amount
+                }
+                data.push(tmp);
             }
-            data.push(tmp);
         }
+        // if(book.id in yourCart.get('cart')){
+            
+        //     tmp={
+        //         book: book,
+        //         amount: yourCart.get('cart')[book.id]
+        //     }
+        //     data.push(tmp);
+        // }
     }
     res.render('cart/index',{
         Cart: data
     });
 }
 module.exports.addToCart=async (req,res,next)=>{
-    let productId=req.params.productId;
-    let sessionId=req.signedCookies.sessionId;
+    var productId=req.params.productId;
+    var sessionId=req.signedCookies.sessionId;
     if(!sessionId){
         res.redirect('/products');
         return;
     }
     // let count=db.get('sessions').find({id : sessionId}).get('cart.'+ productId, 0).value();
-    let yourCart=await Session.findById({_id:sessionId}).exec();
+    var yourCart=await Session.findById({_id:sessionId}).exec();
     
-    if(!yourCart.get('cart')){
-        yourCart.get('cart')[productId] = 1;
-    }
-    else if(productId in yourCart.get('cart')){
-        yourCart.get('cart')[productId]=++yourCart.get('cart')[productId];
-    }
-    else{
-        yourCart.get('cart')[productId] = 1;
-        let newCart=yourCart.get('cart');
-        await Session.findByIdAndUpdate({_id:sessionId},{cart:newCart}).exec();
-    }
+    
+    yourCart.get('cart').push({bookId: productId, amount: 1});
+    yourCart.markModified('cart');
+    await yourCart.save();
     // db.get('sessions').find({id : sessionId}).set('cart.'+ productId, count + 1).write();
     res.redirect('/products');
 }
-module.exports.cartComplete=(req,res)=>{
-    var user= db.get('users').find({id: req.signedCookies.userId}).value();
-    if(!user){
+module.exports.cartComplete=async(req,res)=>{
+    // var user= db.get('users').find({id: req.signedCookies.userId}).value();
+    if(!req.signedCookies.userId){
         res.redirect('/auth/login');
         return;
     }
-    var data=db.get('sessions').find({id : req.signedCookies.sessionId}).get('cart').value();
+    else{
+        var user= await User.findById({_id:req.signedCookies.userId}).exec();
+    }
+    // var data=db.get('sessions').find({id : req.signedCookies.sessionId}).get('cart').value();
+    var data=await Session.findById({_id:req.signedCookies.sessionId}).exec();
     // for(var bookId of Object.keys(data)){
     //     db.get('transactions').push({
     //         id: shortid.generate(),
@@ -68,14 +76,15 @@ module.exports.cartComplete=(req,res)=>{
     //         books: {bookId: bookId, amount: data[bookId]}
     //     }).write();
     // }
-    for(var bookId in data){
-        db.get('transactions').push({
-            id: shortid.generate(),
-            isComplete: false,
-            userId: user.id,
-            bookId: bookId
-        }).write();
+    for(var bookId in data.get('cart')){
+        // db.get('transactions').push({
+        //     id: shortid.generate(),
+        //     isComplete: false,
+        //     userId: user.id,
+        //     bookId: bookId
+        // }).write();
+        await Tran.insertMany({isComplete: false, userId: user.id, bookId: bookId});
     }
-    db.get('sessions').find({id : req.signedCookies.sessionId}).unset('cart').write();
+    // db.get('sessions').find({id : req.signedCookies.sessionId}).unset('cart').write();
     res.redirect('/transactions');
 }
