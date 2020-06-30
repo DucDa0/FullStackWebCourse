@@ -49,11 +49,17 @@ module.exports.addToCart=async (req,res,next)=>{
     }
     // let count=db.get('sessions').find({id : sessionId}).get('cart.'+ productId, 0).value();
     var yourCart=await Session.findById({_id:sessionId}).exec();
-    
-    
-    yourCart.get('cart').push({bookId: productId, amount: 1});
-    yourCart.markModified('cart');
-    await yourCart.save();
+    for(var item of yourCart.get('cart')){
+        if(item.bookId===productId){
+            item.amount+=1;
+            yourCart.markModified('cart');
+            await yourCart.save();
+            break;
+        }
+    }
+    // yourCart.get('cart').push({bookId: productId, amount: 1});
+    // yourCart.markModified('cart');
+    // await yourCart.save();
     // db.get('sessions').find({id : sessionId}).set('cart.'+ productId, count + 1).write();
     res.redirect('/products');
 }
