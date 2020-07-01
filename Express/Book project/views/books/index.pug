@@ -25,3 +25,27 @@ block content
                 td
                     a(href="/books/" + book.id +"/edit" class="btn btn-primary ml-2") Edit
                     a(href="/books/" + book.id +"/delete" class="btn btn-danger ml-2") Delete
+    
+    .mt-4
+        nav(aria-label='Page navigation example')
+            ul.pagination.justify-content-center
+                if currentPage >= 4
+                    li.page-item
+                        a.page-link(href='/books?page='+(currentPage-1), tabindex='-1') Previous
+                else
+                    li.page-item.disabled
+                        a.page-link(href='/books?page='+(currentPage-1), tabindex='-1') Previous
+                each page in showPage
+                    if currentPage===page
+                        li.page-item.active
+                            a.page-link(href='/books?page='+page)= page
+                    else
+                        li.page-item
+                            a.page-link(href='/books?page='+page)= page
+                    
+                if (pageSize - currentPage) <= 2
+                    li.page-item.disabled
+                        a.page-link(href='/books?page='+(currentPage+1)) Next
+                else
+                    li.page-item
+                        a.page-link(href='/books?page='+(currentPage+1)) Next

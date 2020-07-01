@@ -1,7 +1,7 @@
 extends ../layouts/login_layout
 block content
     div.d-flex.justify-content-center
-        h1 Login
+        h1 Sign Up
     div.d-flex.justify-content-center
         if errors
             each err in errors
@@ -19,10 +19,3 @@ block content
         a(href="/") <- Back
         a(href="#") Sign up
         
-        
-    //- form(action="/api/login" method="POST" class="form-inline")
-    //-     label(class="ml-2") Email
-    //-     input(type="text" name="email" class="form-control ml-2")
-    //-     label(class="ml-2") Password
-    //-     input(type="text" name="pwd" class="form-control ml-2")
-    //-     button(class="btn btn-success ml-2") Login
