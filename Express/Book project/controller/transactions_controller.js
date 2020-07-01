@@ -14,7 +14,7 @@ module.exports.home=async(req,res)=>{
     }
     else{
         // data=db.get('transactions').value().filter(item=>item.userId===user.id);
-        data=await Tran.find({userId: user.get('id')}).exec();
+        data=await Tran.find({userId: user.id}).exec();
     }
     res.render('transactions/index',{
         transactions: data,

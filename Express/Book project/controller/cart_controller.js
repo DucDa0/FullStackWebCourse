@@ -73,6 +73,7 @@ module.exports.addToCart=async (req,res,next)=>{
 }
 module.exports.cartComplete=async(req,res)=>{
     // var user= db.get('users').find({id: req.signedCookies.userId}).value();
+    // var user= await User.findOne({_id:req.signedCookies.userId}).exec();
     if(!req.signedCookies.userId){
         res.redirect('/auth/login');
         return;

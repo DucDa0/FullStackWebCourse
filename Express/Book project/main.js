@@ -13,6 +13,8 @@ const homeRoute=require('./routes/home_route');
 const authRoute=require('./routes/auth_route');
 const productsRoute=require('./routes/products_route');
 const cartRoute=require('./routes/cart_route');
+const transApiRoute=require('./api/routes/transactions_route');
+const loginApiRoute=require('./api/routes/login_route');
 // const cookiesValidate=require('./validate/cookies_validate');
 const authMiddlewares = require('./validate/auth_validate');
 const sessionMiddleware=require('./validate/session_validate');
@@ -27,6 +29,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(sessionMiddleware);
 app.use(express.static('public'));
 // app.use('/', cookiesValidate.countCookies, homeRoute);
+// API
+
+app.use('/api/transactions', transApiRoute);
+app.use('/api/login', loginApiRoute);
+
+//
 app.use('/', homeRoute);
 app.use('/books', authMiddlewares.authRequire, booksRoute);
 app.use('/users', authMiddlewares.authRequire, usersRoute);
