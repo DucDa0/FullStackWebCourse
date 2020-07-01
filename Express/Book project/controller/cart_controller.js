@@ -49,19 +49,27 @@ module.exports.addToCart=async (req,res,next)=>{
     }
     // let count=db.get('sessions').find({id : sessionId}).get('cart.'+ productId, 0).value();
     var yourCart=await Session.findById({_id:sessionId}).exec();
-    for(var item of yourCart.get('cart')){
-        if(item.bookId===productId){
-            item.amount+=1;
+    if(!yourCart.get('cart')){
+        yourCart._doc.cart=[];
+        yourCart.get('cart').push({bookId:productId,amount:1});
+        yourCart.markModified('cart');
+        await yourCart.save();
+        return res.redirect('/products');
+    }
+    else{
+        let cartItem=yourCart.get('cart').find(item=>item.bookId===productId);
+        if(!cartItem){
+            yourCart.get('cart').push({bookId: productId, amount: 1});
             yourCart.markModified('cart');
             await yourCart.save();
-            break;
+            return res.redirect('/products');
         }
+        cartItem.amount+=1;
+        yourCart.markModified('cart');
+        await yourCart.save();
+        return res.redirect('/products');
     }
-    // yourCart.get('cart').push({bookId: productId, amount: 1});
-    // yourCart.markModified('cart');
-    // await yourCart.save();
     // db.get('sessions').find({id : sessionId}).set('cart.'+ productId, count + 1).write();
-    res.redirect('/products');
 }
 module.exports.cartComplete=async(req,res)=>{
     // var user= db.get('users').find({id: req.signedCookies.userId}).value();
@@ -74,23 +82,16 @@ module.exports.cartComplete=async(req,res)=>{
     }
     // var data=db.get('sessions').find({id : req.signedCookies.sessionId}).get('cart').value();
     var data=await Session.findById({_id:req.signedCookies.sessionId}).exec();
-    // for(var bookId of Object.keys(data)){
-    //     db.get('transactions').push({
-    //         id: shortid.generate(),
-    //         isComplete: false,
-    //         userId: user.id,
-    //         books: {bookId: bookId, amount: data[bookId]}
-    //     }).write();
-    // }
-    for(var bookId in data.get('cart')){
+    for(var book of data.get('cart')){
         // db.get('transactions').push({
         //     id: shortid.generate(),
         //     isComplete: false,
         //     userId: user.id,
         //     bookId: bookId
         // }).write();
-        await Tran.insertMany({isComplete: false, userId: user.id, bookId: bookId});
+        await Tran.insertMany({isComplete: false, userId: user.id, bookId: book.bookId});
     }
     // db.get('sessions').find({id : req.signedCookies.sessionId}).unset('cart').write();
+    await data.replaceOne({cart:{}}).exec();
     res.redirect('/transactions');
 }
