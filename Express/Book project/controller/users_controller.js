@@ -26,7 +26,7 @@ module.exports.add=async (req,res)=>{
         return;
     }
     cloudinary.uploader.upload(req.file.path,async(error, result)=>{
-        if(result){
+        if(!error){
             req.body.avatarUrl=result.url;
             // db.get('users').push(req.body).write();
             await User.insertMany(req.body);
@@ -68,7 +68,7 @@ module.exports.profileAvatar=async(req,res)=>{
 // profile avatar upload to cloudinary
 module.exports.profileAvatarUpload=async(req,res)=>{
     cloudinary.uploader.upload(req.file.path,async(error,result)=>{
-        if(res){
+        if(!error){
             // db.get('users').find({id:id}).assign({avatarUrl: result.url}).write();
             await User.findOneAndUpdate({_id : id},{avatarUrl: result.url}).exec();
             res.render('users/profile',{

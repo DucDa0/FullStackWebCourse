@@ -1,0 +1,26 @@
+extends ../layouts/login_layout
+block content
+    div.d-flex.justify-content-center
+        h1 Sign Up
+    div.d-flex.justify-content-center
+        if errors && !check
+            each err in errors
+                .alert.alert-danger(style="width: 35%")= err
+        if errors && check
+             each err in errors
+                .alert.alert-success(style="width: 35%")= err
+    div.d-flex.justify-content-center
+        form(action="/auth/register/add" method="POST" style="width: 35%")
+            .form-group
+                label Name
+                input(type="text" name="name" class="form-control")
+            .form-group
+                label Email
+                input(type="text" name="email" class="form-control")
+            .form-group
+                label Password
+                input(type="text" name="pwd" class="form-control")
+            button(class="btn btn-success" style="width: 100%") Register
+    div(style="width:35%; margin:0 auto").d-flex.justify-content-end
+        a(href="/auth/login") Sign in
+        

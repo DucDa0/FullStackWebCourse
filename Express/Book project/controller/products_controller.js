@@ -29,7 +29,6 @@ module.exports.home = async (req,res)=>{
     let page=parseInt(req.query.page) || 1;
     let start=(page-1)*perPage;
     let end=page*perPage;
-   
     // res.render('products/index',{
     //     products: db.get('books').value().slice(start,end),
     //     showPage: getPagingRange(page),

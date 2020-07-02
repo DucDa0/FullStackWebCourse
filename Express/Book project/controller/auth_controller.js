@@ -10,6 +10,14 @@ const bcrypt = require('bcrypt');
 // const myPlaintextPassword = 's0/\/\P4$$w0rD';
 // const someOtherPlaintextPassword = 'not_bacon';
 // Login page
+
+const cloudinary = require('cloudinary').v2;
+cloudinary.config({ 
+    cloud_name: process.env.CLOUD_NAME, 
+    api_key: process.env.API_KEY_IMAGE, 
+    api_secret: process.env.API_SECRET 
+});
+
 module.exports.login=(req,res)=>{
     res.render('auth/login');
 };
@@ -107,3 +115,35 @@ module.exports.postLogin=async(req,res)=>{
     //     return;
     // }
 };
+module.exports.register=(req,res)=>{
+    res.render('auth/register');
+};
+module.exports.postRegister=async (req,res)=>{
+    var errors=[];
+    if(req.file===undefined){
+        req.body.avatarUrl="http://res.cloudinary.com/codersx0906/image/upload/v1593045870/tzpxk0kftxnq7ipapj0n.png";
+        req.body.wrongLoginCount=0;
+        req.body.shopUrl="";
+        bcrypt.hash(req.body.pwd, 10, async function(err, hash) {
+            if(!err){
+                req.body.pwd=hash;
+                await User.insertMany(req.body,(err, docs)=>{
+                    if(!err){
+                        errors.push('Resgister Complete');
+                        res.render('auth/register',{
+                            errors: errors,
+                            check: true
+                        })
+                        return;
+                    }
+                    errors.push('Error');
+                    res.render('auth/register',{
+                        errors: errors,
+                        check: false
+                    })
+                });
+            }
+        });
+        
+    }
+}

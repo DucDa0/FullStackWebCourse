@@ -13,6 +13,7 @@ const homeRoute=require('./routes/home_route');
 const authRoute=require('./routes/auth_route');
 const productsRoute=require('./routes/products_route');
 const cartRoute=require('./routes/cart_route');
+const shopRoute=require('./routes/shops_route');
 // const transApiRoute=require('./api/routes/transactions_route');
 // const loginApiRoute=require('./api/routes/login_route');
 // const cookiesValidate=require('./validate/cookies_validate');
@@ -42,6 +43,7 @@ app.use('/transactions', authMiddlewares.authRequire, transRoute);
 app.use('/products', productsRoute);
 app.use('/auth', authRoute);
 app.use('/cart', cartRoute);
+app.use('/shop', shopRoute);
 
 app.listen(port,()=>{
     console.log('Server listening on port ' + port);

@@ -5,7 +5,8 @@ const userSchema = new mongoose.Schema({
     email: String,
     pwd: String,
     wrongLoginCount: Number,
-    avatarUrl: String
+    avatarUrl: String,
+    shopUrl: String
 });
 
 const User = mongoose.model('User', userSchema, 'users');

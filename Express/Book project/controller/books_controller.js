@@ -56,7 +56,7 @@ module.exports.add= async (req,res)=>{
         return;
     }
     cloudinary.uploader.upload(req.file.path,async (error, result)=>{
-        if(result){
+        if(!error){
             req.body.bookImgUrl=result.url;
             await Book.insertMany(req.body);
             // db.get('books').push(req.body).write();

@@ -5,19 +5,18 @@ html
         //- link(rel="stylesheet" href="/custom.css")
     body
         nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
-            a.navbar-brand(href='/') starryNight 
+            a.navbar-brand(href='/')= shop.name 
             button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
                 span.navbar-toggler-icon
             #navbarSupportedContent.collapse.navbar-collapse
                 ul.navbar-nav.mr-auto
-                    li.nav-item
-                        a.nav-link(href='/books') Books
-                    li.nav-item
-                        a.nav-link(href='/users') Users
-                    li.nav-item
-                        a.nav-link(href='/transactions') Transactions
-                    li.nav-item
-                        a.nav-link(href='/products') Buy Books
+                    if check
+                        li.nav-item
+                            a.nav-link(href='/shop/manage') Books
+                        li.nav-item
+                            a.nav-link(href='shop/transactions') Transactions
+                        li.nav-item
+                            a.nav-link(href='/shop/'+shop.id+'/books') Your Shop
                 if user
                     img(src=user.avatarUrl style="border-radius:50%" width="40" height="40")
                     li.navbar-brand.dropdown
@@ -30,11 +29,35 @@ html
                                 else
                                     a.dropdown-item(href='/shop/create') Create Your Shop
                 a.navbar-brand(href='/cart/index')= 'Cart('+cart+')'
+        .container
+            h1 List Books
+            .col-3
+                form(action="/shop/manageBooks/add" method="POST" enctype="multipart/form-data")
+                    .form-group
+                        label(for="title") Title
+                        input(type="text" name="title" class="form-control")
+                    .form-group
+                        label(for="description") Description
+                        input(type="text" name="description" class="form-control")
+                    .form-group
+                        label(for="bookImg") Book Image
+                        input(type="file" name="bookImg" class="form-control-file")
+                    button(class="btn btn-success") Add
+            table.table
+                tr
+                    th Image
+                    th Title
+                each book in books
+                    tr
+                        td
+                            img(src=book.bookImgUrl alt='Card image cap' width="64" height="64")
+                        td=book.title
+                        td
+                            a(href="/books/" + book.id +"/edit" class="btn btn-primary ml-2") Edit
+                            a(href="/books/" + book.id +"/delete" class="btn btn-danger ml-2") Delete
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js")
         script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js", integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI", crossorigin="anonymous")
         script.
             $(document).ready(function () {
             $('.dropdown-toggle').dropdown();
             });
-        .container
-            block content

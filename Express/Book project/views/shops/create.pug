@@ -1,0 +1,23 @@
+extends ../layouts/login_layout
+block content
+    div.d-flex.justify-content-center
+        h1 Create Your Shop
+    //- div.d-flex.justify-content-center
+    //-     if errors && !check
+    //-         each err in errors
+    //-             .alert.alert-danger(style="width: 35%")= err
+    //-     if errors && check
+    //-          each err in errors
+    //-             .alert.alert-success(style="width: 35%")= err
+    div.d-flex.justify-content-center
+        form(action="/shop/create" method="POST" style="width: 35%" enctype="multipart/form-data")
+            .form-group
+                label Shop's name
+                input(type="text" name="name" class="form-control")
+            .form-group
+                label Desciptions
+                input(type="text" name="descriptions" class="form-control")
+            .form-group
+                label Shop's avatar
+                input(type="file" name="shopImgUrl")
+            button(class="btn btn-success" style="width: 100%") Create
