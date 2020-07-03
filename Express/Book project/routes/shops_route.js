@@ -8,6 +8,7 @@ router.get('/create', authMiddlewares.authRequire,shopController.create);
 router.post('/create', authMiddlewares.authRequire, upload.single('shopImgUrl'),shopController.createPost);
 router.get('/manageBooks', authMiddlewares.authRequire, shopController.manageBooks);
 router.post('/manageBooks/add', authMiddlewares.authRequire,  upload.single('bookImg'),shopController.add);
+router.get('/manageTrans', authMiddlewares.authRequire, shopController.manageTrans);
 router.get('/:id/books', shopController.shop);
 
 module.exports=router;

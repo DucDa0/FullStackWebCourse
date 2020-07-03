@@ -30,20 +30,22 @@ html
                                     a.dropdown-item(href='/shop/create') Create Your Shop
                 a.navbar-brand(href='/cart/index')= 'Cart('+cart+')'
         .container
-            h1 List Products
-            .col
-                .row
-                    each product in products
-                        .col-12.col-md-6.col-lg-3
-                            .card
-                                img.card-img-top(src=product.bookImgUrl height="150" alt='Card image cap')
-                                .card-body
-                                    h5.card-title= product.title
-                                    p.card-text= product.description
-                                    a.btn.btn-primary(href='/cart/add/'+ product.id) Add to cart
-        script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js")
-        script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js", integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI", crossorigin="anonymous")
-        script.
-            $(document).ready(function () {
-            $('.dropdown-toggle').dropdown();
-            });
+            h1 List Transactions
+            if errors
+                each err in errors
+                    .alert.alert-danger= err
+            table.table
+                tr
+                    th(class="font-weight-bold") Id
+                    th(class="font-weight-bold") userId
+                each trans in orders
+                    tr
+                        td= trans.id
+                        td= trans.userId
+                        td
+                            if !trans.isComplete
+                                a(href="/shop/manageTrans/"+trans.id+"/complete" class="btn btn-primary ml-2") Complete
+                            else
+                                span Done!
+                        td
+                            a(href="/shop/manageTrans" class="btn btn-primary ml-2") Details

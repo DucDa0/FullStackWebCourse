@@ -127,3 +127,20 @@ module.exports.add= async (req,res)=>{
         }
     });
 };
+
+module.exports.manageTrans=async(req,res)=>{
+    let shop=await Shop.findOne({ownerId:req.signedCookies.userId}).exec();
+    let orders=shop.get('orders');
+    let user = await User.findOne({_id:req.signedCookies.userId}).exec();
+    var check;
+    if(user){
+        check= user.id!==shop.ownerId ? false:true;
+    }else{
+        check=false
+    }
+    res.render('shops/manageTrans',{
+        shop: shop,
+        orders: orders,
+        check: check
+    })
+}
