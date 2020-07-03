@@ -5,7 +5,7 @@ html
         //- link(rel="stylesheet" href="/custom.css")
     body
         nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
-            a.navbar-brand(href='/')= shop.name 
+            a.navbar-brand(href='/shop/'+shop.id+'/books')= shop.name 
             button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
                 span.navbar-toggler-icon
             #navbarSupportedContent.collapse.navbar-collapse
@@ -40,7 +40,7 @@ html
                                 .card-body
                                     h5.card-title= product.title
                                     p.card-text= product.description
-                                    a.btn.btn-primary(href='/cart/add/'+ product.id) Add to cart
+                                    a.btn.btn-primary(href='/cart/add/'+shop.id+'/' +product.id) Add to cart
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js")
         script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js", integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI", crossorigin="anonymous")
         script.

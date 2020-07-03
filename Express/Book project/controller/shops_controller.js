@@ -51,21 +51,6 @@ module.exports.shop=async(req,res)=>{
     id=req.params.id;
     let shop=await Shop.findById({_id:id}).exec();
     let products=shop.get('products');
-    // let orders=shop.get('orders');
-    let sess=await Session.findById({_id:req.signedCookies.sessionId}).exec();
-    if(!sess.get('stayedShop')){
-        sess._doc.stayedShop={};
-        sess.get('stayedShop')['shopId']= shop.id;
-        sess.markModified('stayedShop');
-        await sess.save();
-    }
-    else{
-        if(sess.get('stayedShop').shopId!==shop.id){
-            sess.get('stayedShop')['shopId']= shop.id;
-            sess.markModified('stayedShop');
-            await sess.save();
-        }
-    }
   
     let user = await User.findOne({_id:req.signedCookies.userId}).exec();
     var check;

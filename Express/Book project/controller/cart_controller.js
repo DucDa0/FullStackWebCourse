@@ -5,10 +5,11 @@ const Session=require('../models/sessions_model');
 const Book = require('../models/books_model');
 const User = require('../models/users_model');
 const Tran = require('../models/transactions_model');
+var shopId;
 module.exports.cartHome=async (req,res)=>{
     // var yourCart=db.get('sessions').find({id : req.signedCookies.sessionId}).get('cart').value();
     var yourCart= await Session.findById({_id:req.signedCookies.sessionId}).exec();
-    var books=await Shop.findById({_id:yourCart.get('stayedShop').shopId}).exec();
+    var books=await Shop.findById({_id:shopId}).exec();
     let user = await User.findOne({_id:req.signedCookies.userId}).exec();
     var check;
     if(user){
@@ -56,10 +57,11 @@ module.exports.cartHome=async (req,res)=>{
 }
 module.exports.addToCart=async (req,res,next)=>{
     var productId=req.params.productId;
+    shopId=req.params.shopId;
     var sessionId=req.signedCookies.sessionId;
     var yourCart=await Session.findById({_id:sessionId}).exec();
     if(!sessionId){
-        res.redirect('/shop/'+yourCart.get('stayedShop').shopId+'/books');
+        res.redirect('/shop/'+shopId+'/books');
         return;
     }
     // let count=db.get('sessions').find({id : sessionId}).get('cart.'+ productId, 0).value();
@@ -69,7 +71,7 @@ module.exports.addToCart=async (req,res,next)=>{
         yourCart.get('cart').push({bookId:productId,amount:1});
         yourCart.markModified('cart');
         await yourCart.save();
-        return res.redirect('/shop/'+yourCart.get('stayedShop').shopId+'/books');
+        return res.redirect('/shop/'+shopId+'/books');
     }
     else{
         let cartItem=yourCart.get('cart').find(item=>item.bookId===productId);
@@ -77,12 +79,12 @@ module.exports.addToCart=async (req,res,next)=>{
             yourCart.get('cart').push({bookId: productId, amount: 1});
             yourCart.markModified('cart');
             await yourCart.save();
-            return res.redirect('/shop/'+yourCart.get('stayedShop').shopId+'/books');
+            return res.redirect('/shop/'+shopId+'/books');
         }
         cartItem.amount+=1;
         yourCart.markModified('cart');
         await yourCart.save();
-        return res.redirect('/shop/'+yourCart.get('stayedShop').shopId+'/books');
+        return res.redirect('/shop/'+shopId+'/books');
     }
     // db.get('sessions').find({id : sessionId}).set('cart.'+ productId, count + 1).write();
 }
@@ -98,7 +100,7 @@ module.exports.cartComplete=async(req,res)=>{
     }
     // var data=db.get('sessions').find({id : req.signedCookies.sessionId}).get('cart').value();
     var data=await Session.findById({_id:req.signedCookies.sessionId}).exec();
-    var shop=await Shop.findById({_id:data.get('stayedShop').shopId}).exec();
+    var shop=await Shop.findById({_id:shopId}).exec();
     var orders=shop.get('orders');
     var tmp=[];
     for(var book of data.get('cart')){
@@ -124,5 +126,5 @@ module.exports.cartComplete=async(req,res)=>{
     await shop.save();
     // db.get('sessions').find({id : req.signedCookies.sessionId}).unset('cart').write();
     await data.replaceOne({cart:{}}).exec();
-    res.redirect('/shop/'+shop.id+'/books');
+    res.redirect('/shop/'+shopId+'/books');
 }
