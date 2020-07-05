@@ -11,6 +11,11 @@ cloudinary.config({
 
 
 module.exports.create=async(req,res)=>{
+    // var check=Shop.fi;
+    // if(check){
+    //     res.redirect('/shop/'+check.id+'/books');
+    //     return;
+    // }
     res.render('shops/create');
 }
 module.exports.createPost=async(req,res)=>{
@@ -127,5 +132,12 @@ module.exports.manageTrans=async(req,res)=>{
         shop: shop,
         orders: orders,
         check: check
+    })
+}
+
+module.exports.list=async(req,res)=>{
+    let shops=await Shop.find();
+    res.render('shops/listShop',{
+        shops: shops
     })
 }

@@ -10,5 +10,6 @@ router.get('/manageBooks', authMiddlewares.authRequire, shopController.manageBoo
 router.post('/manageBooks/add', authMiddlewares.authRequire,  upload.single('bookImg'),shopController.add);
 router.get('/manageTrans', authMiddlewares.authRequire, shopController.manageTrans);
 router.get('/:id/books', shopController.shop);
+router.get('/list', shopController.list);
 
 module.exports=router;

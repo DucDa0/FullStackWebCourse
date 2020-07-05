@@ -1,0 +1,16 @@
+extends ../layouts/main_layout
+block content
+    h1 List Shop
+    table.table
+        tr
+            th(class="font-weight-bold") Logo
+            th(class="font-weight-bold") Name
+            th(class="font-weight-bold") Description
+        each shop in shops
+            tr
+                td
+                    img(src=shop.shopImgUrl width="64" height="64")
+                td= shop.name
+                td= shop.descriptions
+                td
+                    a(href="/shop/"+shop.id+"/books" class="btn btn-primary ml-2" target="_blank") Visit
