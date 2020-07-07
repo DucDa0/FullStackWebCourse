@@ -37,3 +37,13 @@ var obj={
 
 obj.run();// xem tu hieu -_-
 
+var test={
+    name:'Duc',
+    run: function(){
+        console.log(this.name);
+    }
+}
+
+
+
+
