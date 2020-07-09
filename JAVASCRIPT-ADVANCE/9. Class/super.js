@@ -21,11 +21,14 @@ class RangeHero extends Hero{
         super.attack(enemy);// sử dụng lại function của base Class.
         this.hp+=this.damage;
     }
+    static buff(){// static thì gọi trực tiếp qua Class, không cần khởi tạo
+        console.log('Static Method')
+    }
 }
 
 
 const heroA=new RangeHero('A', 100, 20);
 const heroB=new Hero('B', 200, 5);
-
 heroA.attack(heroB);
+RangeHero.buff();
 console.log({heroA, heroB});
