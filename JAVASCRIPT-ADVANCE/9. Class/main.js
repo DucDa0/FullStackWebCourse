@@ -31,4 +31,4 @@ var bike = new BikeCopy('Yamaha', 10);
 
 // Class Inheritance
 // https://completejavascript.com/ke-thua-co-ban-trong-javascript
-// https://completejavascript.com/phan-biet-call-apply-va-bind-trong-javascript
+
