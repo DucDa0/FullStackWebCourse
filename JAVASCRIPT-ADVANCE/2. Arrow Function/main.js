@@ -1,5 +1,6 @@
 // https://viblo.asia/p/javascript-closures-PdbknoZLvyA
 // https://viblo.asia/p/this-trong-javascript-gAm5ywe8Zdb
+// https://coders-x.com/su-khac-biet-giua-function-va-block-scope-trong-javascript/
 // function Mouse(name) {
 //     this.name = name;
 // }

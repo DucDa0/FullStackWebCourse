@@ -4,5 +4,5 @@ function callYourName(name){
     }
 }
 
-const infor=callYourName('Duc').getYourInfor(21);
-console.log(infor);
+const infor=callYourName('Duc');
+infor(21);

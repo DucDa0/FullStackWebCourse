@@ -16,3 +16,11 @@ const result = exchangeClone({
     to: 'vnd'
 });
 console.log(result);
+
+// https://coders-x.com/destructuring-in-javascript-phan-1/
+// https://coders-x.com/destructuring-in-javascript-phan-2/
+
+/**
+ * Destructuring là 1 kỹ thuật được giới thuật trong ES6, giúp cho việc sao chép, trích xuất lại các variable 1 cách rất rõ ràng,
+ * dễ hiểu hơn rất nhiều so với những cách thông thường khác và chắc chắn là loc (line of code) cũng giảm đi đáng kể.
+ */

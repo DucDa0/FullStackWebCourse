@@ -41,4 +41,10 @@ obj4.c.d=5;
 console.log(obj4);
 console.log(obj1);// không bị thay đổi
 
+const a = [1, 2, 3];
+let b = [...a];
+b[1] = 4;
+console.log(b[1]); // 4
+console.log(a[1]); // 2
+
 // https://medium.com/javascript-in-plain-english/how-to-deep-copy-objects-and-arrays-in-javascript-7c911359b089
