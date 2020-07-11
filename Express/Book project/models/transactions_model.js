@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const tranSchema = new mongoose.Schema({
+    isComplete: Boolean,
     userId: String,
-    bookId: String,
-    isComplete: Boolean
+    items: Array
 });
 
 const Tran = mongoose.model('Tran', tranSchema, 'transactions');

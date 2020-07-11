@@ -24,11 +24,9 @@ module.exports.cartHome=async (req,res)=>{
         check=false
     }
     if(!yourCart.get('cart')){
-        res.render('cart/index',{
-            Cart: false,
-            shop: shop,
-            check: check
-        });
+        res.render('cart/error',{
+            Cart:false
+        })
         return;
     }
     // var books=db.get('books').value();
@@ -36,33 +34,15 @@ module.exports.cartHome=async (req,res)=>{
     
     var data=[];
     var tmp={};
-    var products=shop.get('products');
     for(var i of yourCart.get('cart')){
+        let proShop= await Shop.findById({_id: i.shopId}).exec();
+        let products=proShop.get('products');
         tmp={
             book: products.find(item=>item.id===i.bookId),
             amount: i.amount
         }
         data.push(tmp);
     }
-    // for(var book of shop.get('products')){
-    //     for(item of yourCart.get('cart')){
-    //         if(book.id === item.bookId){
-    //             tmp={
-    //                 book: book,
-    //                 amount: item.amount
-    //             }
-    //             data.push(tmp);
-    //         }
-    //     }
-    //     // if(book.id in yourCart.get('cart')){
-            
-    //     //     tmp={
-    //     //         book: book,
-    //     //         amount: yourCart.get('cart')[book.id]
-    //     //     }
-    //     //     data.push(tmp);
-    //     // }
-    // }
     res.render('cart/index',{
         Cart: data,
         shop: shop,
@@ -82,7 +62,7 @@ module.exports.addToCart=async (req,res,next)=>{
     // var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
     if(!yourCart.get('cart')){
         yourCart._doc.cart=[];
-        yourCart.get('cart').push({bookId:productId,amount:1});
+        yourCart.get('cart').push({bookId:productId,amount:1, shopId: shopId});
         yourCart.markModified('cart');
         await yourCart.save();
         return res.redirect('/shop/'+shopId+'/books');
@@ -90,7 +70,7 @@ module.exports.addToCart=async (req,res,next)=>{
     else{
         let cartItem=yourCart.get('cart').find(item=>item.bookId===productId);
         if(!cartItem){
-            yourCart.get('cart').push({bookId: productId, amount: 1});
+            yourCart.get('cart').push({bookId: productId, amount: 1, shopId: shopId});
             yourCart.markModified('cart');
             await yourCart.save();
             return res.redirect('/shop/'+shopId+'/books');
@@ -114,31 +94,34 @@ module.exports.cartComplete=async(req,res)=>{
     }
     // var data=db.get('sessions').find({id : req.signedCookies.sessionId}).get('cart').value();
     var data=await Session.findById({_id:req.signedCookies.sessionId}).exec();
-    var shop=await Shop.findById({_id:shopId}).exec();
-    var orders=shop.get('orders');
+    var cart=data.get('cart');
     var tmp=[];
-    for(var book of data.get('cart')){
-        // db.get('transactions').push({
-        //     id: shortid.generate(),
-        //     isComplete: false,
-        //     userId: user.id,
-        //     bookId: bookId
-        // }).write();
-        // await Tran.insertMany({isComplete: false, userId: user.id, bookId: book.bookId});
+    var shopBuyed=[];
+    for(let shop of cart){
+        if(!shopBuyed.includes(shop.shopId)){
+            shopBuyed.push(shop.shopId);
+        }
+    }
+    for(let idS of shopBuyed){
+        let ok=cart.filter(item=>item.shopId===idS);
+        let okk=[];
+        for(let item of ok){
+            okk.push({
+                bookId: item.bookId,
+                amount: item.amount
+            })
+        }
         tmp.push({
-            bookId: book.bookId,
-            amount: book.amount
+            shopId: idS,
+            books: okk
         })
     }
-    orders.push({
-        id: shortid.generate(),
+    await Tran.insertMany({
         isComplete: false,
         userId: user.id,
-        books: tmp    
+        items: tmp    
     });
-    shop.markModified('orders');
-    await shop.save();
     // db.get('sessions').find({id : req.signedCookies.sessionId}).unset('cart').write();
-    await data.replaceOne({cart:{}}).exec();
+    await Session.findOneAndUpdate({_id:req.signedCookies.sessionId},{cart:null}).exec();
     res.redirect('/shop/'+shopId+'/books');
 }
