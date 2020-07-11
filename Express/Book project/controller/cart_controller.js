@@ -7,20 +7,26 @@ const User = require('../models/users_model');
 const Tran = require('../models/transactions_model');
 var shopId;
 module.exports.cartHome=async (req,res)=>{
+    if(shopId===undefined){
+        res.render('cart/error',{
+            Cart:false
+        })
+        return;
+    }
     // var yourCart=db.get('sessions').find({id : req.signedCookies.sessionId}).get('cart').value();
     var yourCart= await Session.findById({_id:req.signedCookies.sessionId}).exec();
-    var books=await Shop.findById({_id:shopId}).exec();
+    var shop=await Shop.findById({_id:shopId}).exec();
     let user = await User.findOne({_id:req.signedCookies.userId}).exec();
     var check;
     if(user){
-        check= user.id!==books.ownerId ? false:true;
+        check= user.id!==shop.ownerId ? false:true;
     }else{
         check=false
     }
     if(!yourCart.get('cart')){
         res.render('cart/index',{
             Cart: false,
-            shop: books,
+            shop: shop,
             check: check
         });
         return;
@@ -30,28 +36,36 @@ module.exports.cartHome=async (req,res)=>{
     
     var data=[];
     var tmp={};
-    for(var book of books.get('products')){
-        for(item of yourCart.get('cart')){
-            if(book.id === item.bookId){
-                tmp={
-                    book: book,
-                    amount: item.amount
-                }
-                data.push(tmp);
-            }
+    var products=shop.get('products');
+    for(var i of yourCart.get('cart')){
+        tmp={
+            book: products.find(item=>item.id===i.bookId),
+            amount: i.amount
         }
-        // if(book.id in yourCart.get('cart')){
-            
-        //     tmp={
-        //         book: book,
-        //         amount: yourCart.get('cart')[book.id]
-        //     }
-        //     data.push(tmp);
-        // }
+        data.push(tmp);
     }
+    // for(var book of shop.get('products')){
+    //     for(item of yourCart.get('cart')){
+    //         if(book.id === item.bookId){
+    //             tmp={
+    //                 book: book,
+    //                 amount: item.amount
+    //             }
+    //             data.push(tmp);
+    //         }
+    //     }
+    //     // if(book.id in yourCart.get('cart')){
+            
+    //     //     tmp={
+    //     //         book: book,
+    //     //         amount: yourCart.get('cart')[book.id]
+    //     //     }
+    //     //     data.push(tmp);
+    //     // }
+    // }
     res.render('cart/index',{
         Cart: data,
-        shop: books,
+        shop: shop,
         check: check
     });
 }

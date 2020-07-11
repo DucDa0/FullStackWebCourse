@@ -11,11 +11,6 @@ cloudinary.config({
 
 
 module.exports.create=async(req,res)=>{
-    // var check=Shop.fi;
-    // if(check){
-    //     res.redirect('/shop/'+check.id+'/books');
-    //     return;
-    // }
     res.render('shops/create');
 }
 module.exports.createPost=async(req,res)=>{
