@@ -4,8 +4,16 @@ const shopSchema = new mongoose.Schema({
     name: String,
     descriptions: String,
     shopImgUrl: String,
-    ownerId: String,
-    products: Array,
+    ownerId: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'users'
+    },
+    products: [{
+        id: String,
+        title: String,
+        description: String,
+        bookImgUrl: String
+    }],
     orders: Array
 });
 

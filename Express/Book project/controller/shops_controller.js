@@ -3,6 +3,7 @@ const Session=require('../models/sessions_model');
 const User = require('../models/users_model');
 const cloudinary = require('cloudinary').v2;
 const shortid = require('shortid');
+const mongoose  = require('mongoose');
 cloudinary.config({ 
     cloud_name: process.env.CLOUD_NAME, 
     api_key: process.env.API_KEY_IMAGE, 
@@ -55,7 +56,7 @@ module.exports.shop=async(req,res)=>{
     let user = await User.findOne({_id:req.signedCookies.userId}).exec();
     var check;
     if(user){
-        check= user.id!==shop.ownerId ? false:true;
+        check= user.id!==shop.ownerId.toString() ? false:true;
     }else{
         check=false
     }
@@ -72,7 +73,7 @@ module.exports.manageBooks=async(req,res)=>{
     let user = await User.findOne({_id:req.signedCookies.userId}).exec();
     var check;
     if(user){
-        check= user.id!==shop.ownerId ? false:true;
+        check= user.id!==shop.ownerId.toString() ? false:true;
     }else{
         check=false
     }
@@ -119,7 +120,7 @@ module.exports.manageTrans=async(req,res)=>{
     let user = await User.findOne({_id:req.signedCookies.userId}).exec();
     var check;
     if(user){
-        check= user.id!==shop.ownerId ? false:true;
+        check= user.id!==shop.ownerId.toString() ? false:true;
     }else{
         check=false
     }
