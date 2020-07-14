@@ -1,3 +1,12 @@
+// https://www.notion.so/DB-Migration-l-g-98bb534ad9234c39a28a3689639011c8
+// https://www.notion.so/Update-nested-field-trong-Mongo-2106ef7705584a27bb4e982c4a475ae0
+// https://www.notion.so/SPA-authentication-flow-2b52c45d36a64bf0b2132ef120fe7c47
+// https://www.notion.so/Thi-t-k-DB-cho-Instagram-clone-d2baa367104147a88ce1c72c6b941e08
+// https://www.notion.so/C-c-method-lodash-hay-d-ng-aeaa46d3542d486c892d3cb898774464
+// https://www.notion.so/Atomic-update-trong-DB-a81098b4efde42dd8ecbfeb56e84a84b
+// https://www.notion.so/JSON-WEB-TOKENS-d10c8afc3ceb4393ab199d32a4b62ff2
+// https://www.notion.so/Mongo-select-m-t-c-ch-an-to-n-cc9827f0e26f465489cf49192b3570a4
+// https://www.notion.so/T-i-sao-c-n-CORS-d5d854d7043045059bac1fcad2250fa6
 1. NoSQL: có nghĩa là Non-relational
 - Phân tán và không ràng buộc.
 - Không sử dụng mô hình RDBMs
@@ -70,8 +79,8 @@ db.users.find({
 db.users.find({
     {age: {$gt: 12, $lt: 21}}// tìm users có tuổi lớn hơn 12 và nhỏ hơn 21
 })
-
-*=====> Tối ưu truy xuất dữ liệu (Single Field Indexes)
+****Tối ưu truy xuất dữ liệu****
+*=====> (Single Field Indexes/Compound)
 ex:
 Giả sử có 30k users.
 ->Tìm các users có độ tuổi 21.
@@ -79,8 +88,41 @@ db.users.find({age: 21})
 => Kết quả trả về cho 6 users có độ tuổi 21, thời gian quét là 18 mili giây, tổng số documents quét để tìm là 30k!
 => quá bad performance=> sử dụng index(đánh chỉ số, nó được lưu vào trong mongoDB) để giải quyết vấn đề này.
 
-db.users.createIndexe({age: 1}): giá trị 1 là tăng dần, -1 giảm dần
+db.users.createIndex({age: 1}): giá trị 1 là tăng dần, -1 giảm dần
 
 xem các index
 
 db.users.getIndexes()
+
+=====> Unique index, giúp giúp kiểm tra dữ liệu inserted có bị trùng hay ko
+db.users.createIndex({user_name:1, email: 1},{unique: true}): khi insert dữ liệu nếu trùng username hay email sẽ báo lỗi ko đc thêm
+
+=====> Sparse index
+
+db.users.find({address: {$exists: true}}).sort({address: -1})// tìm kiếm các users mà ko có address, trường hợp này trong collections users có 
+một số các documents không có address, khi sort chúng lại đc để lên trên đầu các documents có address. Xong hiệu năng cũng kém, t cần khắc phục
+
+db.users.createIndex({address: {$exists: true}},{sparse: true})
+
+db.users.find().sort({address: -1}).hint({address: 1})
+
+
+*** Tự động xóa 1/vài document sau khoảng thời gian nào đó
+db.users.createIndex({createDate: 1},{"expireAfterSeconds": 96}) xóa các document mà có field createDate(không null) sau 96 giây
+
+======> Text index, giúp tìm dữ liệu dạng text
+db.users.createIndex({
+    name: "text",
+    skill: "text",
+    address: "text"
+},{
+    name: "Đặt tên index ở đây, để drop hay truy xuất j đó",
+    default_language: "none"(vì tiếng việt ko đc hỗ trợ nên để none)
+})
+sau khi thiết lập text index xong tiến hành search các field đã set
+ex:
+db.users.find({
+    $text: {$search: "DongNai"}
+})
+
+======> partial index
