@@ -1,0 +1,86 @@
+1. NoSQL: có nghĩa là Non-relational
+- Phân tán và không ràng buộc.
+- Không sử dụng mô hình RDBMs
+- Mô hình lưu trữ: "key": value
+- Là HCSDL không ràng buộc, phân phân tán, mã nguồn mở, chịu tải và chịu lỗi cao.
+* Nâng cấp theo chiều ngang: thêm vài thanh 8 gb ram
+* // dọc: nâng ram từ 8gb lên 16gb
+2. Các lênh MongoDB hữu dụng.
+* Insert nhiều documents vào collection
+- Viết lệnh vào 1 file .js, sau đó dùng method load() của MongoDB để insert dữ liệu
+từ file js này.
+load("path"): path là đường dẫn đến file js
+ex:
+var users=[
+{
+    name: "Duc Dao",
+    age: 21,
+    sex: male
+},
+{
+    name: "Duc Dao",
+    age: 21,
+    sex: male
+},
+{
+    name: "Duc Dao",
+    age: 21,
+    sex: male
+}
+];
+db.users.insert(users);
+trong terminal: load("C:/dulieu/data.js")
+* Câp nhật dữ liệu
+ex:
+db.users.update({
+    {
+        name: "Duc Dao", // Này là query, tìm theo điều kiện name là "Duc Dao"
+        age: {$exists: false}// nếu không tồn tại thì làm gì đó
+    }, 
+    {$set: {salary: 900000}}, // cập nhật salary, nếu có thì cập nhật ko thì tự thêm vào
+    {
+        upsert: false, // khi tìm không thấy thì tự thêm mới
+        multi: true // thêm trên nhiều documents nếu query thỏa trên các documents đó
+    }
+})
+
+* Xóa field(giống cái cart trong session đó)
+db.users.update({
+    {}, 
+    {$unset: {salary: "", age: ""}}, // xóa 2 fields salary và age
+    {
+        upsert: false, 
+        multi: true
+    }
+})
+
+* Xóa sử dụng toán tử
+db.users.remove({
+    {age: {$eq: 21}}, // xóa user có tuổi 21
+    {
+        justone: true, // chỉ xóa 1 document
+    }
+})
+
+* Tìm kiếm dữ liệu
+db.users.find({
+   {_id: xxxxx},{name: 1, age: 1}// tìm users chỉ lấy name và age
+}).limit(2).skip(0) // lấy 2 record đầu thui. skip(2) lấy từ 2 phần tử kế tiếp
+
+db.users.find({
+    {age: {$gt: 12, $lt: 21}}// tìm users có tuổi lớn hơn 12 và nhỏ hơn 21
+})
+
+*=====> Tối ưu truy xuất dữ liệu (Single Field Indexes)
+ex:
+Giả sử có 30k users.
+->Tìm các users có độ tuổi 21.
+db.users.find({age: 21})
+=> Kết quả trả về cho 6 users có độ tuổi 21, thời gian quét là 18 mili giây, tổng số documents quét để tìm là 30k!
+=> quá bad performance=> sử dụng index(đánh chỉ số, nó được lưu vào trong mongoDB) để giải quyết vấn đề này.
+
+db.users.createIndexe({age: 1}): giá trị 1 là tăng dần, -1 giảm dần
+
+xem các index
+
+db.users.getIndexes()
