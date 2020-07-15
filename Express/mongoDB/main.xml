@@ -7,11 +7,30 @@
 // https://www.notion.so/JSON-WEB-TOKENS-d10c8afc3ceb4393ab199d32a4b62ff2
 // https://www.notion.so/Mongo-select-m-t-c-ch-an-to-n-cc9827f0e26f465489cf49192b3570a4
 // https://www.notion.so/T-i-sao-c-n-CORS-d5d854d7043045059bac1fcad2250fa6
+// https://jobs.hybrid-technologies.vn/blog/uu-nhuoc-diem-mongodb/
+// https://toidicode.com/mongodb-la-gi-282.html
+
+////////////////////
+Các lệnh truy vấn mongoDB cơ bản, compare với SQL/MySQL
+https://docs.mongodb.com/manual/reference/sql-comparison/
+https://docs.mongodb.com/manual/reference/sql-aggregation-comparison/
+
+
+////////////////////
+
+MongoDB là một cơ sở dữ liệu NoSQL hướng đối tượng, đơn giản, linh động và có thể mở rộng.
+
+Nó dựa trên mô hình lưu trữ NoSQL document. Các đối tượng dữ liệu được lưu trữ dưới dạng các tài liệu 
+riêng biệt bên trong một collection – thay vì lưu trữ dữ liệu vào các cột và hàng của cơ sở dữ liệu quan hệ truyền thống.
+
+Ngôn ngữ MongoDB là triển khai một kho lưu trữ dữ liệu cung cấp hiệu suất cao, tính sẵn sàng cao và tự động mở rộng
+
+MongoDB sử dụng JSON hoặc BSON document để lưu trữ dữ liệu.
 1. NoSQL: có nghĩa là Non-relational
 - Phân tán và không ràng buộc.
 - Không sử dụng mô hình RDBMs
 - Mô hình lưu trữ: "key": value
-- Là HCSDL không ràng buộc, phân phân tán, mã nguồn mở, chịu tải và chịu lỗi cao.
+- Là HCSDL không ràng buộc, phân tán, mã nguồn mở, chịu tải và chịu lỗi cao.
 * Nâng cấp theo chiều ngang: thêm vài thanh 8 gb ram
 * // dọc: nâng ram từ 8gb lên 16gb
 2. Các lênh MongoDB hữu dụng.
@@ -79,7 +98,7 @@ db.users.find({
 db.users.find({
     {age: {$gt: 12, $lt: 21}}// tìm users có tuổi lớn hơn 12 và nhỏ hơn 21
 })
-****Tối ưu truy xuất dữ liệu****
+****Tối ưu truy xuất dữ liệu**** index đc sử dụng để giới hạn số lượng các documents phải kiếm tra
 *=====> (Single Field Indexes/Compound)
 ex:
 Giả sử có 30k users.
@@ -126,3 +145,5 @@ db.users.find({
 })
 
 ======> partial index
+
+truy xuất vào các phần tử trong mảng là các nested object: $elementMatch

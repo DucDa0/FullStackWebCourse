@@ -147,3 +147,8 @@ module.exports.postRegister=async (req,res)=>{
         
     }
 }
+
+module.exports.logOut=async(req,res)=>{
+    res.clearCookie('userId');
+    return res.redirect('/');
+}

@@ -2,11 +2,7 @@ const mongoose = require('mongoose');
 
 const sessionSchema = new mongoose.Schema({
     _id: String,
-    cart: [{
-        bookId: String,
-        amount: Number,
-        shopId: String
-    }]
+    createDate: {type: Date, default: Date.now}
 });
 
 const Session = mongoose.model('Session', sessionSchema, 'sessions');

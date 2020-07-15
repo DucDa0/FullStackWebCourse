@@ -14,7 +14,6 @@ module.exports=async(req,res,next)=>{
         await Session.insertMany({_id:sessionId});
     }
     // let countCart=db.get('sessions').find({id : req.signedCookies.sessionId}).get('cart').size();
-    
     var countCart;
     if(req.signedCookies.sessionId){
         var Cart=await Session.findById({_id:req.signedCookies.sessionId}).exec();
