@@ -2,6 +2,7 @@
  * Trong JS, Promise thường được sử dụng đẻ get hay update dữ liệu
  * (****) Lưu ý: resolve và reject chỉ cho phép truyền đúng 1 param
  */
+// * https://nhungdongcodevui.com/2017/02/12/javascript-promise-loi-hua-ngot-ngao-p1/
 var request = require('request');
 
 /**

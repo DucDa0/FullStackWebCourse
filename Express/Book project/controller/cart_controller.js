@@ -6,6 +6,7 @@ const Book = require('../models/books_model');
 const User = require('../models/users_model');
 const Tran = require('../models/transactions_model');
 var shopId;
+//  var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 module.exports.cartHome=async (req,res)=>{
     if(shopId===undefined){
         res.render('cart/error',{

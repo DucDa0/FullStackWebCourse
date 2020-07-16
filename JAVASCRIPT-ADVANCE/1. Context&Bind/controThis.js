@@ -1,4 +1,10 @@
 //* ============= Con trỏ This ==============//
+//* Con trỏ this tham chiếu đến giá trị đối tượng mà nó được gọi, hay nó gắn liền với context mà nó được gọi
+//* ex:
+var num=6;
+//* thêm phương thức square(tính bình phương) vào Number thông qua thuộc tính prototype
+Number.prototype.square=function(){return this*this};
+console.log(num.square());// 36
 //* 1. Con trỏ this trong sử dụng hàm callback
 const obj = {
     name: 'Dao Van Duc',

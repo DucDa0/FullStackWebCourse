@@ -4,8 +4,11 @@ function sum(){
 }
 
 function average(){
-    const s = sum.apply(null, arguments);
+    const s = sum.apply(null,arguments);
     return s/arguments.length;
 }
 
 console.log(average(1,2,4,5))
+
+
+//* 3 thanh niên bind, call, apply chủ yếu ra đời để thay đổi context của em this mà thôi

@@ -25,7 +25,7 @@ BikeCopy.prototype.setSpeed = function (x) {
     return this;
 }
 
-
+// https://kipalog.com/posts/Tim-hieu-ve-class-trong-Javascript
 
 var bike = new BikeCopy('Yamaha', 10);
 

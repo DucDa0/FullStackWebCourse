@@ -1,4 +1,5 @@
 function sum(...numbers){
+    console.log(numbers);
     return numbers.reduce((a,b)=>a+b);
 }
 

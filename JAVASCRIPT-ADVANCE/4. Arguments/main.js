@@ -19,7 +19,9 @@
 
 function sum() {
     // your code here
+    console.log(arguments);
     let numbers=Array.from(arguments);
+    console.log(numbers);
     let res=numbers.reduce((a,b)=>a.concat(b),[]);
     let sum=0;
     for(let i=0;i<res.length;i++){

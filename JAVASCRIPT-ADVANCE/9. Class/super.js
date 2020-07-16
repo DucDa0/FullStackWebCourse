@@ -13,7 +13,7 @@ class Hero{
 }
 
 class RangeHero extends Hero{
-    constructor(name, hp, damage, range){
+    constructor(name, hp, damage, range=10){
         super(name, hp, damage);// sử dụng lai thuộc tính của base Class.
         this.range=range;
     }
