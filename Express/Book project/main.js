@@ -17,8 +17,8 @@ const shopRoute=require('./routes/shops_route');
 // const transApiRoute=require('./api/routes/transactions_route');
 // const loginApiRoute=require('./api/routes/login_route');
 // const cookiesValidate=require('./validate/cookies_validate');
-const authMiddlewares = require('./validate/auth_validate');
-const sessionMiddleware=require('./validate/session_validate');
+const authMiddlewares = require('./middlewares/auth_validate');
+const sessionMiddleware=require('./middlewares/session_validate');
 
 const app = express();
 

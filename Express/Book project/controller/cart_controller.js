@@ -36,7 +36,7 @@ module.exports.cartHome=async (req,res)=>{
     var data=[];
     var tmp={};
     for(var i of yourCart.get('cart')){
-        let proShop= await Shop.findById({_id: i.shopId}).exec();
+        let proShop= Shop.findById({_id: i.shopId}).exec();
         let products=proShop.get('products');
         tmp={
             book: products.find(item=>item.id===i.bookId),

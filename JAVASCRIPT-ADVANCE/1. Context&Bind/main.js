@@ -10,6 +10,7 @@ Cat.bark();// In ra : Den keu meo meo
 var Mouse={
     name: 'DO HOi'
 }
+
 // https://nhungdongcodevui.com/2016/11/18/dung-con-tro-this-trong-javascript-the-nao-cho-dung/
 // https://coders-x.com/execution-context-va-execution-stack-trong-javascript/
 // http://ryanmorr.com/understanding-scope-and-context-in-javascript/
