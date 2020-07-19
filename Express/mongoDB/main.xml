@@ -91,6 +91,9 @@ db.users.remove({
 })
 
 * Tìm kiếm dữ liệu
+
+.explain('executionStat') : xem chi tiết thời gian, kết quả query
+
 db.users.find({
    {_id: xxxxx},{name: 1, age: 1}// tìm users chỉ lấy name và age
 }).limit(2).skip(0) // lấy 2 record đầu thui. skip(2) lấy từ 2 phần tử kế tiếp
