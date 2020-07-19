@@ -2,7 +2,10 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGO_URL,{ useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify : false, useCreateIndex: true});
+mongoose.connect(process.env.MONGO_URL,{ 
+    useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify : false,
+     useCreateIndex: true, autoIndex: true, 
+});
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const port = 3000;

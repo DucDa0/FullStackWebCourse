@@ -8,7 +8,7 @@ const Tran = require('../models/transactions_model');
 var shopId;
 //  var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 module.exports.cartHome=async (req,res)=>{
-    if(shopId===undefined){
+    if(!shopId){
         res.render('cart/error',{
             Cart:false
         })
@@ -36,7 +36,7 @@ module.exports.cartHome=async (req,res)=>{
     var data=[];
     var tmp={};
     for(var i of yourCart.get('cart')){
-        let proShop= Shop.findById({_id: i.shopId}).exec();
+        let proShop= await Shop.findById({_id: i.shopId}).exec();
         let products=proShop.get('products');
         tmp={
             book: products.find(item=>item.id===i.bookId),
