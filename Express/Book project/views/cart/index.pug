@@ -1,59 +1,21 @@
-html
-    head
-        link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css", integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk", crossorigin="anonymous")
-        link(rel="shortcut icon" type="image/png" href="/icons8-puzzle-64.png")
-        //- link(rel="stylesheet" href="/custom.css")
-    body
-        nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
-            a.navbar-brand(href='/shop/'+shop.id+'/books')= shop.name 
-            button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
-                span.navbar-toggler-icon
-            #navbarSupportedContent.collapse.navbar-collapse
-                ul.navbar-nav.mr-auto
-                    if check
-                        li.nav-item
-                            a.nav-link(href='/shop/manageBooks') Books
-                        li.nav-item
-                            a.nav-link(href='/shop/manageTrans') Transactions
-                        li.nav-item
-                            a.nav-link(href='/shop/'+shop.id+'/books') Your Shop
-                if user
-                    img(src=user.avatarUrl style="border-radius:50%" width="40" height="40")
-                    li.navbar-brand.dropdown
-                        #navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')= user.name
-                            .dropdown-menu(aria-labelledby='navbarDropdown')
-                                a.dropdown-item(href="/users/profile/" + user.id) Your Profile
-                                .dropdown-divider
-                                if user.shopUrl
-                                    a.dropdown-item(href=user.shopUrl) Your Shop
-                                else
-                                    a.dropdown-item(href='/shop/create') Create Your Shop
-                                .dropdown-divider
-                                a.dropdown-item(href="/auth/logout") Logout
-                a.navbar-brand(href='/cart/index')= 'Cart('+cart+')'
-        script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js")
-        script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js", integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI", crossorigin="anonymous")
-        script.
-            $(document).ready(function () {
-            $('.dropdown-toggle').dropdown();
-            });
-        .container
-            if !Cart
-                h1 Your Cart is empty!
-            else
-                h1 Your Cart
-                table.table
-                    tr
-                        th Image
-                        th Products Name
-                        th Amount
-                    each cart in Cart
-                        tr
-                            td
-                                img(src=cart.book.bookImgUrl alt='Card image cap' width="64" height="64")
-                            td=cart.book.title
-                            td=cart.amount
-                a.float-right(href="/cart/complete" class="btn btn-success" style="width:150px") Order
-        
+extends ../layouts/main_layout
+block content
+    if !Cart
+        h1 Your Cart is empty!
+    else
+        h1 Your Cart
+        table.table
+            tr
+                th Image
+                th Products Name
+                th Amount
+            each cart in Cart
+                tr
+                    td
+                        img(src=cart.book.bookImgUrl alt='Card image cap' width="64" height="64")
+                    td=cart.book.title
+                    td=cart.amount
+        a.float-right(href="/cart/complete" class="btn btn-success" style="width:150px") Order
+
    
     

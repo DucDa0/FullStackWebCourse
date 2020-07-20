@@ -8,23 +8,9 @@ const Tran = require('../models/transactions_model');
 var shopId;
 //  var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 module.exports.cartHome=async (req,res)=>{
-    if(!shopId){
-        res.render('cart/error',{
-            Cart:false
-        })
-        return;
-    }
     // var yourCart=db.get('sessions').find({id : req.signedCookies.sessionId}).get('cart').value();
     var yourCart= await Session.findById({_id:req.signedCookies.sessionId}).exec();
-    var shop=await Shop.findById({_id:shopId}).exec();
-    let user = await User.findOne({_id:req.signedCookies.userId}).exec();
-    var check;
-    if(user){
-        check= user.id!==shop.ownerId ? false:true;
-    }else{
-        check=false
-    }
-    if(!yourCart.get('cart')){
+    if(!yourCart.get('cart') || !yourCart.get('cart').length){
         res.render('cart/error',{
             Cart:false
         })
@@ -46,8 +32,7 @@ module.exports.cartHome=async (req,res)=>{
     }
     res.render('cart/index',{
         Cart: data,
-        shop: shop,
-        check: check
+
     });
 }
 module.exports.addToCart=async (req,res,next)=>{
@@ -65,6 +50,7 @@ module.exports.addToCart=async (req,res,next)=>{
         yourCart._doc.cart=[];
         yourCart.get('cart').push({bookId:productId,amount:1, shopId: shopId});
         yourCart.markModified('cart');
+        // await Session.update({_id:sessionId},{$push: {cart: {bookId:productId,amount:1, shopId: shopId}}}).exec(); nếu có cart rồi
         await yourCart.save();
         return res.redirect('/shop/'+shopId+'/books');
     }
