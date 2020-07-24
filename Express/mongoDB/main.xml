@@ -150,3 +150,4 @@ db.users.find({
 ======> partial index
 
 truy xuất vào các phần tử trong mảng là các nested object: $elementMatch
+// https://viblo.asia/p/nhung-truy-van-goi-dau-giuong-cho-ng-moi-bat-dau-voi-mongodb-XL6lA9AAlek?fbclid=IwAR1bcBaIEdhTzetLbngU4OSePoG_txbBTW991AV5AjXLnqXfCPq4EifsYP8
