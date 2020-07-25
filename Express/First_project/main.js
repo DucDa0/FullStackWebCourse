@@ -30,7 +30,7 @@ app.get('/todos',(req,res)=>{
 });
 // find items
 app.get('/todos/search',(req,res)=>{
-    let q=req.query.q;
+    let q=req.query.searchKey;
     let findItem = db.get('todos').value().filter(item=> nonAccentVietnamese(item.text).indexOf(nonAccentVietnamese(q)) !==-1);
     res.render('todos/index',{
         items: findItem,

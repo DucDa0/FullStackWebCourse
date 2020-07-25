@@ -2,6 +2,11 @@
  * Trong JS, Promise thường được sử dụng đẻ get hay update dữ liệu
  * (****) Lưu ý: resolve và reject chỉ cho phép truyền đúng 1 param
  */
+/**
+ * *Promise là một cơ chế trong JavaScript giúp thực thi các tác vụ bất đồng bộ mà không rơi vào callback hell hay pyramid of doom, 
+ * *là tình trạng các hàm callback lồng vào nhau ở quá nhiều tầng. Các tác vụ bất đồng bộ có thể là gửi AJAX request,
+ * *gọi hàm bên trong setTimeout, setInterval hoặc requestAnimationFrame, hay thao tác với WebSocket hoặc Worker
+ */
 // * https://nhungdongcodevui.com/2017/02/12/javascript-promise-loi-hua-ngot-ngao-p1/
 var request = require('request');
 
@@ -79,3 +84,5 @@ getData('https://jsonplaceholder.typicode.com/todos/3')
 .catch(err=>console.log(err));
 
 console.log('End')
+
+// https://toidicodedao.com/2016/07/05/javascript-promise/

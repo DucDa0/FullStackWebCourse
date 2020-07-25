@@ -35,8 +35,8 @@ module.exports.postLogin=async(req,res)=>{
             const transporter = nodemailer.createTransport({
                 host: 'smtp.gmail.com',
                 auth: {
-                    user: 'naruto9xbmt3@gmail.com',
-                    pass: 'xuandat123'
+                    user: process.env.NODEMAILER_EMAIL,
+                    pass: process.env.NODEMAILER_PASS
                 }
             });
             let content = `

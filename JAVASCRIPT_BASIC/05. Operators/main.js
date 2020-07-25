@@ -24,5 +24,5 @@
  * + null
  * + undefined
  * + NaN
- * - Còn lại là Falsy
+ * - Còn lại là Truthy
  */

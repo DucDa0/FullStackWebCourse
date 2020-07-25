@@ -8,7 +8,8 @@
  */
 var fs=require('fs');
 var readFile = fs.readFileSync('./data.json');
+console.log(readFile);
 var obj=JSON.parse(readFile);
-console.log(obj.name);
+console.log(obj);
 obj['members']=[{name:'Duc',sex:'male',age:21}];
-var writeFile=fs.writeFileSync('./data.json',JSON.stringify(obj));
+fs.writeFileSync('./data.json',JSON.stringify(obj));
