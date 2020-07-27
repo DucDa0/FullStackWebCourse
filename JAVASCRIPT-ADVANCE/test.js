@@ -1,2 +1,6 @@
-let obj={0: 1, 1: 2}
-console.log(obj)
+var foo = { bar: 'pony', baz: 3, foo: 'trump' }
+var {bar: a, baz: b} = foo
+console.log(a)
+// <- 'pony'
+console.log(b)
+

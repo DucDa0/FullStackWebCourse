@@ -5,3 +5,7 @@
 
 // https://viblo.asia/p/babel-dung-thi-sao-ma-khong-dung-thi-sao-Do754p1W5M6
 // https://www.codehub.vn/Babel-La-Gi-va-Su-Dung-Babel-Nhu-The-Nao
+
+import { sum, sub } from './math';
+
+console.log(sum(1,2));

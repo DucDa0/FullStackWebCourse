@@ -6,3 +6,4 @@ function callYourName(name){
 
 const infor=callYourName('Duc');
 infor(21);
+// https://viblo.asia/p/javascript-closures-PdbknoZLvyA

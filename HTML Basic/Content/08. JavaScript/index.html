@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test Basic JavaScript</title>
+    </head>
+    <body>
+        <div id="change">
+            <h2 id="titles">About me!</h2>
+            <p class="infor"><b>Name: </b>Đào Văn Đức</p>
+            <p><b>Age: </b>21</p>
+            <p ><b>Sex: </b>Male</p>
+        </div>
+        
+        <script>
+            function Change(){
+            
+            document.getElementById("change").style.backgroundColor="MediumSeaGreen";
+            document.getElementById("titles").style.fontSize="200%";
+            document.getElementsByClassName("infor").style.backgroundColor="Tomato";
+            }
+        </script>
+        <button type="button" onclick="Change()">Click me!</button>
+    </body>
+</html>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+            #result{
+                color: red;
+                font-size: 20px;
+                font-weight: bold;
+            }
+        </style>
+    <body>
+        <h1>Học lập trình miễn phí tại freetuts.net</h1>    
+         <ul class="freetut">
+            <h3>Khóa học 1</h3>
+            <h3 class="demo"> Name: PHP</h3>
+            <h3 class="demo">Time: 48 Videos</h3>
+            <h3 class="demo">Author: Nguyễn Văn A</h3>
+        </ul>
+        <p id="result"></p>
+        <button onclick="myFunction()">Xem kết quả</button>
+        <script>
+            function myFunction(){
+                var NodeObject = document.getElementsByClassName("demo");
+                NodeObject[0].style.color = "red";
+                NodeObject[1].style.color = "blue";
+                NodeObject[2].style.color = "yellow";
+            }
+        </script>
+    </body>
+</html>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+<div class="hello">Chào mừng các bạn đến với website học lập trình online</div>
+<div class="toidicode">TOIDICODE.COM</div>
+
+<script type="text/javascript">
+    var element = document.getElementsByClassName('hello');
+    //Lấy ra nội dung của thẻ đầu tiên
+    var content = element[0].innerHTML;
+    alert(content);
+</script>
+</body>
+
+</html>

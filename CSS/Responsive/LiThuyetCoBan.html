@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    nếu phiên bản trình duyệt IE <= 9 thì sử dụng js này
+    <!--[if lte IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+1. Media query(@media)
+/--- syntax ---/
+@media not|only mediatype and (mediafeature and|or|not mediafeature){
+    css code;
+}
+/--- key word ---/
+not: bỏ chọn 1 đối tượng nào đó
+only(default): chỉ áp dụng lên đối tượng nào đó
+and: và
+or: hoặc
+/--- mediatype ---/
+print: áp dụng cho tính năng in.
+screen: áp dụng chế độ màn hình(tv, desktop, phone,..)
+speech: màn hình ns đc, dành cho ng khuyết tật.
+all(giá trị mặc định): áp dụng tất cả 3 cái trên.
+/--- mediafeature --/
+min-width: lớn hơn hoặc = 
+max-width: nhỏ hơn hoặc =
+/--- poly fill ---/
+ Được sử dụng để giải quyết 1 số trường hợp trình duyệt ko hỗ trợ media
+/--- ví dụ ---/
+@media only screen and (min-width: 960px){// nếu mà width lớn hơn = 960px thì code sẽ đc thực thi
+    span{
+        display: block;
+    }
+}
+
+2. Breakpoints
+/-- khái niệm --/
+- Là những điểm/vị trí mà bố cục web sẽ thay đổi-thích úng để tạo nên giao diện responsive
+/-- break point cho thiết bị --/
++ Mobile: width < 740px
++ Tablet: width >= 740px and width < 1024px
++ PC: width >=1024px
+
+3. Px, em or rem
+https://zellwk.com/blog/media-query-units/
+
+4. Responsive web design:
++ Grid: thành phần cha
++ Row: hàng
++ Column: cột
++ Gap(Gutter): khoảng cách 2 phía của cột
+
+3. Grid System(*Nền tảng rất quan trọng*)
++ Column-Cột: độ rọng đơn vị %(tương đối) giúp linh động, dễ dàng
+tương thích với độ rộng khác nhau của các thiết bị. Số lượng cột
+trong GS đc xác định trước. Ví dụ: PC 12|16 cột, tablet 8 cột, mobile 4 cột
++ Gutter-Đường ngăn cách(rãnh ngăn): là khoảng cách 2 phía của 1 cột, tạo nên rãnh giữa các cột. độ
+rộng rãnh ngăn có thể thay đổi cho phù hợp với thiết kế hoặc độ rộng màn hình
+VD: PC/Tablet 24pz, mobile 16px
++ Margin-Phần lề
+Là khoảng cách 2 bên trái\phải của bố cục màn hình chính của website. Độ rộng phần lề thay đổi để phù hợp với các kích thước
+màn hình.
+VD: Phần lề lớn thích hợp cho màn hình lớn như PC, phần lề nhỏ thích họp cho màn hình nhỏ Tablet , mobile
+
+6. Thành phần chính(làm vc với css)
+a. Grid-Lưới: thường là phần cha, chứa row và column
+b. Row-dòng: dòng, chiều ngang, chứa column
+Vai trò:
++ Chưa các columns, giúp các columns nằm theo chiều ngang
++ Khi tổng chiều nagng columns vượt quá kích thước row, cho column xuống hàng
++ Loại bỏ khoảng cách thừa do gutters tạo ra ở 2 phía
+c. Column-cột: chứa nội dung, phần trên website
+Vai trò:
++ Chứa các thành phần trên website
+
+7. Flex Box
+display: flex | inline-flex
+flex-direction: row | column
+flex-wrap: nowrap | wrap | wrap-reverse
+flex-basis: length
+justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly
+justify-self: flex-start | flex-end | center
+align-content: flex-start | flex-end | center
+flex-grow: number
+flex-shrink: number
+flex: grow shrink basis
+flex-flow: direction wrap
+order: number
+
+
+flex: 1 (grow:1, shrink:1,basis:auto)
+
+8. Position
+position: relative - Lấy vị trí hiện tại của chính nó làm gốc tọa độ, ví dụ element là 1 khối vuông thì gốc tọa dộ nằm
+góc bên trái trên cùng, vùng không gian nó đã chiếm sẽ ko mất đi khi thay đổi vị trí.
+
+position: absolute - Phụ thuộc vào thằng cha gần nhất và CÓ thuộc tính là positon
+
+position: fixed - phụ thuộc vào trình duyệt
+
+position: sticky - 
+
+caniuse: website check thẻ có được sử dụng rộng rãi hay không

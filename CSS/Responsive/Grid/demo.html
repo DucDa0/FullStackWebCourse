@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./grid.css">
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body{
+        margin: 0;
+      }
+      .container{
+        text-align: center;
+      }
+      .course-item{
+        background-color: tomato;
+        height: 260px;
+        
+      }
+      h1{
+          color: #FFF;
+          line-height: 260px;
+      }
+      .category{
+          background-color: mediumaquamarine;
+          height: 400px;
+      }
+      ul{
+          list-style: none;
+          padding-left: 0;
+      }
+      .banner img{
+        background-size: cover;
+        background-position: center;
+        max-width: 100%;
+        height: auto;
+      }
+      .header{
+        background-color: mediumseagreen;
+        height: 100px;
+        position: relative;
+        top: -400px;
+      }
+    </style>
+  </head>
+
+  <body>
+      <div class="grid">
+        <div class="row">
+         
+          <div class="banner l-12">
+           
+            <img src="./hourglass_stones_blur_120797_1920x1080.jpg" alt="">
+          </div>
+          <div class="header l-12">
+
+          </div>
+        </div>
+      </div>
+      <div class="grid wide container">
+          <div class="row">
+            <div class="col l-3 m-0 c-0">
+               <div class="category">
+                   <ul>
+                       <li>JavaScript</li>
+                       <li>HTML-CSS</li>
+                       <li>React</li>
+                       <li>C#</li>
+                   </ul>
+               </div>
+            </div>
+            <div class="col l-9 m-12 c-12">
+                <div class="row">
+                    <div class="col l-4 m-6 c-12">
+                        <div class="course-item">
+                            <h1>Course 1</h1>
+                        </div>
+                    </div>
+                    <div class="col l-4 m-6 c-12">
+                        <div class="course-item">
+                            <h1>Course 2</h1>
+                        </div>
+                    </div>
+                    <div class="col l-4 m-6 c-12">
+                        <div class="course-item">
+                            <h1>Course 3</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>         
+          </div>
+      </div>
+    
+  </body>
+</html>

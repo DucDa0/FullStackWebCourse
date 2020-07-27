@@ -1,0 +1,58 @@
+Có 5 cách để tạo bố cục web:
++ HTML tables: ko đc sử dụng lắm, vì kém hiệu quả, table chỉ hiển thị dữ liệu thôi.
++ CSS float-property: phổ biến, nhưng thiếu tính linh hoạt.
++ CSS flex-box
++ CSS framework(bootstrap)
++ CSS grid
+
+<section></section>: xác định 1 phần trong document(1 phần là 1 nhóm nội dung cùng theo chủ đề, thường có tiêu đề).
+ex:
+<section>
+    <h1>WWF</h1>
+    <p>The World Wide Fund for Nature (WWF) is....</p>
+</section>
+
+
+<article></article>: chỉ định nội dung độc lập, các content độc lập. Được dùng cho các: Forum post, Blog post, Newspaper Article.
+ex:
+<article>
+    <h1>What Does WWF Do?</h1>
+    <p>WWF's mission is to stop the degradation of our planet's natural environment,
+    and build a future in which humans live in harmony with nature.</p>
+</article>
+
+
+<header></header>: chỉ định tiêu đề
+ex:
+<article>
+    <header>
+      <h1>What Does WWF Do?</h1>
+      <p>WWF's mission:</p>
+    </header>
+    <p>WWF's mission is to stop the degradation of our planet's natural environment,
+    and build a future in which humans live in harmony with nature.</p>
+</article>
+
+<footer></footer>: chỉ định phần chân trang web. Chứa các thông tin liên kết, các điều khoản.
+ex: 
+<footer>
+    <p>Posted by: Hege Refsnes</p>
+    <p>Contact information: <a href="mailto:someone@example.com">
+    someone@example.com</a>.</p>
+</footer>
+
+<nav></nav>: thể hiện nhiều các link, thường được dùng dưới header, chứa các danh mục của web.
+ex:
+<nav>
+    <a href="/html/">HTML</a> |
+    <a href="/css/">CSS</a> |
+    <a href="/js/">JavaScript</a> |
+    <a href="/jquery/">jQuery</a>
+</nav>
+
+<figure></figure>: chú thích hình ảnh.
+ex:
+<figure>
+    <img src="pic_trulli.jpg" alt="Trulli">
+    <figcaption>Fig1. - Trulli, Puglia, Italy.</figcaption>
+</figure>

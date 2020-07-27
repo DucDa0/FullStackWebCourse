@@ -1,4 +1,5 @@
 // Class
+//*Đối với class thì sẽ không có khái niệm hoisting như function
 class Bike {
     constructor(model, speed) {
         this.model = model;

@@ -14,10 +14,10 @@
         const hit = document.getElementById('hit');
         const say = document.getElementById('say');
         hit.addEventListener('click', () => {
-            if (say.innerHTML === "") {
-                say.innerHTML = "I love CodersX!";
+            if (say.textContent === "") {
+                say.textContent = "I love CodersX!";
             } else {
-                say.innerHTML = "";
+                say.textContent = "";
             }
         })
     </script>

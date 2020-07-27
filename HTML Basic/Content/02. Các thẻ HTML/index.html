@@ -1,0 +1,69 @@
+<h1 style="text-align:center;">Centered Heading</h1>
+
+<h1></h1>: thẻ heading(tag)
+style: thuộc tính(Attribute)
+text-align: đặc tính(Property)
+center: giá trị (value)
+Centered Heading: content
+* Chú thích: (+): các thẻ đi đôi với nhau,(-): các property.
+<p title="Tooltips"></p>: thẻ p là văn bản, cái title khi hover chuột vào đoạn văn bản đó, nó sẽ hiện value("Tooltips") của property "title".
+<a href="www.google.com" alt="link Error" target="_blank">Link to google</a>: thẻ a là thẻ tạo link, href là url, alt là cái sẽ hiện thay thế khi cái link nó lỗi.
+target="_blank": mở trong tab mới khi click vào link.
+<img src="w3schools.jpg" alt="W3Schools.com" width="104" height="142"> là thẻ hiển thị hình ảnh, với các Attribute: src-đường dẫn image, hoặc url,
+alt-thay thế khi hình ảnh bị lỗi, width-chiều dài ảnh(pixel), height-chiều cao(pixel).
+<button>Click me!</button>: thẻ tạo button
++ <ul></ul>: thẻ liệt kê, không có thứ tự
++ <li></li>: các mục được liệt kê, thẻ này nằm trong content của thẻ <ul></ul>
++ <ol></ol>: thẻ liệt kê, có thứ tự từ 1-vô cực.
+<br/>: thẻ xuống hàng, được sử dụng trong 1 đoạn văn bản.
+<hr/>: thẻ thạo 1 đườn cắt ngang, xác định 1 vùng nhất định của văn bản.
+<pre></pre>: content được viết trong thẻ này thường hiển thị font chữ Courier, giữ nguyên format văn bản, nghĩa là xuống dòng,
+ngắt dòng vẫn được, ko cần dùng <br/>
+-background-color: màu nền
+-color: màu văn bản
+-font-family: font chữ
+-font-size: cỡ chữ(pixel, %, ...)
+-text-align: căn lề văn bản(center, left, right).
+-background-image: url('img_girl.jpg')
+<b></b>: chữ in đậm.
+<i></i>: chữ in nghiêng.
+<em></em>: dùng để nhấn mạnh đoạn văn bản
+<mark></mark>: đánh dấu văn bản, như bút dạn quang ấy
+<small></small>: tạo văn bản size nhỏ
+<del></del>: tạo đường cắt văn bản, kiểu như xóa.
+<ins></ins>: tạo đường gạch dưới văn bản
+<strong></strong>: đoạn văn bản quan trọng thì dùng cái này.
+<q></q>: quote đó, 
+<blockquote cite="Url"></blockquote>: được sử dụng khi content được trích dẫn từ nguồn khác
+<p>The <abbr title="World Health Organization">WHO</abbr> was founded in 1948.</p>: thẻ <abbr></abbr> dùng để định nghĩ rõ hơn từ viết tắt.
+<address></address>: nào cần hiển thị thông tin liên lạc như địa chỉ, phone,...
+<cite></cite>: xác định tiêu đề của 1 ấn phẩm,
+<bdo dir="rtl"></bdo>: làm chữ nó ngược từ trái qua phải hoặc ngược lại.
+-border: viền bao ngoài content.
+-padding: khoảng cách từ content đến border.
+-margin: khoảng cách từ border ra bên ngoài.
+<p id="p01">I am different</p> id: xác định thành phần đặc biệt
+=> #p01{color: blue};
+<p class="error">I am different</p>
+=> .error{color: red};
+<a href="default.asp">
+    <img src="smiley.gif" alt="HTML tutorial" style="width:42px;height:42px;border:0;">
+    // Note: border:0; is added to prevent IE9 (and earlier) from displaying a border around the image (when the image is a link).
+</a>// link hiển thị với 1 image.
+<button onclick="document.location = 'default.asp'">HTML Tutorial</button>: button như là 1 link
++<a href="/html/default.asp">HTML tutorial</a>// get link ở 1 folder khác
++<a href="default.asp">HTML tutorial</a>// get link ở chung folder
+{
+    HTML Link Bookmarks
+    <p><a href="#C1">Jump to Chapter 4</a></p>
+    <p><a href="#C3">Jump to Chapter 10</a></p>
+
+    <h2 id="C1">Chapter 1</h2>
+    <p>This chapter explains ba bla bla</p>
+
+    <h2>Chapter 2</h2>
+    <p>This chapter explains ba bla bla</p>
+
+    <h2 id="C3">Chapter 3</h2>
+    <p>This chapter explains ba bla bla</p>
+}
