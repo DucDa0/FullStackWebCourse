@@ -42,11 +42,13 @@
 .forgot{
     margin-top: 30px;
     display: flex;
+    align-items: center;
     justify-content: center;
     width: 100%;
 }
 .checkbox{
     margin-right: 15px;
+    margin-top: 12px;
 }
 .text{
     color: #666;
@@ -61,4 +63,14 @@
 }
 .footer-item-link{
     color: #333;
+}
+.Header-wrap{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+.Header-content{
+    font-size: 54px;
+    font-weight: 500;
 }

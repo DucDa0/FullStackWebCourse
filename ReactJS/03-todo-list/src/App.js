@@ -1,17 +1,27 @@
-import React from 'react';
-import './css/style.css';
-import './css/Header.css';
-import './css/LoginForm.css';
+import React, {Component} from 'react';
+import './css/main.css';
 import Header from './components/Header';
 import LoginForm from './components/LoginForm';
+import TabMenu from './components/TabMenu';
 
-function App() {
-  return (
-    <div class="main">
-     <Header/>
-     <LoginForm/>
-    </div>
-  );
+class App extends Component{
+  render(){
+    return (
+      <div class="main">
+       <Header/>
+       <TabMenu/>
+       <LoginForm content="Dao Van Duc"/>
+      </div>
+    );
+  }
 }
+// function App() {
+//   return (
+//     <div class="main">
+//      <Header/>
+//      <LoginForm content="Dao Van Duc"/>
+//     </div>
+//   );
+// }
 
 export default App;
