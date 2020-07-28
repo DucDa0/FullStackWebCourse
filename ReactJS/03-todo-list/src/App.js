@@ -1,14 +1,15 @@
 import React from 'react';
-import './App.css';
+import './css/style.css';
+import './css/Header.css';
+import './css/LoginForm.css';
+import Header from './components/Header';
+import LoginForm from './components/LoginForm';
 
 function App() {
   return (
-    <div>
-      <ul>
-        <li>Go to market</li>
-        <li>Buy food</li>
-        <li>Make dinner</li>
-      </ul>
+    <div class="main">
+     <Header/>
+     <LoginForm/>
     </div>
   );
 }
