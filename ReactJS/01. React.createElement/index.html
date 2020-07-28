@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script>
+        const todos = [
+        'Go to market',
+        'Buy food',
+        'Make dinner'
+        ];
+        const list=[];
+        for(let val of todos){
+            list.push(React.createElement('li',null,val));
+        }
+        const Title=React.createElement('div',null, 'todos');
+        const UL=React.createElement('ul',null,list)
+        const App=React.createElement('div',null,Title, UL);
+        const root=document.getElementById('root');
+        ReactDOM.render(App, root);
+    </script>
+</body>
+</html>
