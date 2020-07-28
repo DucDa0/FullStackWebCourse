@@ -9,20 +9,29 @@
     <div id="root"></div>
     <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
-    <script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
         const todos = [
         'Go to market',
         'Buy food',
         'Make dinner'
         ];
-        const list=[];
-        for(let val of todos){
-            list.push(React.createElement('li',null,val));
-        }
-        const Title=React.createElement('div',null, 'todos');
-        const UL=React.createElement('ul',null,list)
-        const App=React.createElement('div',null,Title, UL);
+        // const list=[];
+        // for(let val of todos){
+        //     list.push(React.createElement('li',null,val));
+        // }
+        // const Title=React.createElement('div',null, 'todos');
+        // const UL=React.createElement('ul',null,list)
+        // const App=React.createElement('div',null,Title, UL);
+        // JSX
         const root=document.getElementById('root');
+        const Title=<div>Todos</div>;
+        const List=<ul>
+                        <li>Go to market</li>
+                        <li>Buy food</li>
+                        <li>Make dinner</li>
+                    </ul>;
+        const App=React.createElement('div',null,Title,List);
         ReactDOM.render(App, root);
     </script>
 </body>
