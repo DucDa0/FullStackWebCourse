@@ -1,0 +1,76 @@
+.LoginForm{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.input-form{
+    width: 33%;
+}
+.label{
+    display: block;
+    color: #666;
+}
+.userName-input,.pwd-input{
+    outline: none;
+    border: none;
+    height: 25px;
+    width: 100%;
+}
+.input{
+    border: 1px solid #DDD;
+    border-radius: 3px;
+    height: 60px;
+    margin-bottom: 15px;
+}
+.input-wrap{
+    padding: 10px;
+}
+.input:hover{
+    border: 1px solid #45BD55;
+}
+.submit{
+    background-color: #45BD55;
+    color: white;
+    border: none;
+    height: 60px;
+    border-radius: 3px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 20px;
+}
+.forgot{
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.checkbox{
+    margin-right: 15px;
+    margin-top: 12px;
+}
+.text{
+    color: #666;
+}
+.footer-content{
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+}
+.footer-content li:last-child{
+    margin-left: 15px;
+}
+.footer-item-link{
+    color: #333;
+}
+.Header-wrap{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+.Header-content{
+    font-size: 54px;
+    font-weight: 500;
+}

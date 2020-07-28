@@ -1,0 +1,22 @@
+.friendsRec{
+    width: 33%;
+    height: 500px;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px;
+    margin: auto;
+}
+.friendsRec-wrap{
+    margin-top: 50px;
+    padding: 20px;
+    background: #fff;
+}
+.friendsRec-head{
+    display: flex;
+    justify-content: space-between;
+}
+.friendsRec-head-title{
+    color: #999;
+}
+.friendsRec-head-viewAll{
+    color: #262626;
+}

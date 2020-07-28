@@ -1,0 +1,30 @@
+.friendsRec-item{
+    margin: 15px auto;
+}
+.friendsRec-info{
+    display: flex;
+}
+.friendsRec-name,.friendsRec-text{
+    display: block;
+}
+.friendsRec-avt{
+    border-radius: 50%;
+}
+.friendsRec-follow-link{
+    text-decoration: none;
+    align-self: center;
+    margin-left: auto;
+    color: #1876F2;
+}
+.friendsRec-content{
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.friendsRec-name{
+    color: #262626;
+}
+.friendsRec-text{
+    color: #999;
+}
