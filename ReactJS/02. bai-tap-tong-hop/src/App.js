@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import './css/main.css';
-import Header from './components/Header';
-import LoginForm from './components/LoginForm';
-import TabMenu from './components/TabMenu';
-import RecommendedFriends from './components/RecommendedFriends';
-import DynamicClassNames from './components/DynamicClassNames';
+// import Header from './components/Header';
+// import LoginForm from './components/LoginForm';
+// import TabMenu from './components/TabMenu';
+// import RecommendedFriends from './components/RecommendedFriends';
+// import DynamicClassNames from './components/DynamicClassNames';
+import Notification from './components/Notification';
 
 export default class App extends Component{
   render(){
@@ -14,7 +15,8 @@ export default class App extends Component{
        <TabMenu/>
        <LoginForm content="Dao Van Duc"/> */}
         {/* <RecommendedFriends/> */}
-        <DynamicClassNames/>
+        {/* <DynamicClassNames/> */}
+        <Notification hasUnread={true}/>
       </div>
     );
   }
