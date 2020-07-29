@@ -4,15 +4,17 @@ import Header from './components/Header';
 import LoginForm from './components/LoginForm';
 import TabMenu from './components/TabMenu';
 import RecommendedFriends from './components/RecommendedFriends';
+import DynamicClassNames from './components/DynamicClassNames';
 
-class App extends Component{
+export default class App extends Component{
   render(){
     return (
-      <div class="main">
+      <div className="main">
        {/* <Header/>
        <TabMenu/>
        <LoginForm content="Dao Van Duc"/> */}
-        <RecommendedFriends/>
+        {/* <RecommendedFriends/> */}
+        <DynamicClassNames/>
       </div>
     );
   }
@@ -22,4 +24,4 @@ class App extends Component{
 //   emailDefault: 'ducdao0906@gmail.com'
 // }
 
-export default App;
+

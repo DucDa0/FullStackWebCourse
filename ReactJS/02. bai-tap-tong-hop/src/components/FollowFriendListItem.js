@@ -11,7 +11,7 @@ export default class FollowFriendListItem extends Component {
                         <span className="friendsRec-name">{this.props.name}</span>
                         <span className="friendsRec-text">Gợi ý cho bạn</span>
                     </div>
-                    <a className="friendsRec-follow-link" href="/theodoi">Theo dõi</a>
+                    <a className="friendsRec-follow-link" href={"/"+this.props.name}>Theo dõi</a>
                 </div>
             </div>
         )

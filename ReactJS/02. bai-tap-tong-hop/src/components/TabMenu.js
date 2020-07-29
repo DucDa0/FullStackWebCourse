@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../css/TabMenu.css';
-class TabMenu extends Component {
+export default class TabMenu extends Component {
     render() {
         return (
             <div className="TabMenu">
@@ -36,4 +36,3 @@ class TabMenu extends Component {
         )
     }
 }
-export default TabMenu;

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../css/LoginForm.css';
-class LoginForm extends Component{
+export default class LoginForm extends Component{
     render(){
         return(
             <div className="LoginForm">
@@ -10,13 +10,13 @@ class LoginForm extends Component{
                 <form className="input-form" method="POST">
                     <div className="input">
                         <div className="input-wrap">
-                            <label className="label" for="userName">Username</label>
+                            <label className="label" htmlFor="userName">Username</label>
                             <input type="text" name="userName" id="userName" value={this.props.emailDefault} className="userName-input"/>
                         </div>
                     </div>
                     <div className="input">
                         <div className="input-wrap">
-                            <label className="label" for="pwd">Password</label>
+                            <label className="label" htmlFor="pwd">Password</label>
                             <input type="password" name="pwd" id="pwd" className="pwd-input"/>
                         </div>
                     </div>
@@ -35,6 +35,3 @@ class LoginForm extends Component{
         );
     }
 }
-
-
-export default LoginForm;

@@ -1,0 +1,19 @@
+.DynamicClassNames{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+.table{
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    width: 100%;
+    box-sizing: border-box;
+    border-collapse: collapse;
+}
+td, th {
+    text-align: center;
+    padding: 15px 0;
+    width: 200px;
+}
+.is-even{
+    background-color: #dddddd;
+}

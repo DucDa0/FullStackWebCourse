@@ -2,7 +2,12 @@ import React, {Component} from 'react';
 import '../css/RecommendedFriends.css';
 import FollowFriendListItem from './FollowFriendListItem';
 
-class RecommendedFriends extends Component{
+// const friends=[
+//     {name: 'ducdao0906', avatar: 'https://picsum.photos/50'},
+//     {name: 'NgaoThui1010', avatar: 'https://picsum.photos/50'},
+//     {name: 'ToRieu003', avatar: 'https://picsum.photos/50'}
+// ]
+export default class RecommendedFriends extends Component{
     constructor(){
         super();
         this.friends=[
@@ -35,5 +40,3 @@ class RecommendedFriends extends Component{
         );
     }
 }
-
-export default RecommendedFriends;
