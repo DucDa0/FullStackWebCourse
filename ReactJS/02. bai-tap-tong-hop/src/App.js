@@ -5,7 +5,8 @@ import './css/main.css';
 // import TabMenu from './components/TabMenu';
 // import RecommendedFriends from './components/RecommendedFriends';
 // import DynamicClassNames from './components/DynamicClassNames';
-import Notification from './components/Notification';
+// import Notification from './components/Notification';
+import SearchBox from './components/SearchBox'
 
 export default class App extends Component{
   render(){
@@ -16,7 +17,8 @@ export default class App extends Component{
        <LoginForm content="Dao Van Duc"/> */}
         {/* <RecommendedFriends/> */}
         {/* <DynamicClassNames/> */}
-        <Notification hasUnread={true}/>
+        {/* <Notification hasUnread={true}/> */}
+        <SearchBox/>
       </div>
     );
   }
