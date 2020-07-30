@@ -6,9 +6,22 @@ import './css/main.css';
 // import RecommendedFriends from './components/RecommendedFriends';
 // import DynamicClassNames from './components/DynamicClassNames';
 // import Notification from './components/Notification';
-import SearchBox from './components/SearchBox'
+// import SearchBox from './components/SearchBox'
+import Modal from './components/Modal'
 
 export default class App extends Component{
+  constructor(){
+    super();
+    this.state={
+      trigger: false
+    };
+    this.isClick=this.isClick.bind(this);
+  }
+  isClick() {
+    this.setState({
+      trigger: true
+    })
+  }
   render(){
     return (
       <div className="main">
@@ -18,7 +31,9 @@ export default class App extends Component{
         {/* <RecommendedFriends/> */}
         {/* <DynamicClassNames/> */}
         {/* <Notification hasUnread={true}/> */}
-        <SearchBox/>
+        {/* <SearchBox/> */}
+        <button>Open modal</button>
+        <Modal onClick={this.isClick}/>
       </div>
     );
   }

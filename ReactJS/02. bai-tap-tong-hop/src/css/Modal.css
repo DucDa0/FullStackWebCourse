@@ -1,0 +1,48 @@
+.Modal{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    display: none;
+}
+.Modal-wrap{
+    width: 846px;
+    height: 480px;
+    background: #FFFFFF;
+    border-radius: 6px;
+}
+.Modal-content{
+    padding: 50px;
+}
+.head{
+    display: flex;
+    justify-content: space-between;
+}
+.close{
+    font-size: 25px;
+    cursor: pointer;
+}
+.foot{
+    display: flex;
+    justify-content: flex-end;
+}
+.accept{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 134px;
+    height: 48px;
+    background: #28A745;
+    text-decoration: none;
+    color: #fff;
+}
+.decline{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 134px;
+    height: 48px;
+    background: #D63447;
+    text-decoration: none;
+    margin-left: 20px;
+    color: #fff;
+}

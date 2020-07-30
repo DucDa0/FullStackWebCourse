@@ -34,10 +34,10 @@ export default class SearchBox extends Component {
             this.setState({overWord: defaultBC});
         }
         else if(value.length>=3 && value.length<=10){
-            if(value[0]==='0' && value[1]==='9' && value[2]==='0'){
-                this.setState({overWord: defaultBC});
+            if(value[0]!=='0' || value[1]!=='9' || value[2]!=='0'){
+                this.setState({overWord: changeBC});
             }else{
-                this.setState({overWord : changeBC});
+                this.setState({overWord : defaultBC});
             }
         }
         else if(value.length>10){
