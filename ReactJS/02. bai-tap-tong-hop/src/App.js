@@ -23,6 +23,7 @@ export default class App extends Component{
     })
   }
   render(){
+    const {trigger}=this.state;
     return (
       <div className="main">
        {/* <Header/>
@@ -32,8 +33,8 @@ export default class App extends Component{
         {/* <DynamicClassNames/> */}
         {/* <Notification hasUnread={true}/> */}
         {/* <SearchBox/> */}
-        <button>Open modal</button>
-        <Modal onClick={this.isClick}/>
+        <button onClick={this.isClick}>Open modal</button>
+        <Modal trigger={trigger}/>
       </div>
     );
   }

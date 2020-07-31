@@ -16,15 +16,6 @@ export default class SearchBox extends Component {
         this.phoneValidate=this.phoneValidate.bind(this);
     }
     changeFocus(){
-        // const input=document.getElementById('input');
-        // let isFocus=(document.activeElement === input);
-        // console.log(isFocus);
-        // if(isFocus){
-        //     this.setState({isFocused : true});
-        // }
-        // else{
-        //     this.setState({isFocused : false});
-        // }
         this.setState({isFocused : true});
     }
     phoneValidate(){
@@ -55,7 +46,7 @@ export default class SearchBox extends Component {
                 <div className="SearchBox-wrap">
                     <div className="SearchBox-content" style={overWord}>
                         <div className="SearchBox-box">
-                            <input onKeyUp={this.phoneValidate}  id="input" placeholder="Type something to trap...." type="text"/>
+                            <input onFocus={this.changeFocus} onKeyUp={this.phoneValidate}  id="input" placeholder="Type something to trap...." type="text"/>
                             <div className={classNames('search',{isFocus: isFocused})}>
                                 <a href="/search" style={{textDecoration: "none", color: "white"}}><i className="fa fa-search"  aria-hidden="true"></i></a>
                             </div>

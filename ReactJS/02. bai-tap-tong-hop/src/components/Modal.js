@@ -1,15 +1,27 @@
 import React, { Component } from 'react'
+import classNames from 'classnames'
 import '../css/Modal.css'
 export default class Modal extends Component {
-    
+    constructor(){
+        super();
+        this.state={
+            isClose: false
+        };
+        this.closeDialog=this.closeDialog.bind(this);
+    }
+    closeDialog(){
+        this.setState({isClose: true});
+    }
     render() {
+        const {trigger}=this.props;
+        const {isClose}=this.state;
         return (
-            <div className="Modal">
+            <div className={classNames('Modal',{display: trigger},{closeDialog: isClose})}>
                 <div className="Modal-wrap">
                     <div className="Modal-content">
                         <div className="head">
                             <h2 className="title">This is my life</h2>
-                            <div className="close"><i class="fa fa-times" aria-hidden="true"></i></div>
+                            <div onClick={this.closeDialog} className="close"><i className="fa fa-times" aria-hidden="true"></i></div>
                         </div>
                         <div className="body">
                             <p className="article">
@@ -28,8 +40,8 @@ export default class Modal extends Component {
                             </p>
                         </div>
                         <div className="foot">
-                            <a href="/accept" className="accept"><span>Accept</span></a>
-                            <a href="/decline" className="decline"><span>Decline</span></a>
+                            <button onClick={this.closeDialog} className="accept">Accept</button>
+                            <button onClick={this.closeDialog} className="decline">Decline</button>
                         </div>
                     </div>
                 </div>

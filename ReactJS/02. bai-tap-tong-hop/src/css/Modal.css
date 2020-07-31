@@ -26,23 +26,28 @@
     justify-content: flex-end;
 }
 .accept{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    border: none;
+    outline: none;
     width: 134px;
     height: 48px;
     background: #28A745;
-    text-decoration: none;
     color: #fff;
+    cursor: pointer;
 }
 .decline{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    border: none;
+    outline: none;
     width: 134px;
     height: 48px;
     background: #D63447;
-    text-decoration: none;
     margin-left: 20px;
     color: #fff;
+    cursor: pointer;
+}
+.Modal.display{
+    display: flex;
+}
+
+.Modal.closeDialog{
+    display: none;
 }
