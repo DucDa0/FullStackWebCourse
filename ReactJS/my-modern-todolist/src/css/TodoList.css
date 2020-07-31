@@ -1,0 +1,87 @@
+.TodoList{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+.TodoList-wrap{
+    width: 456px;
+    height: 800px;
+    background: rgb(92,179,189);
+    background: linear-gradient(180deg, rgba(92,179,189,1) 0%, rgba(150,215,224,1) 50%);
+    border-radius: 3px;
+}
+.TodoList-content{
+    padding: 5px;
+}
+/* *header* */
+.TodoList-head{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.signal,.signal-phone{
+    display: flex;
+}
+.signal{
+    width: calc(100% / 3);
+}
+.dot{
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #fff;
+    margin-right: 3px;
+    align-self: center;
+}
+.time{
+    width: calc(100% / 3);
+    display: flex;
+    justify-content: center;
+}
+.time-text, .battery-text{
+    color: #fff;
+    font-size: 14px;
+}
+.battery{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: calc(100% / 3);
+}
+/* *Body* */
+.TodoList-body{
+    height: 650px;
+    box-sizing: border-box;
+}
+.TodoList-body_wrap{
+    height: 100%;
+    padding: 15px;
+}
+.TodoList-body_wrap-head{
+    display: flex;
+    align-items: center;
+}
+.Dailist{
+    letter-spacing: 6px;
+    color: #fff;
+    font-weight: 500;
+}
+.menu{
+    display: flex;
+    align-items: center;
+    width: 39%;
+}
+.TodoList-body_wrap-newTodo{
+    margin-top: 30px;
+}
+.newTodo{
+    height: 325px;
+    overflow-y: scroll;
+}
+::-webkit-scrollbar {
+    width: 3px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgb(34, 152, 165);
+}
+  

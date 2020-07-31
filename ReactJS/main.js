@@ -12,10 +12,4 @@
  * * và tái sử dụng nó. ReactJS kiểm soát luồng dữ liệu thông qua props và state. Dữ liệu trong states và props được sử dụng để render 
  * * ra các component với dữ liệu động (dynamic dữ liệu). 
  */
-const arr =[1,2,3];
-for(var i=0;i<arr.length;++i){
-    setInterval(function(){
-        console.log(i);
-    },1000);
-
-}
+console.log( 1!==1 || 2);

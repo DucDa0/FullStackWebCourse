@@ -6,8 +6,8 @@ import './css/main.css';
 // import RecommendedFriends from './components/RecommendedFriends';
 // import DynamicClassNames from './components/DynamicClassNames';
 // import Notification from './components/Notification';
-// import SearchBox from './components/SearchBox'
-import Modal from './components/Modal'
+import SearchBox from './components/SearchBox'
+// import Modal from './components/Modal'
 
 export default class App extends Component{
   constructor(){
@@ -15,12 +15,14 @@ export default class App extends Component{
     this.state={
       trigger: false
     };
-    this.isClick=this.isClick.bind(this);
   }
   isClick() {
-    this.setState({
-      trigger: true
-    })
+    return ()=>{
+      const {trigger}=this.state;
+      this.setState({
+        trigger: !trigger
+      })
+    }
   }
   render(){
     const {trigger}=this.state;
@@ -32,9 +34,9 @@ export default class App extends Component{
         {/* <RecommendedFriends/> */}
         {/* <DynamicClassNames/> */}
         {/* <Notification hasUnread={true}/> */}
-        {/* <SearchBox/> */}
-        <button onClick={this.isClick}>Open modal</button>
-        <Modal trigger={trigger}/>
+        {/* <SearchBox onFocused={this.isClick()} isFocused={trigger}/> */}
+        {/* <button onClick={this.isClick()}>Open modal</button>
+        <Modal onClick={this.isClick()} isTrigger={trigger}/> */}
       </div>
     );
   }

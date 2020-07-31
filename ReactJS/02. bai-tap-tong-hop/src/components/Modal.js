@@ -2,26 +2,15 @@ import React, { Component } from 'react'
 import classNames from 'classnames'
 import '../css/Modal.css'
 export default class Modal extends Component {
-    constructor(){
-        super();
-        this.state={
-            isClose: false
-        };
-        this.closeDialog=this.closeDialog.bind(this);
-    }
-    closeDialog(){
-        this.setState({isClose: true});
-    }
     render() {
-        const {trigger}=this.props;
-        const {isClose}=this.state;
+        const {onClick, isTrigger}=this.props;
         return (
-            <div className={classNames('Modal',{display: trigger},{closeDialog: isClose})}>
+            <div className={classNames('Modal',{display:isTrigger})}>
                 <div className="Modal-wrap">
                     <div className="Modal-content">
                         <div className="head">
                             <h2 className="title">This is my life</h2>
-                            <div onClick={this.closeDialog} className="close"><i className="fa fa-times" aria-hidden="true"></i></div>
+                            <div onClick={onClick} className="close"><i className="fa fa-times" aria-hidden="true"></i></div>
                         </div>
                         <div className="body">
                             <p className="article">
@@ -40,12 +29,13 @@ export default class Modal extends Component {
                             </p>
                         </div>
                         <div className="foot">
-                            <button onClick={this.closeDialog} className="accept">Accept</button>
-                            <button onClick={this.closeDialog} className="decline">Decline</button>
+                            <button onClick={onClick} className="accept">Accept</button>
+                            <button onClick={onClick} className="decline">Decline</button>
                         </div>
                     </div>
                 </div>
             </div>
         )
+        
     }
 }

@@ -3,20 +3,15 @@ import classNames from 'classnames'
 import '../css/SearchBox.css'
 
 
-const defaultBC={border: '1px solid rgba(124, 146, 205, 0.7)'};
-const changeBC={border: '1px solid #F00'};
+const defaultBC={borderColor: 'rgba(124, 146, 205, 0.7)'};
+const changeBC={borderColor: '#F00'};
 export default class SearchBox extends Component {
     constructor(){
         super();
         this.state={
-            isFocused: false,
             overWord: defaultBC
         }
-        this.changeFocus=this.changeFocus.bind(this);
         this.phoneValidate=this.phoneValidate.bind(this);
-    }
-    changeFocus(){
-        this.setState({isFocused : true});
     }
     phoneValidate(){
         const input=document.getElementById('input');
@@ -40,13 +35,14 @@ export default class SearchBox extends Component {
 
     }
     render() {
-        const {isFocused, overWord}=this.state;
+        const {overWord}=this.state;
+        const {onFocused,isFocused}=this.props;
         return (
             <div className="SearchBox">
                 <div className="SearchBox-wrap">
                     <div className="SearchBox-content" style={overWord}>
                         <div className="SearchBox-box">
-                            <input onFocus={this.changeFocus} onKeyUp={this.phoneValidate}  id="input" placeholder="Type something to trap...." type="text"/>
+                            <input onFocus={onFocused} onKeyUp={this.phoneValidate}  id="input" placeholder="Type something to trap...." type="text"/>
                             <div className={classNames('search',{isFocus: isFocused})}>
                                 <a href="/search" style={{textDecoration: "none", color: "white"}}><i className="fa fa-search"  aria-hidden="true"></i></a>
                             </div>

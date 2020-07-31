@@ -111,7 +111,7 @@ export default class App extends Component {
     }else{
       filterTodo=todoItems.filter(item=>item.isComplete);
     }
-    if(todoItems.length){
+    if(filterTodo.length){
       return (
         <div className="App">
           <div className="header">
