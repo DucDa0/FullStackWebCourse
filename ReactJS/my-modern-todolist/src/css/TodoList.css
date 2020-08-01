@@ -1,17 +1,30 @@
 .TodoList{
-    margin-top: 50px;
     display: flex;
     justify-content: center;
+    height: 1080px;
+    background-color: #DBF1F4;
 }
 .TodoList-wrap{
     width: 456px;
     height: 800px;
-    background: rgb(92,179,189);
-    background: linear-gradient(180deg, rgba(92,179,189,1) 0%, rgba(150,215,224,1) 50%);
+    background: rgb(80,192,205);
+    background: linear-gradient(180deg, rgba(80,192,205,1) 0%, rgba(150,215,224,1) 60%);
     border-radius: 3px;
+    margin-top: 50px;
+    -webkit-box-shadow: 0px 5px 18px 10px rgba(221,221,221,0.75);
+    -moz-box-shadow: 0px 5px 18px 10px rgba(221,221,221,0.75);
+    box-shadow: 0px 5px 18px 10px rgba(221,221,221,0.75);
+    box-sizing: border-box;
+}
+.overlay {
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 100%;
+    z-index: 10;
+    cursor: pointer;
 }
 .TodoList-content{
     padding: 5px;
+    position: relative;
 }
 /* *header* */
 .TodoList-head{
@@ -55,7 +68,7 @@
 }
 .TodoList-body_wrap{
     height: 100%;
-    padding: 15px;
+    padding: 12px;
 }
 .TodoList-body_wrap-head{
     display: flex;
@@ -75,8 +88,9 @@
     margin-top: 30px;
 }
 .newTodo{
-    height: 325px;
-    overflow-y: scroll;
+    max-height: 335px;
+    width: 100%;
+    overflow-y: auto;
 }
 ::-webkit-scrollbar {
     width: 3px;
@@ -84,4 +98,30 @@
 ::-webkit-scrollbar-thumb {
     background: rgb(34, 152, 165);
 }
-  
+.completedTodo{
+    max-height: 335px;
+    width: 100%;
+    overflow-y: auto;
+}
+.TodoList-body_wrap-todoDone{
+    margin-top: 20px;
+}
+/* *footer* */
+.TodoList-foot{
+    display: flex;
+    justify-content: center;
+}
+.TodoList-foot-add{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 56px;
+    width: 56px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 1px solid #f6f6f6;
+    -webkit-box-shadow: 0px 3px 15px 4px rgba(255,255,255,0.5);
+    -moz-box-shadow: 0px 3px 15px 4px rgba(255,255,255,0.5);
+    box-shadow: 0px 3px 15px 4px rgba(255,255,255,0.5);
+    cursor: pointer;
+}

@@ -2,17 +2,82 @@ import React,{Component} from 'react';
 import wifi from './img/wifi.svg'
 import battery from './img/battery.svg'
 import menu from './img/open-menu.svg'
+import add from './img/plus.svg'
 import './css/TodoList.css'
 import NewTodo from './components/NewTodo'
+import CompleteTodo from './components/CompleteTodo'
+import SearchBox from './components/SearchBox'
 import './App.css';
 
 export default class App extends Component {
   constructor(){
     super();
     this.state={
+      trigger: false,
       newItem: '',
-      todoItems: [{title: 'Dao Van Duc', isComplete: false},{title: 'Hoang Thai Hoa', isComplete: false},{title: 'Vu Trung Kien', isComplete: false}]
+      todoItems: [
+      {title: 'Duc Dao Pro', isComplete: false},
+      {title: 'Hoa Mad Max', isComplete: false},
+      {title: 'Kien Gay Lo', isComplete: false},
+      {title: 'Tieu Bao Thui', isComplete: false},
+      {title: 'Phu Khung Mad', isComplete: false}
+    ]
     };
+    this.onKeyUp=this.onKeyUp.bind(this);
+    this.onChange=this.onChange.bind(this);
+    this.onClickAdd=this.onClickAdd.bind(this);
+  }
+  onClickAdd(){
+    const input=document.getElementById('input');
+    let text=input.value;
+    if(!text){
+      return;
+    }
+    text=text.trim();
+    if(!text){
+      return;
+    }
+    this.setState({
+      newItem: '', 
+      todoItems:[
+        {title: text, isComplete: false},
+        ...this.state.todoItems
+      ]
+    })
+  }
+  onKeyUp(event){
+    let text=event.target.value;
+    
+    if(event.keyCode===13){
+      
+      if(!text){
+        return;
+      }
+      text=text.trim();
+      if(!text){
+        return;
+      }
+      this.setState({
+        newItem: '', 
+        todoItems:[
+          {title: text, isComplete: false},
+          ...this.state.todoItems
+        ]
+      })
+    }
+  }
+  onChange(event){
+    this.setState({
+      newItem: event.target.value
+    })
+  }
+  isClick() {
+    return ()=>{
+      const {trigger}=this.state;
+      this.setState({
+        trigger: !trigger
+      })
+    }
   }
   onItemClicked(item){
     return ()=>{
@@ -34,11 +99,12 @@ export default class App extends Component {
     }
   }
   render(){
-    const {todoItems}=this.state;
+    const {trigger,newItem,todoItems}=this.state;
+    const filterTodo=todoItems.filter(item=>item.isComplete);
     if(todoItems.length){
       return (
         <div className="TodoList">
-            <div className="TodoList-wrap">
+            <div  className="TodoList-wrap">
                 <div className="TodoList-content">
                     <div className="TodoList-head">
                         <div className="signal">
@@ -64,6 +130,7 @@ export default class App extends Component {
                                 <div className="Dailist">DAILIST</div>
                             </div>
                             <div className="TodoList-body_wrap-newTodo">
+                                <SearchBox value={newItem} onClickAdd={this.onClickAdd} onClick={this.isClick()} onKeyUp={this.onKeyUp} onChange={this.onChange} isTrigger={trigger}/>
                                 <div className="upComing">UPCOMING</div>
                                 <div className="newTodo">
                                   {
@@ -74,12 +141,21 @@ export default class App extends Component {
                                 </div>
                             </div>
                             <div className="TodoList-body_wrap-todoDone">
-
+                              <div className="finish">FINISHED</div>
+                              <div className="completedTodo">
+                              {
+                                filterTodo.map((item,index)=>{
+                                  return <CompleteTodo index ={index} item={item} key={index} onClick={this.onItemClicked(item)}/>
+                                })
+                              }
+                              </div>
                             </div>
                         </div>
                     </div>
                     <div className="TodoList-foot">
-
+                      <div className="TodoList-foot-wrap">
+                            <div onClick={this.isClick()} className="TodoList-foot-add"><img src={add} alt="add" width="32" height="32"/></div>
+                      </div>
                     </div>
                 </div>
             </div>
