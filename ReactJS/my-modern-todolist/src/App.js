@@ -5,7 +5,6 @@ import menu from "./img/open-menu.svg";
 import add from "./img/plus.svg";
 import "./css/TodoList.css";
 import NewTodo from "./components/NewTodo";
-import CompleteTodo from "./components/CompleteTodo";
 import SearchBox from "./components/SearchBox";
 import EmptyList from "./components/EmptyList"
 import "./App.css";
@@ -42,9 +41,7 @@ export default class App extends Component {
     }
     
     this.setState({
-      newItem: "",
-      todoItems: [{ title: text, isComplete: false }, 
-      ...this.state.todoItems]
+      newItem: ""
     });
     data.push({ title: text, isComplete: false });
     localStorage.setItem(storageKey, JSON.stringify(data));
@@ -61,11 +58,7 @@ export default class App extends Component {
       }
   
       this.setState({
-        newItem: "",
-        todoItems: [
-          { title: text, isComplete: false },
-          ...this.state.todoItems
-        ]
+        newItem: ""
       });
       data.push({ title: text, isComplete: false });
       localStorage.setItem(storageKey, JSON.stringify(data));
@@ -88,17 +81,8 @@ export default class App extends Component {
     return () => {
       const isComplete = item.isComplete;
       const index = this.state.todoItems.indexOf(item);
-      const { todoItems } = this.state;
       this.setState({
         trigger: false,
-        todoItems: [
-          ...todoItems.slice(0, index),
-          {
-            ...item,
-            isComplete: !isComplete,
-          },
-          ...todoItems.slice(index + 1),
-        ]
       });
       data[index].isComplete=!isComplete;
       localStorage.setItem(storageKey, JSON.stringify(data));
@@ -106,7 +90,8 @@ export default class App extends Component {
   }
   render() {
     const { trigger, newItem, todoItems } = this.state;
-    const filterTodo = todoItems.filter((item) => item.isComplete);
+    const filterTodoByDone = todoItems.filter((item) => item.isComplete);
+    const filterTodoByNotDone = todoItems.filter((item) => !item.isComplete);
     if (todoItems.length) {
       return (
         <div className="TodoList">
@@ -154,7 +139,7 @@ export default class App extends Component {
                     />
                     <div className="upComing">UPCOMING</div>
                     <div className="newTodo">
-                      {todoItems.map((item, index) => {
+                      {filterTodoByNotDone.map((item, index) => {
                         return (
                           <NewTodo
                             index={index}
@@ -169,9 +154,9 @@ export default class App extends Component {
                   <div className="TodoList-body_wrap-todoDone">
                     <div className="finish">FINISHED</div>
                     <div className="completedTodo">
-                      {filterTodo.map((item, index) => {
+                      {filterTodoByDone.map((item, index) => {
                         return (
-                          <CompleteTodo
+                          <NewTodo
                             index={index}
                             item={item}
                             key={index}

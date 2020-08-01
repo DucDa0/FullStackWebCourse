@@ -6,11 +6,10 @@ export default class NewTodo extends Component {
         const {item, index, onClick}=this.props;
         const content=`${index}. ${item.title}`;
         return (
-            <div onClick={onClick} className={classNames('NewTodo-item',{disabled: item.isComplete})}>
+            <div onClick={onClick} className={classNames('NewTodo-item',{isDone: item.isComplete===true})}>
                 <div className="NewTodo-item_content">
                     <div className="content">
-                        {/* <span style={{paddingRight: '10px'}} className="order">{index}.</span> */}
-                        <span className="title">{content}</span>
+                        <span className={classNames('title',{isDone: item.isComplete===true})}>{content}</span>
                     </div>
                 </div>
             </div>
