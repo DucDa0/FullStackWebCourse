@@ -62,13 +62,9 @@
     width: calc(100% / 3);
 }
 /* *Body* */
-.TodoList-body{
-    height: 650px;
-    box-sizing: border-box;
-}
 .TodoList-body_wrap{
-    height: 100%;
     padding: 12px;
+    box-sizing: border-box;
 }
 .TodoList-body_wrap-head{
     display: flex;
@@ -99,7 +95,7 @@
     background: rgb(34, 152, 165);
 }
 .completedTodo{
-    max-height: 335px;
+    max-height: 200px;
     width: 100%;
     overflow-y: auto;
 }

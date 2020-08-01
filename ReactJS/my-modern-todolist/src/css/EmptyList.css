@@ -1,0 +1,37 @@
+.empty-list{
+    width: 100%;
+    min-height: 550px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.empty-list-wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.empty-notify{
+    display: flex;
+    align-items: center;
+    height: 22px;
+    background-color: #fff;
+    color: #333;
+    margin: 0;
+    border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+.empty-notify.under{
+    width: 130px;
+    margin-left: 50px;
+    justify-content: flex-end;
+    border-top-left-radius: unset;
+    border-bottom-right-radius: 6px;
+}
+.empty-notify.up{
+    width: 90px;
+    justify-content: center;
+    margin-right: 50px;
+}

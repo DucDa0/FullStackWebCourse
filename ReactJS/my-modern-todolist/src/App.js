@@ -1,169 +1,260 @@
-import React,{Component} from 'react';
-import wifi from './img/wifi.svg'
-import battery from './img/battery.svg'
-import menu from './img/open-menu.svg'
-import add from './img/plus.svg'
-import './css/TodoList.css'
-import NewTodo from './components/NewTodo'
-import CompleteTodo from './components/CompleteTodo'
-import SearchBox from './components/SearchBox'
-import './App.css';
+import React, { Component } from "react";
+import wifi from "./img/wifi.svg";
+import battery from "./img/battery.svg";
+import menu from "./img/open-menu.svg";
+import add from "./img/plus.svg";
+import "./css/TodoList.css";
+import NewTodo from "./components/NewTodo";
+import CompleteTodo from "./components/CompleteTodo";
+import SearchBox from "./components/SearchBox";
+import EmptyList from "./components/EmptyList"
+import "./App.css";
 
+let storageKey = "todoItems";
+let dataString = localStorage.getItem(storageKey);
+let data;
+if (dataString) {
+  data = JSON.parse(dataString);
+} else {
+  data = [];
+}
 export default class App extends Component {
-  constructor(){
+  constructor() {
     super();
-    this.state={
+    this.state = {
       trigger: false,
-      newItem: '',
-      todoItems: [
-      {title: 'Duc Dao Pro', isComplete: false},
-      {title: 'Hoa Mad Max', isComplete: false},
-      {title: 'Kien Gay Lo', isComplete: false},
-      {title: 'Tieu Bao Thui', isComplete: false},
-      {title: 'Phu Khung Mad', isComplete: false}
-    ]
+      newItem: "",
+      todoItems: data
     };
-    this.onKeyUp=this.onKeyUp.bind(this);
-    this.onChange=this.onChange.bind(this);
-    this.onClickAdd=this.onClickAdd.bind(this);
+    this.onKeyUp = this.onKeyUp.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onClickAdd = this.onClickAdd.bind(this);
   }
-  onClickAdd(){
-    const input=document.getElementById('input');
-    let text=input.value;
-    if(!text){
+  onClickAdd() {
+    const input = document.getElementById("input");
+    let text = input.value;
+    if (!text) {
       return;
     }
-    text=text.trim();
-    if(!text){
+    text = text.trim();
+    if (!text) {
       return;
     }
-    this.setState({
-      newItem: '', 
-      todoItems:[
-        {title: text, isComplete: false},
-        ...this.state.todoItems
-      ]
-    })
-  }
-  onKeyUp(event){
-    let text=event.target.value;
     
-    if(event.keyCode===13){
-      
-      if(!text){
+    this.setState({
+      newItem: "",
+      todoItems: [{ title: text, isComplete: false }, 
+      ...this.state.todoItems]
+    });
+    data.push({ title: text, isComplete: false });
+    localStorage.setItem(storageKey, JSON.stringify(data));
+  }
+  onKeyUp(event) {
+    let text = event.target.value;
+    if (event.keyCode === 13) {
+      if (!text) {
         return;
       }
-      text=text.trim();
-      if(!text){
+      text = text.trim();
+      if (!text) {
         return;
       }
+  
       this.setState({
-        newItem: '', 
-        todoItems:[
-          {title: text, isComplete: false},
+        newItem: "",
+        todoItems: [
+          { title: text, isComplete: false },
           ...this.state.todoItems
         ]
-      })
+      });
+      data.push({ title: text, isComplete: false });
+      localStorage.setItem(storageKey, JSON.stringify(data));
     }
   }
-  onChange(event){
+  onChange(event) {
     this.setState({
-      newItem: event.target.value
-    })
+      newItem: event.target.value,
+    });
   }
   isClick() {
-    return ()=>{
-      const {trigger}=this.state;
+    return () => {
+      const { trigger } = this.state;
       this.setState({
-        trigger: !trigger
-      })
-    }
+        trigger: !trigger,
+      });
+    };
   }
-  onItemClicked(item){
-    return ()=>{
-      const isComplete=item.isComplete;
-      const index=this.state.todoItems.indexOf(item);
-      const {todoItems}=this.state;
+  onItemClicked(item) {
+    return () => {
+      const isComplete = item.isComplete;
+      const index = this.state.todoItems.indexOf(item);
+      const { todoItems } = this.state;
       this.setState({
-
-        todoItems:[
-          ...todoItems.slice(0,index),
+        trigger: false,
+        todoItems: [
+          ...todoItems.slice(0, index),
           {
             ...item,
-            isComplete: !isComplete
-
+            isComplete: !isComplete,
           },
-          ...todoItems.slice(index+1)
+          ...todoItems.slice(index + 1),
         ]
-      })
-    }
+      });
+      data[index].isComplete=!isComplete;
+      localStorage.setItem(storageKey, JSON.stringify(data));
+    };
   }
-  render(){
-    const {trigger,newItem,todoItems}=this.state;
-    const filterTodo=todoItems.filter(item=>item.isComplete);
-    if(todoItems.length){
+  render() {
+    const { trigger, newItem, todoItems } = this.state;
+    const filterTodo = todoItems.filter((item) => item.isComplete);
+    if (todoItems.length) {
       return (
         <div className="TodoList">
-            <div  className="TodoList-wrap">
-                <div className="TodoList-content">
-                    <div className="TodoList-head">
-                        <div className="signal">
-                            <div className="signal-phone">
-                                <div className="dot"></div>
-                                <div className="dot"></div>
-                                <div className="dot"></div>
-                                <div className="dot"></div>
-                                <div className="dot"></div>
-                            </div>
-                            <div className="signal-wifi"><img width="16" height="16" src={wifi} alt="wifi"/></div>
-                        </div>
-                        <div className="time"><span className="time-text">9:06 AM</span></div>
-                        <div className="battery">
-                            <div style={{marginRight: '6px'}} className="battery-text">100%</div>
-                            <img  width="20" height="20" src={battery} alt="battery"/>
-                        </div>
+          <div className="TodoList-wrap">
+            <div className="TodoList-content">
+              <div className="TodoList-head">
+                <div className="signal">
+                  <div className="signal-phone">
+                    <div className="dot"></div>
+                    <div className="dot"></div>
+                    <div className="dot"></div>
+                    <div className="dot"></div>
+                    <div className="dot"></div>
+                  </div>
+                  <div className="signal-wifi">
+                    <img width="16" height="16" src={wifi} alt="wifi" />
+                  </div>
+                </div>
+                <div className="time">
+                  <span className="time-text">9:06 AM</span>
+                </div>
+                <div className="battery">
+                  <div style={{ marginRight: "6px" }} className="battery-text">
+                    100%
+                </div>
+                  <img width="20" height="20" src={battery} alt="battery" />
+                </div>
+              </div>
+              <div className="TodoList-body">
+                <div className="TodoList-body_wrap">
+                  <div className="TodoList-body_wrap-head">
+                    <div className="menu">
+                      <img width="22" height="22" src={menu} alt="menu" />
                     </div>
-                    <div className="TodoList-body">
-                        <div className="TodoList-body_wrap">
-                            <div className="TodoList-body_wrap-head">
-                                <div className="menu"><img width="22" height="22" src={menu} alt="menu"/></div>
-                                <div className="Dailist">DAILIST</div>
-                            </div>
-                            <div className="TodoList-body_wrap-newTodo">
-                                <SearchBox value={newItem} onClickAdd={this.onClickAdd} onClick={this.isClick()} onKeyUp={this.onKeyUp} onChange={this.onChange} isTrigger={trigger}/>
-                                <div className="upComing">UPCOMING</div>
-                                <div className="newTodo">
-                                  {
-                                    todoItems.map((item,index)=>{
-                                      return <NewTodo index ={index} item={item} key={index} onClick={this.onItemClicked(item)}/>
-                                    })
-                                  }
-                                </div>
-                            </div>
-                            <div className="TodoList-body_wrap-todoDone">
-                              <div className="finish">FINISHED</div>
-                              <div className="completedTodo">
-                              {
-                                filterTodo.map((item,index)=>{
-                                  return <CompleteTodo index ={index} item={item} key={index} onClick={this.onItemClicked(item)}/>
-                                })
-                              }
-                              </div>
-                            </div>
-                        </div>
+                    <div className="Dailist">DAILIST</div>
+                  </div>
+                  <div className="TodoList-body_wrap-newTodo">
+                    <SearchBox
+                      value={newItem}
+                      onClickAdd={this.onClickAdd}
+                      onClick={this.isClick()}
+                      onKeyUp={this.onKeyUp}
+                      onChange={this.onChange}
+                      isTrigger={trigger}
+                    />
+                    <div className="upComing">UPCOMING</div>
+                    <div className="newTodo">
+                      {todoItems.map((item, index) => {
+                        return (
+                          <NewTodo
+                            index={index}
+                            item={item}
+                            key={index}
+                            onClick={this.onItemClicked(item)}
+                          />
+                        );
+                      })}
                     </div>
-                    <div className="TodoList-foot">
-                      <div className="TodoList-foot-wrap">
-                            <div onClick={this.isClick()} className="TodoList-foot-add"><img src={add} alt="add" width="32" height="32"/></div>
+                  </div>
+                  <div className="TodoList-body_wrap-todoDone">
+                    <div className="finish">FINISHED</div>
+                    <div className="completedTodo">
+                      {filterTodo.map((item, index) => {
+                        return (
+                          <CompleteTodo
+                            index={index}
+                            item={item}
+                            key={index}
+                            onClick={this.onItemClicked(item)}
+                          />
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="TodoList-foot">
+                <div className="TodoList-foot-wrap">
+                  <div onClick={this.isClick()} className="TodoList-foot-add">
+                    <img src={add} alt="add" width="32" height="32" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="TodoList">
+          <div className="TodoList-wrap">
+            <div className="TodoList-content">
+              <div className="TodoList-head">
+                <div className="signal">
+                  <div className="signal-phone">
+                    <div className="dot"></div>
+                    <div className="dot"></div>
+                    <div className="dot"></div>
+                    <div className="dot"></div>
+                    <div className="dot"></div>
+                  </div>
+                  <div className="signal-wifi">
+                    <img width="16" height="16" src={wifi} alt="wifi" />
+                  </div>
+                </div>
+                <div className="time">
+                  <span className="time-text">9:06 AM</span>
+                </div>
+                <div className="battery">
+                  <div style={{ marginRight: "6px" }} className="battery-text">
+                    100%
+                  </div>
+                  <img width="20" height="20" src={battery} alt="battery" />
+                </div>
+              </div>
+              <div className="TodoList-body">
+                <div className="TodoList-body_wrap">
+                  <div className="TodoList-body_wrap-head">
+                    <div className="menu">
+                      <img width="22" height="22" src={menu} alt="menu" />
+                    </div>
+                    <div className="Dailist">DAILIST</div>
+                  </div>
+                  <div className="TodoList-body_wrap-newTodo">
+                    <SearchBox
+                        value={newItem}
+                        onClickAdd={this.onClickAdd}
+                        onClick={this.isClick()}
+                        onKeyUp={this.onKeyUp}
+                        onChange={this.onChange}
+                        isTrigger={trigger}
+                      />
+                  </div>
+                 
+                  <EmptyList />
+                  <div className="TodoList-foot">
+                    <div className="TodoList-foot-wrap">
+                      <div onClick={this.isClick()} className="TodoList-foot-add">
+                        <img src={add} alt="add" width="32" height="32" />
                       </div>
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
       )
     }
-    
   }
-  
 }
-
