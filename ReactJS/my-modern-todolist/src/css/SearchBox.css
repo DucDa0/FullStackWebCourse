@@ -11,9 +11,9 @@
     background-color: #fff;
     overflow: hidden;
     border: 2px solid #12bed4;
-    -webkit-box-shadow: 0px 3px 15px 4px rgba(255,255,255,0.5);
-    -moz-box-shadow: 0px 3px 15px 4px rgba(255,255,255,0.5);
-    box-shadow: 0px 3px 15px 4px rgba(255,255,255,0.5);
+    -webkit-box-shadow: 0px 2px 20px 4px rgba(255,255,255,0.5);
+    -moz-box-shadow: 0px 2px 20px 4px rgba(255,255,255,0.5);
+    box-shadow: 0px 2px 20px 4px rgba(255,255,255,0.5);
 }
 .SearchBox-box{
     display: flex;

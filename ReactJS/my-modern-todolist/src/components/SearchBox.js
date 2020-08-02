@@ -12,7 +12,7 @@ export default class SearchBox extends Component {
                 <div className="SearchBox-wrap">
                     <div className="SearchBox-content">
                         <div className="SearchBox-box">
-                            <input id="input" value={value} placeholder="Type something to trap...." type="text" onChange={onChange} onKeyUp={onKeyUp}/>
+                            <input id="input" value={value} placeholder="Type something to do...." type="text" onChange={onChange} onKeyUp={onKeyUp}/>
                             <div onClick={onClickAdd} className="search">
                             </div>
                         </div>

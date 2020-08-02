@@ -65,19 +65,10 @@ export default class App extends Component {
   }
   filterItem(filter){
     return ()=>{
-      if(filter===1){
-        this.setState({
-          currentFilter: 'active'
-        })
-      }else if(filter===2){
-        this.setState({
-          currentFilter: 'completed'
-        })
-      }else{
-        this.setState({
-          currentFilter: 'all'
-        })
-      }
+      const status= filter===1? 'active': filter===2 ? 'completed' : 'all'
+      this.setState({
+        currentFilter: status
+      })
     }
     
   }

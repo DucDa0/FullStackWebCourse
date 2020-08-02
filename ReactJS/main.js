@@ -12,4 +12,19 @@
  * * và tái sử dụng nó. ReactJS kiểm soát luồng dữ liệu thông qua props và state. Dữ liệu trong states và props được sử dụng để render 
  * * ra các component với dữ liệu động (dynamic dữ liệu). 
  */
-console.log( 1!==1 || 2);
+
+// for(var i=0;i<3;i++){
+//     setTimeout(()=>{
+//         console.log(i);
+//     },1000);
+// }
+
+const obj={
+    name: 'Duc',
+    showInfo(){
+        console.log(this.name);
+    }
+}
+
+const test = obj.showInfo.bind(obj);
+test();
