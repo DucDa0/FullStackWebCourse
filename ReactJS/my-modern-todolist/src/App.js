@@ -45,6 +45,9 @@ export default class App extends Component {
     });
     data.push({ title: text, isComplete: false });
     localStorage.setItem(storageKey, JSON.stringify(data));
+    this.setState({
+      todoItems: data
+    })
   }
   onKeyUp(event) {
     let text = event.target.value;
@@ -62,6 +65,9 @@ export default class App extends Component {
       });
       data.push({ title: text, isComplete: false });
       localStorage.setItem(storageKey, JSON.stringify(data));
+      this.setState({
+        todoItems: data
+      })
     }
   }
   onChange(event) {
@@ -92,7 +98,7 @@ export default class App extends Component {
     const { trigger, newItem, todoItems } = this.state;
     const filterTodoByDone = todoItems.filter((item) => item.isComplete);
     const filterTodoByNotDone = todoItems.filter((item) => !item.isComplete);
-    if (todoItems.length) {
+    if (filterTodoByNotDone.length) {
       return (
         <div className="TodoList">
           <div className="TodoList-wrap">
@@ -180,6 +186,8 @@ export default class App extends Component {
         </div>
       );
     } else {
+      data=[];
+      localStorage.setItem(storageKey, JSON.stringify(data));
       return (
         <div className="TodoList">
           <div className="TodoList-wrap">
