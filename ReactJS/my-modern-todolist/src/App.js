@@ -27,9 +27,9 @@ export default class App extends Component {
     };
     this.onKeyUp = this.onKeyUp.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.onClickAdd = this.onClickAdd.bind(this);
+    // this.onClickAdd = this.onClickAdd.bind(this);// sử dụng arrow function để thay thế
   }
-  onClickAdd() {
+  onClickAdd=()=> {
     const input = document.getElementById("input");
     let text = input.value;
     if (!text) {
