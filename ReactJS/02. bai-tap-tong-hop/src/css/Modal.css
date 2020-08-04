@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     margin-top: 50px;
-    display: none;
+    /* display: none; */
 }
 .Modal-wrap{
     width: 846px;
