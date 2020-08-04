@@ -3,11 +3,11 @@ import './css/main.css';
 // import Header from './components/Header';
 // import LoginForm from './components/LoginForm';
 // import TabMenu from './components/TabMenu';
-// import RecommendedFriends from './components/RecommendedFriends';
+import RecommendedFriends from './components/RecommendedFriends';
 // import DynamicClassNames from './components/DynamicClassNames';
 // import Notification from './components/Notification';
 // import SearchBox from './components/SearchBox'
-import Modal from './components/Modal'
+// import Modal from './components/Modal'
 
 export default class App extends Component{
   constructor(){
@@ -25,17 +25,17 @@ export default class App extends Component{
     }
   }
   render(){
-    const {trigger}=this.state;
+    // const {trigger}=this.state;
     return (
       <div className="main">
        {/* <Header/>
        <TabMenu/>
        <LoginForm content="Dao Van Duc"/> */}
-        {/* <RecommendedFriends/> */}
+        <RecommendedFriends/>
         {/* <DynamicClassNames/> */}
         {/* <Notification hasUnread={true}/> */}
         {/* <SearchBox onFocused={this.isClick()} isFocused={trigger}/> */}
-        <button onClick={this.isClick()}>Open modal</button>
+        {/* <button onClick={this.isClick()}>Open modal</button>
         {
           trigger && <Modal onClick={this.isClick()}>
                             <h2 className="title">This is my life</h2>
@@ -55,7 +55,7 @@ export default class App extends Component{
                             </p>
                           
                     </Modal>
-        }
+        } */}
       </div>
     );
   }
