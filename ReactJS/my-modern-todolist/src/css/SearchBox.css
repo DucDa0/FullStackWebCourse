@@ -1,10 +1,6 @@
 .SearchBox{
     width: 100%;
-    display: none;
     position: relative;
-}
-.SearchBox.display{
-    display: block;
 }
 .SearchBox-content{
     border-radius: 50px;

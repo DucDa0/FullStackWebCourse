@@ -2,6 +2,7 @@
 // * https://www.codehub.vn/Lam-Quen-Voi-JSX-React#:~:text=JSX%20(vi%E1%BA%BFt%20t%E1%BA%AFt%20c%E1%BB%A7a%20c%E1%BB%A5m,createElement()%20trong%20React.
 // * https://viblo.asia/p/props-va-state-trong-reactjs-naQZRYvqKvx
 // * https://viblo.asia/p/arrow-function-trong-reactcomponent-co-van-de-gi-L4x5xdBB5BM
+// * https://completejavascript.com/tim-hieu-react-component-lifecycle
 //* 1. JSX
 /**
  * *JSX (viết tắt của cụm từ JavaScript XML) là một loại cú pháp mở rộng dành cho ngôn ngữ JavaScript viết theo kiểu XML. 
@@ -12,6 +13,7 @@
  * * Thành phần cơ bản của ReactJS là component. Component cho phép chúng ta chia nhỏ các thành phần UI độc lập mục đích để dễ quản lý
  * * và tái sử dụng nó. ReactJS kiểm soát luồng dữ liệu thông qua props và state. Dữ liệu trong states và props được sử dụng để render 
  * * ra các component với dữ liệu động (dynamic dữ liệu). 
+ * * Component của React là Virtual DOM
  */
 // * Props
 /**
@@ -40,9 +42,12 @@
 //     },1000);
 // }
 
-for(let i=0;i<3;++i){
-    if(i===3){
-        console.log('ok')
-    }
+var x=123;
+var n;
+while(x>0){
+    n=x/10;
+    console.log(n)
+    x=x/10;
 }
+
 // console.log(i)

@@ -2,6 +2,24 @@
     margin: 0 auto;
     max-width: 1200px;
     font-family: Arial, Helvetica, sans-serif;
-    background: #E5E5E5;
+    /* background: #E5E5E5; */
     min-height: 1080px;
+}
+/* .main-wrap{
+    flex-basis: 0;
+    flex-grow: 1;
+    min-width: 0;
+    max-width: 100%;
+} */
+.main-wrap{
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.main-content{
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
 }

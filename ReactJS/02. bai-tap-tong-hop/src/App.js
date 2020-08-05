@@ -3,18 +3,40 @@ import './css/main.css';
 // import Header from './components/Header';
 // import LoginForm from './components/LoginForm';
 // import TabMenu from './components/TabMenu';
-import RecommendedFriends from './components/RecommendedFriends';
+// import RecommendedFriends from './components/RecommendedFriends';
 // import DynamicClassNames from './components/DynamicClassNames';
 // import Notification from './components/Notification';
-// import SearchBox from './components/SearchBox'
-// import Modal from './components/Modal'
+// import SearchBox from './components/SearchBox';
+// import Modal from './components/Modal';
+import BookList from './components/BookList';
 
 export default class App extends Component{
   constructor(){
     super();
     this.state={
-      trigger: false
+      trigger: false,
+      error: null,
+      isLoaded: false,
+      books: []
     };
+  }
+  componentDidMount(){
+    fetch("https://demoexpress200.herokuapp.com/api/books?fbclid=IwAR0IC1IHPxpKQlW8zJ2URaq9tfG6sAWxqrZreqz3HxTiDsY9p3ooeS6ZsKA")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            books: result
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
   }
   isClick() {
     return ()=>{
@@ -26,12 +48,14 @@ export default class App extends Component{
   }
   render(){
     // const {trigger}=this.state;
+    const { error, isLoaded, books } = this.state;
+    console.log(books);
     return (
       <div className="main">
        {/* <Header/>
        <TabMenu/>
        <LoginForm content="Dao Van Duc"/> */}
-        <RecommendedFriends/>
+        {/* <RecommendedFriends/> */}
         {/* <DynamicClassNames/> */}
         {/* <Notification hasUnread={true}/> */}
         {/* <SearchBox onFocused={this.isClick()} isFocused={trigger}/> */}
@@ -56,6 +80,15 @@ export default class App extends Component{
                           
                     </Modal>
         } */}
+        <div className="main-wrap">
+            <div className="main-content">
+                {
+                  books.map(item=>{
+                    return  <BookList title={item.title} description={item.description} bookImgUrl={item.imageBookurl}/>
+                  })
+                }
+            </div>
+        </div>
       </div>
     );
   }

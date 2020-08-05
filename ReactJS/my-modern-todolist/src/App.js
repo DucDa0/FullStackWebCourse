@@ -25,43 +25,56 @@ export default class App extends Component {
       trigger: false,
       newItem: ""
     };
+    this.inputElement=React.createRef();
     this.onKeyUp = this.onKeyUp.bind(this);
     this.onChange = this.onChange.bind(this);
     // this.onClickAdd = this.onClickAdd.bind(this);// sử dụng arrow function để thay thế
   }
-  onClickAdd=()=> {
-    const input = document.getElementById("input");
-    let text = input.value;
-    if (!text) {
-      return;
+  componentDidUpdate(){
+    const {trigger}=this.state;
+    if(trigger){
+      this.inputElement.current.focus();
     }
-    text = text.trim();
-    if (!text) {
-      return;
-    }
+  }
+  componentDidMount(){
     
+  }
+  // shouldComponentUpdate(nP,nS){
+  //   if(this.state.trigger===nS.trigger){
+  //     return false;
+  //   }
+  //   return true;
+  // }
+  onClickAdd=()=> {
+    let {newItem}=this.state;
+    if (!newItem) {
+      return;
+    }
+    newItem = newItem.trim();
+    if (!newItem) {
+      return;
+    }
+    data.push({ title: newItem, isComplete: false });
+    localStorage.setItem(storageKey, JSON.stringify(data));
     this.setState({
       newItem: ""
     });
-    data.push({ title: text, isComplete: false });
-    localStorage.setItem(storageKey, JSON.stringify(data));
   }
   onKeyUp(event) {
-    let text = event.target.value;
+    let {newItem}=this.state;
     if (event.keyCode === 13) {
-      if (!text) {
+      if (!newItem) {
         return;
       }
-      text = text.trim();
-      if (!text) {
+      newItem = newItem.trim();
+      if (!newItem) {
         return;
       }
-  
+      data.push({ title: newItem, isComplete: false });
+      localStorage.setItem(storageKey, JSON.stringify(data));
       this.setState({
         newItem: ""
       });
-      data.push({ title: text, isComplete: false });
-      localStorage.setItem(storageKey, JSON.stringify(data));
     }
   }
   onChange(event) {
@@ -132,14 +145,16 @@ export default class App extends Component {
                   <div className="Dailist">DAILIST</div>
                 </div>
                 <div className="TodoList-body_wrap-newTodo">
-                  <SearchBox
-                    value={newItem}
-                    onClickAdd={this.onClickAdd}
-                    onClick={this.isClick()}
-                    onKeyUp={this.onKeyUp}
-                    onChange={this.onChange}
-                    isTrigger={trigger}
-                  />
+                  {
+                    trigger &&  <SearchBox
+                                  ok={this.inputElement}
+                                  value={newItem}
+                                  onClickAdd={this.onClickAdd}
+                                  onClick={this.isClick()}
+                                  onKeyUp={this.onKeyUp}
+                                  onChange={this.onChange}
+                                />
+                  }
                   <div className={classNames('upComing',{isEmpty: !filterTodoByNotDone.length})}>UPCOMING</div>
                   <div className={classNames('newTodo',{isEmpty: !filterTodoByNotDone.length})}>
                     {filterTodoByNotDone.map((item, index) => {

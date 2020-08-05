@@ -8,7 +8,7 @@ mongoose.connect(process.env.MONGO_URL,{
 });
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const port = 3000;
+const port = 3030;
 const booksRoute=require('./routes/books_route');
 const usersRoute=require('./routes/user_route');
 const transRoute=require('./routes/transactions_route');
@@ -20,6 +20,7 @@ const shopRoute=require('./routes/shops_route');
 // const transApiRoute=require('./api/routes/transactions_route');
 // const loginApiRoute=require('./api/routes/login_route');
 // const cookiesValidate=require('./validate/cookies_validate');
+const booksApiRoute=require('./api/routes/books_route');
 const authMiddlewares = require('./middlewares/auth_validate');
 const sessionMiddleware=require('./middlewares/session_validate');
 
@@ -37,6 +38,7 @@ app.use(express.static('public'));
 
 // app.use('/api/transactions', transApiRoute);
 // app.use('/api/login', loginApiRoute);
+app.use('/api/books', booksApiRoute);
 
 //
 app.use('/', homeRoute);
