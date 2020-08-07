@@ -10,20 +10,14 @@ import classNames from 'classnames'
 import "./css/TodoList.css";
 import "./App.css";
 
-let storageKey = "todoItems";
-let dataString = localStorage.getItem(storageKey);
-let data;
-if (dataString) {
-  data = JSON.parse(dataString);
-} else {
-  data = [];
-}
+const storageKey = "todoItems";
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
       trigger: false,
-      newItem: ""
+      newItem: "",
+      data: []
     };
     this.inputElement=React.createRef();
     this.onKeyUp = this.onKeyUp.bind(this);
@@ -37,7 +31,23 @@ export default class App extends Component {
     }
   }
   componentDidMount(){
-    
+    const dataString = localStorage.getItem(storageKey);
+    if (dataString) {
+      this.setState({
+        data: JSON.parse(dataString)
+      })
+    }
+  }
+  componentWillUnmount(){
+    const dataString = localStorage.getItem(storageKey);
+    const data=JSON.parse(dataString);
+    const filterTodoByNotDone = data.filter((item) => !item.isComplete);
+    if(!filterTodoByNotDone.length){
+      this.setState({
+        data: []
+      })
+      localStorage.setItem(storageKey, JSON.stringify([]));
+    }
   }
   // shouldComponentUpdate(nP,nS){
   //   if(this.state.trigger===nS.trigger){
@@ -46,7 +56,7 @@ export default class App extends Component {
   //   return true;
   // }
   onClickAdd=()=> {
-    let {newItem}=this.state;
+    let {newItem,data}=this.state;
     if (!newItem) {
       return;
     }
@@ -61,7 +71,7 @@ export default class App extends Component {
     });
   }
   onKeyUp(event) {
-    let {newItem}=this.state;
+    let {newItem,data}=this.state;
     if (event.keyCode === 13) {
       if (!newItem) {
         return;
@@ -92,6 +102,7 @@ export default class App extends Component {
   }
   onItemClicked(item) {
     return () => {
+      const {data}=this.state;
       const isComplete = item.isComplete;
       const index = data.indexOf(item);
       this.setState({
@@ -102,13 +113,9 @@ export default class App extends Component {
     };
   }
   render() {
-    const { trigger, newItem} = this.state;
+    const { trigger, newItem, data} = this.state;
     const filterTodoByDone = data.filter((item) => item.isComplete);
     const filterTodoByNotDone = data.filter((item) => !item.isComplete);
-    if(!filterTodoByNotDone.length){
-      data=[];
-      localStorage.setItem(storageKey, JSON.stringify(data));
-    }
     return (
       <div className="TodoList">
         <div className="TodoList-wrap">
