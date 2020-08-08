@@ -9,8 +9,13 @@ import './css/main.css';
 // import SearchBox from './components/SearchBox';
 // import Modal from './components/Modal';
 // import BookList from './components/BookList';
-import List from './components/RenderProps/List'
-import Counter from './components/RenderProps/Counter'
+// import List from './components/RenderProps/List'
+// import Counter from './components/RenderProps/Counter'
+import ImageEffects from './components/HighOrderComponents/ImageEffects';
+import ImageWrap from './components/HighOrderComponents/ImageWrap';
+
+
+const FirstImage=ImageEffects(ImageWrap);
 export default class App extends Component{
   constructor(){
     super();
@@ -50,7 +55,7 @@ export default class App extends Component{
   render(){
     // const {trigger}=this.state;
     // const { books } = this.state;
-    const data=['A','B','C'];
+    // const data=['A','B','C'];
     return (
       <div className="main">
        {/* <Header/>
@@ -90,13 +95,14 @@ export default class App extends Component{
                 }
             </div>
         </div> */}
-        <List data={data} render={item=><div>+ {item}</div>}/>
+        {/* <List data={data} render={item=><div>+ {item}</div>}/>
         <List data={data} render={item=><div>- {item}</div>}/>
         <List data={data} render={item=><div>* {item}</div>}/>
         <List data={data} render={item=><div>/ {item}</div>}/>
         <Counter>
             {({count})=><h1>{count}</h1>}
-        </Counter>
+        </Counter> */}
+        <FirstImage src="https://picsum.photos/500/300/"/>
       </div>
     );
   }
