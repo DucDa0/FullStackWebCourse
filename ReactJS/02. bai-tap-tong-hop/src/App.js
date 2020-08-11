@@ -13,8 +13,8 @@ import './css/main.css';
 // import Counter from './components/RenderProps/Counter'
 // import ImageEffects from './components/HighOrderComponents/ImageEffects';
 // import ImageWrap from './components/HighOrderComponents/ImageWrap';
-import NumberProvider from './components/ContextAPI/Provider/NumberProvider';
-import NumberContexts from './components/ContextAPI/Contexts/NumberContexts';
+import {NumberProvider} from './components/ContextAPI/NumberProvider';
+import NumberIncrease from './components/ContextAPI/NumberIncrease';
 
 // const FirstImage=ImageEffects(ImageWrap);
 export default class App extends Component{
@@ -105,17 +105,7 @@ export default class App extends Component{
               {({count})=><h1>{count}</h1>}
           </Counter> */}
           {/* <FirstImage src="https://picsum.photos/500/300/"/> */}
-          <NumberContexts.Consumer>
-            {
-              ({number, updateNumber})=>(
-              <div>
-                  <h1>{number}</h1>
-                  <button onClick={updateNumber}>Update number</button>
-              </div>
-            
-              )
-            }
-          </NumberContexts.Consumer>
+          <NumberIncrease/>
         </div>
       </NumberProvider>
     );
