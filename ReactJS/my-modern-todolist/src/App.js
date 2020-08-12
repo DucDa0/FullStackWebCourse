@@ -1,52 +1,38 @@
-import React, { Component } from "react";
+import React from "react";
+import shortid from 'shortid';
 import wifi from "./img/wifi.svg";
 import battery from "./img/battery.svg";
 import menu from "./img/open-menu.svg";
 import add from "./img/plus.svg";
 import NewTodo from "./components/NewTodo";
 import SearchBox from "./components/SearchBox";
-import EmptyList from "./components/EmptyList"
-import classNames from 'classnames'
+import EmptyList from "./components/EmptyList";
+import classNames from "classnames";
 import "./css/TodoList.css";
-import "./App.css";
-
-const storageKey = "todoItems";
-export default class App extends Component {
+let storageKey = "todoItems";
+let dataString = localStorage.getItem(storageKey);
+let data;
+if (dataString) {
+  data = JSON.parse(dataString);
+} else {
+  data = [];
+}
+export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
       trigger: false,
-      newItem: "",
-      data: []
+      newItem: ""
     };
-    this.inputElement=React.createRef();
+    this.inputElement = React.createRef();
     this.onKeyUp = this.onKeyUp.bind(this);
     this.onChange = this.onChange.bind(this);
     // this.onClickAdd = this.onClickAdd.bind(this);// sử dụng arrow function để thay thế
   }
-  componentDidUpdate(){
-    const {trigger}=this.state;
-    if(trigger){
+  componentDidUpdate() {
+    const { trigger } = this.state;
+    if (trigger) {
       this.inputElement.current.focus();
-    }
-  }
-  componentDidMount(){
-    const dataString = localStorage.getItem(storageKey);
-    if (dataString) {
-      this.setState({
-        data: JSON.parse(dataString)
-      })
-    }
-  }
-  componentWillUnmount(){
-    const dataString = localStorage.getItem(storageKey);
-    const data=JSON.parse(dataString);
-    const filterTodoByNotDone = data.filter((item) => !item.isComplete);
-    if(!filterTodoByNotDone.length){
-      this.setState({
-        data: []
-      })
-      localStorage.setItem(storageKey, JSON.stringify([]));
     }
   }
   // shouldComponentUpdate(nP,nS){
@@ -55,32 +41,26 @@ export default class App extends Component {
   //   }
   //   return true;
   // }
-  onClickAdd=()=> {
-    let {newItem,data}=this.state;
-    if (!newItem) {
-      return;
-    }
+  onClickAdd = () => {
+    let { newItem } = this.state;
     newItem = newItem.trim();
     if (!newItem) {
       return;
     }
-    data.push({ title: newItem, isComplete: false });
+    data.push({id: shortid.generate(),title: newItem, isComplete: false });
     localStorage.setItem(storageKey, JSON.stringify(data));
     this.setState({
       newItem: ""
     });
-  }
+  };
   onKeyUp(event) {
-    let {newItem,data}=this.state;
+    let { newItem } = this.state;
     if (event.keyCode === 13) {
-      if (!newItem) {
-        return;
-      }
       newItem = newItem.trim();
       if (!newItem) {
         return;
       }
-      data.push({ title: newItem, isComplete: false });
+      data.push({id: shortid.generate(), title: newItem, isComplete: false });
       localStorage.setItem(storageKey, JSON.stringify(data));
       this.setState({
         newItem: ""
@@ -89,33 +69,36 @@ export default class App extends Component {
   }
   onChange(event) {
     this.setState({
-      newItem: event.target.value,
+      newItem: event.target.value
     });
   }
   isClick() {
     return () => {
       const { trigger } = this.state;
       this.setState({
-        trigger: !trigger,
+        trigger: !trigger
       });
     };
   }
   onItemClicked(item) {
     return () => {
-      const {data}=this.state;
       const isComplete = item.isComplete;
       const index = data.indexOf(item);
       this.setState({
-        trigger: false,
+        trigger: false
       });
-      data[index].isComplete=!isComplete;
+      data[index].isComplete = !isComplete;
       localStorage.setItem(storageKey, JSON.stringify(data));
     };
   }
   render() {
-    const { trigger, newItem, data} = this.state;
-    const filterTodoByDone = data.filter((item) => item.isComplete);
-    const filterTodoByNotDone = data.filter((item) => !item.isComplete);
+    const { trigger, newItem } = this.state;
+    const filterTodoByDone = data.filter(item => item.isComplete);
+    const filterTodoByNotDone = data.filter(item => !item.isComplete);
+    if (!filterTodoByNotDone.length) {
+      data = [];
+      localStorage.setItem(storageKey, JSON.stringify(data));
+    }
     return (
       <div className="TodoList">
         <div className="TodoList-wrap">
@@ -123,11 +106,11 @@ export default class App extends Component {
             <div className="TodoList-head">
               <div className="signal">
                 <div className="signal-phone">
-                  <div className="dot"></div>
-                  <div className="dot"></div>
-                  <div className="dot"></div>
-                  <div className="dot"></div>
-                  <div className="dot"></div>
+                  <div className="dot" />
+                  <div className="dot" />
+                  <div className="dot" />
+                  <div className="dot" />
+                  <div className="dot" />
                 </div>
                 <div className="signal-wifi">
                   <img width="16" height="16" src={wifi} alt="wifi" />
@@ -139,7 +122,7 @@ export default class App extends Component {
               <div className="battery">
                 <div style={{ marginRight: "6px" }} className="battery-text">
                   100%
-              </div>
+                </div>
                 <img width="20" height="20" src={battery} alt="battery" />
               </div>
             </div>
@@ -152,31 +135,45 @@ export default class App extends Component {
                   <div className="Dailist">DAILIST</div>
                 </div>
                 <div className="TodoList-body_wrap-newTodo">
-                  {
-                    trigger &&  <SearchBox
-                                  ok={this.inputElement}
-                                  value={newItem}
-                                  onClickAdd={this.onClickAdd}
-                                  onClick={this.isClick()}
-                                  onKeyUp={this.onKeyUp}
-                                  onChange={this.onChange}
-                                />
-                  }
-                  <div className={classNames('upComing',{isEmpty: !filterTodoByNotDone.length})}>UPCOMING</div>
-                  <div className={classNames('newTodo',{isEmpty: !filterTodoByNotDone.length})}>
+                  {trigger && (
+                    <SearchBox
+                      ok={this.inputElement}
+                      value={newItem}
+                      onClickAdd={this.onClickAdd}
+                      onClick={this.isClick()}
+                      onKeyUp={this.onKeyUp}
+                      onChange={this.onChange}
+                    />
+                  )}
+                  <div
+                    className={classNames("upComing", {
+                      isEmpty: !filterTodoByNotDone.length
+                    })}
+                  >
+                    UPCOMING
+                  </div>
+                  <div
+                    className={classNames("newTodo", {
+                      isEmpty: !filterTodoByNotDone.length
+                    })}
+                  >
                     {filterTodoByNotDone.map((item, index) => {
                       return (
                         <NewTodo
                           index={index}
                           item={item}
-                          key={index}
+                          key={item.id}
                           onClick={this.onItemClicked(item)}
                         />
                       );
                     })}
                   </div>
                 </div>
-                <div className={classNames('TodoList-body_wrap-todoDone',{isEmpty: !filterTodoByNotDone.length})}>
+                <div
+                  className={classNames("TodoList-body_wrap-todoDone", {
+                    isEmpty: !filterTodoByNotDone.length
+                  })}
+                >
                   <div className="finish">FINISHED</div>
                   <div className="completedTodo">
                     {filterTodoByDone.map((item, index) => {
@@ -184,8 +181,8 @@ export default class App extends Component {
                         <NewTodo
                           index={index}
                           item={item}
-                          key={index}
-                          onClick={this.onItemClicked(item,index)}
+                          key={item.id}
+                          onClick={this.onItemClicked(item, index)}
                         />
                       );
                     })}
@@ -193,9 +190,7 @@ export default class App extends Component {
                 </div>
               </div>
             </div>
-            {
-              !filterTodoByNotDone.length &&  <EmptyList />
-            }
+            {!filterTodoByNotDone.length && <EmptyList />}
             <div className="TodoList-foot">
               <div className="TodoList-foot-wrap">
                 <div onClick={this.isClick()} className="TodoList-foot-add">

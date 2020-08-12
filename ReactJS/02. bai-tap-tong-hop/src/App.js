@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 import './css/main.css';
 // import Header from './components/Header';
 // import LoginForm from './components/LoginForm';
@@ -11,14 +12,16 @@ import './css/main.css';
 // import BookList from './components/BookList';
 // import List from './components/RenderProps/List'
 // import Counter from './components/RenderProps/Counter'
-// import ImageEffects from './components/HighOrderComponents/ImageEffects';
-// import ImageWrap from './components/HighOrderComponents/ImageWrap';
+import ImageEffects from './components/HighOrderComponents/ImageEffects';
+import ImageWrap from './components/HighOrderComponents/ImageWrap';
+// import LifeCycles from './components/LifeCycles/LifeCycles';
 import {NumberProvider} from './components/ContextAPI/NumberProvider';
-import NumberIncrease from './components/ContextAPI/NumberIncrease';
+// import NumberIncrease from './components/ContextAPI/NumberIncrease';
 
-// const FirstImage=ImageEffects(ImageWrap);
+const FirstImage=ImageEffects(ImageWrap);
 export default class App extends Component{
   constructor(){
+    console.log('App constructor');
     super();
     this.state={
       trigger: false,
@@ -28,22 +31,15 @@ export default class App extends Component{
     };
   }
   componentDidMount(){
-    fetch("https://demoexpress200.herokuapp.com/api/books?fbclid=IwAR0IC1IHPxpKQlW8zJ2URaq9tfG6sAWxqrZreqz3HxTiDsY9p3ooeS6ZsKA")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            books: result
-          });
-        },
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
+    axios.get('https://demoexpress200.herokuapp.com/api/books?fbclid=IwAR0IC1IHPxpKQlW8zJ2URaq9tfG6sAWxqrZreqz3HxTiDsY9p3ooeS6ZsKA')
+    .then(res=>{
+      this.setState({
+        books: res.data
+      })
+    })
+    .catch(err=>{
+      console.log(err);
+    })
   }
   isClick() {
     return ()=>{
@@ -54,6 +50,7 @@ export default class App extends Component{
     }
   }
   render(){
+    console.log('App render');
     // const {trigger}=this.state;
     // const { books } = this.state;
     // const data=['A','B','C'];
@@ -104,8 +101,9 @@ export default class App extends Component{
           <Counter>
               {({count})=><h1>{count}</h1>}
           </Counter> */}
-          {/* <FirstImage src="https://picsum.photos/500/300/"/> */}
-          <NumberIncrease/>
+          <FirstImage src="https://picsum.photos/500/300/"/>
+          {/* <NumberIncrease/> */}
+          {/* <LifeCycles/> */}
         </div>
       </NumberProvider>
     );

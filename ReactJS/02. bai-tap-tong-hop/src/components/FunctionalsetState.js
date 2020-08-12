@@ -9,6 +9,7 @@ export default class FunctionalsetState extends Component {
       name: "Duc"
     };
   }
+  // this.setState((props, state)=>())
   increaseCount() {
     this.setState(({ count, name }) => {
       return { count: count + 1, name: name + " Mad" };

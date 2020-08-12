@@ -23,7 +23,7 @@ export default function(ImageWrap){
         render(){
             return(
                 <div style={{opacity: this.state.iSHover? 0.5 : 1}} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
-                    <ImageWrap src={this.props.src}/>
+                    <ImageWrap {...this.props}/>
                 </div>
             )
         }

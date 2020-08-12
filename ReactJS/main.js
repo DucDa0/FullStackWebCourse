@@ -3,6 +3,7 @@
 // * https://viblo.asia/p/props-va-state-trong-reactjs-naQZRYvqKvx
 // * https://viblo.asia/p/arrow-function-trong-reactcomponent-co-van-de-gi-L4x5xdBB5BM
 // * https://completejavascript.com/tim-hieu-react-component-lifecycle
+// * https://viblo.asia/p/stateful-va-stateless-functional-components-trong-react-3P0lPkymZox
 //* 1. JSX
 /**
  * *JSX (viết tắt của cụm từ JavaScript XML) là một loại cú pháp mở rộng dành cho ngôn ngữ JavaScript viết theo kiểu XML. 
@@ -33,21 +34,21 @@
  * * Bất cứ khi nào một lớp kế thừa lớp React.Component, hàm tạo (Constructor) của nó sẽ tự động gán thuộc tính state
  * * cho lớp với giá trị ban đầu được gán bằng null. Chúng ta có thể thay đổi nó bằng cách ghi đè hàm tạo (Constructor)
  */
+/**
+ * * Tại sao gán key khi render một list lại quan tọng:(liên quan đến hiệu suất)
+ * * https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318
+ */
 
 
  
-// for(var i=0;i<3;i++){
+// let arr =[10,25,5,150,50,1]
+
+// arr.forEach(item=>{
 //     setTimeout(()=>{
-//         console.log(i);
-//     },1000);
-// }
+//         console.log(item)
+//     },item)
+// })
 
-var x=123;
-var n;
-while(x>0){
-    n=x/10;
-    console.log(n)
-    x=x/10;
-}
+const {sum, mul} = require('./mathmax');
 
-// console.log(i)
+console.log(sum(5,6));
