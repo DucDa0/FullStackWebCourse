@@ -25,7 +25,6 @@ const authMiddlewares = require('./middlewares/auth_validate');
 const sessionMiddleware=require('./middlewares/session_validate');
 
 const app = express();
-
 app.set('view engine','pug');
 app.set('views','./views');
 app.use(cookieParser(process.env.SESSION_SECRET));

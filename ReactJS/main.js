@@ -49,6 +49,44 @@
 //     },item)
 // })
 
-const {sum, mul} = require('./mathmax');
+// const {sum, mul} = require('./mathmax');
 
-console.log(sum(5,6));
+// console.log(sum(5,6));
+
+// Date.prototype.vnFormat=function(){
+//     const dd=this.getDate();
+//     const mm=this.getMonth();
+//     const yyyy=this.getFullYear();
+//     return dd+'/'+mm+'/'+yyyy;
+// }
+
+// const date = new Date(2020,06,12);
+// console.log(date.vnFormat());
+
+const Person=()=>{
+    console.log(this);
+}
+
+Person();
+
+// Person.prototype.info=function(){
+//     console.log(`${this.name} is ${this.age}`);
+// }
+
+// Person.prototype.say=function(){
+//     console.log('I am a person');
+// }
+
+// function User(name, age){
+//     this.name=name;
+//     this.age=age;
+// }
+
+// User.prototype = new Person('Duc',21);
+
+// const newUser = new User('Kien',22);
+// const person = new Person('Ok',96);
+
+// newUser.say();
+// newUser.info();
+// person.say();

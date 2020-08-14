@@ -12,13 +12,13 @@ import './css/main.css';
 // import BookList from './components/BookList';
 // import List from './components/RenderProps/List'
 // import Counter from './components/RenderProps/Counter'
-import ImageEffects from './components/HighOrderComponents/ImageEffects';
-import ImageWrap from './components/HighOrderComponents/ImageWrap';
-// import LifeCycles from './components/LifeCycles/LifeCycles';
+// import ImageEffects from './components/HighOrderComponents/ImageEffects';
+// import ImageWrap from './components/HighOrderComponents/ImageWrap';
+import LifeCycles from './components/LifeCycles/LifeCycles';
 import {NumberProvider} from './components/ContextAPI/NumberProvider';
 // import NumberIncrease from './components/ContextAPI/NumberIncrease';
 
-const FirstImage=ImageEffects(ImageWrap);
+// const FirstImage=ImageEffects(ImageWrap);
 export default class App extends Component{
   constructor(){
     console.log('App constructor');
@@ -101,9 +101,9 @@ export default class App extends Component{
           <Counter>
               {({count})=><h1>{count}</h1>}
           </Counter> */}
-          <FirstImage src="https://picsum.photos/500/300/"/>
+          {/* <FirstImage src="https://picsum.photos/500/300/"/> */}
           {/* <NumberIncrease/> */}
-          {/* <LifeCycles/> */}
+          <LifeCycles/>
         </div>
       </NumberProvider>
     );
