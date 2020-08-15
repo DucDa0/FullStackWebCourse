@@ -65,24 +65,24 @@ module.exports.add= async (req,res)=>{
     });
 };
 // edit books
-let id;
+// let id;
 module.exports.editHome=async (req,res)=>{
     id=req.params.id;
     // let book=db.get('books').find({id:id}).value();
-    let book= await Book.findById({_id : id}).exec();
+    let book= await Book.findById({_id : req.params.id}).exec();
     res.render('books/edit',{
         books: book
     });
 };
 module.exports.editSave=async (req,res)=>{
     // db.get('books').find({id:id}).assign({title: req.body.title}).write();
-    await Book.findOneAndUpdate({_id : id},{title: req.body.title}).exec();
+    await Book.findOneAndUpdate({_id : req.body.id},{title: req.body.title}).exec();
     res.redirect('/books');
 };
 // delete book
 module.exports.delete=async(req,res)=>{
     id=req.params.id;
     // db.get('books').remove({id : id}).write();
-    await Book.findOneAndDelete({_id : id}).exec();
+    await Book.findOneAndDelete({_id : req.params.id}).exec();
     res.redirect('/books');
 };

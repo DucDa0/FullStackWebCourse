@@ -2,6 +2,8 @@ extends ../layouts/main_layout
 block content
     h1 Edit book
     form(action="/books/save" method="POST" class="form-inline")
+        //- input(type="text" name="id" value=books.id style="display: none")
         label(class="ml-2") Title
         input(type="text" name="title" value=books.title class="form-control ml-2")
-        button(class="btn btn-success ml-2") Save
+        input(type="submit" value="Save" class="btn btn-success ml-2")
+        //- button(class="btn btn-success ml-2") Save
