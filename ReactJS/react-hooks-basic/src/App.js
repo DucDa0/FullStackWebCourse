@@ -1,12 +1,13 @@
 import React ,{useState,useEffect} from 'react';
 import queryString from 'query-string';
 import './App.scss';
+import MagicBox from './components/MagicBox/MagicBox';
 // import TodoList from './components/TodoList/TodoList';
 // import TodoFrom from './components/TodoForm/TodoFrom';
 // import PostList from './components/PostList/PostList';
 // import Pagination from './components/Pagination/Pagination';
 // import PostFiltersForm from './components/PostFiltersForm/PostFiltersForm';
-import Clock from './components/Clock/Clock';
+// import {Clock, BetterClock} from './components/Clock/Clock';
 // import ColorBox from './components/Colorbox/ColorBox';
 
 function App() {
@@ -82,7 +83,9 @@ function App() {
      {/* <PostFiltersForm onSubmit={handleFiltersChange}/>
      <PostList posts={postList}/>
      <Pagination pagination={pagination} onPageChange={handlePageChange}/> */}
-     <Clock/>
+     {/* <Clock/>
+     <BetterClock/> */}
+     <MagicBox/>
     </div>
   );
 }
