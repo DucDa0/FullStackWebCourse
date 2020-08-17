@@ -9,30 +9,36 @@ import SearchBox from "./components/SearchBox";
 import EmptyList from "./components/EmptyList";
 import classNames from "classnames";
 import "./css/TodoList.css";
-let storageKey = "todoItems";
-let dataString = localStorage.getItem(storageKey);
-let data;
-if (dataString) {
-  data = JSON.parse(dataString);
-} else {
-  data = [];
-}
+const storageKey = "todoItems";
 export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
       trigger: false,
-      newItem: ""
+      newItem: "",
+      data: []
     };
     this.inputElement = React.createRef();
     this.onKeyUp = this.onKeyUp.bind(this);
     this.onChange = this.onChange.bind(this);
     // this.onClickAdd = this.onClickAdd.bind(this);// sử dụng arrow function để thay thế
   }
+  componentDidMount(){
+    const dataString = localStorage.getItem(storageKey);
+    if (dataString) {
+      this.setState({
+        data: JSON.parse(dataString)
+      })
+    }
+  }
   componentDidUpdate() {
-    const { trigger } = this.state;
+    const { data, trigger } = this.state;
+    const filterTodoByNotDone = data.filter(item => !item.isComplete);
     if (trigger) {
       this.inputElement.current.focus();
+    }
+    if(!filterTodoByNotDone.length){
+      localStorage.removeItem(storageKey);
     }
   }
   // shouldComponentUpdate(nP,nS){
@@ -43,27 +49,44 @@ export default class App extends React.Component {
   // }
   onClickAdd = () => {
     let { newItem } = this.state;
+    let dataString = JSON.parse(localStorage.getItem(storageKey));
+    if(!dataString){
+      dataString=[];
+    }
     newItem = newItem.trim();
     if (!newItem) {
       return;
     }
-    data.push({id: shortid.generate(),title: newItem, isComplete: false });
-    localStorage.setItem(storageKey, JSON.stringify(data));
+    dataString.push({id: shortid.generate(),title: newItem, isComplete: false });
+    localStorage.setItem(storageKey, JSON.stringify(dataString));
     this.setState({
-      newItem: ""
+      newItem: "",
+      data: [
+        ...this.state.data,
+        {id: shortid.generate(),title: newItem, isComplete: false }
+      ]
     });
+
   };
   onKeyUp(event) {
-    let { newItem } = this.state;
     if (event.keyCode === 13) {
+      let { newItem } = this.state;
+      let dataString = JSON.parse(localStorage.getItem(storageKey));
+      if(!dataString){
+        dataString=[];
+      }
       newItem = newItem.trim();
       if (!newItem) {
         return;
       }
-      data.push({id: shortid.generate(), title: newItem, isComplete: false });
-      localStorage.setItem(storageKey, JSON.stringify(data));
+      dataString.push({id: shortid.generate(),title: newItem, isComplete: false });
+      localStorage.setItem(storageKey, JSON.stringify(dataString));
       this.setState({
-        newItem: ""
+        newItem: "",
+        data: [
+          ...this.state.data,
+          {id: shortid.generate(),title: newItem, isComplete: false }
+        ]
       });
     }
   }
@@ -82,23 +105,28 @@ export default class App extends React.Component {
   }
   onItemClicked(item) {
     return () => {
+      const dataString = JSON.parse(localStorage.getItem(storageKey));
       const isComplete = item.isComplete;
-      const index = data.indexOf(item);
+      const index = this.state.data.indexOf(item);
+      dataString[index].isComplete = !isComplete;
+      localStorage.setItem(storageKey, JSON.stringify(dataString));
       this.setState({
-        trigger: false
+        trigger: false,
+        data:[
+          ...this.state.data.slice(0,index),
+          {
+            ...item,
+            isComplete: !isComplete
+          },
+          ...this.state.data.slice(index+1)
+        ]
       });
-      data[index].isComplete = !isComplete;
-      localStorage.setItem(storageKey, JSON.stringify(data));
     };
   }
   render() {
-    const { trigger, newItem } = this.state;
+    const {data, trigger, newItem } = this.state;
     const filterTodoByDone = data.filter(item => item.isComplete);
     const filterTodoByNotDone = data.filter(item => !item.isComplete);
-    if (!filterTodoByNotDone.length) {
-      data = [];
-      localStorage.setItem(storageKey, JSON.stringify(data));
-    }
     return (
       <div className="TodoList">
         <div className="TodoList-wrap">
@@ -182,7 +210,7 @@ export default class App extends React.Component {
                           index={index}
                           item={item}
                           key={item.id}
-                          onClick={this.onItemClicked(item, index)}
+                          onClick={this.onItemClicked(item)}
                         />
                       );
                     })}
