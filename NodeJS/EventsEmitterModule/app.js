@@ -6,11 +6,11 @@
 const util = require('util');
 const EventEmitter = require('events');
 
-function BySomethings(){
+function BuySomethings(){
     this.products='Laptop';
 }
 
-util.inherits(BySomethings,EventEmitter);// * Sử dụng method inherits để kế thừa các thuộc tính, medthod của module events
+util.inherits(BuySomethings,EventEmitter);// * Sử dụng method inherits để kế thừa các thuộc tính, medthod của module events
 
 BuySomethings.prototype.info=function(price){
     console.log(`${this.products} is ${price}`);
@@ -35,4 +35,4 @@ util.inherits(Happy, BuySomethings);// * Kế thừa các phương thức, thu�
 
 const happy = new Happy();
 
-happy.info();
+happy.info(4000);
