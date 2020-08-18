@@ -10,7 +10,7 @@ import EmptyList from "./components/EmptyList";
 import classNames from "classnames";
 import "./css/TodoList.css";
 const storageKey = "todoItems";
-export default class App extends React.Component {
+export default class App extends React.PureComponent {
   constructor() {
     super();
     this.state = {
@@ -18,12 +18,14 @@ export default class App extends React.Component {
       newItem: "",
       data: []
     };
+    console.log('Khoi tao');
     this.inputElement = React.createRef();
     this.onKeyUp = this.onKeyUp.bind(this);
     this.onChange = this.onChange.bind(this);
     // this.onClickAdd = this.onClickAdd.bind(this);// sử dụng arrow function để thay thế
   }
   componentDidMount(){
+    console.log('Gan data')
     const dataString = localStorage.getItem(storageKey);
     if (dataString) {
       this.setState({
@@ -37,8 +39,11 @@ export default class App extends React.Component {
     if (trigger) {
       this.inputElement.current.focus();
     }
-    if(!filterTodoByNotDone.length){
+    if(data.length>0 && !filterTodoByNotDone.length){
       localStorage.removeItem(storageKey);
+      this.setState({
+        data: []
+      })
     }
   }
   // shouldComponentUpdate(nP,nS){
@@ -95,19 +100,18 @@ export default class App extends React.Component {
       newItem: event.target.value
     });
   }
-  isClick() {
-    return () => {
-      const { trigger } = this.state;
-      this.setState({
-        trigger: !trigger
-      });
-    };
+  isClick=()=> {
+    const { trigger } = this.state;
+    this.setState({
+      trigger: !trigger
+    });
   }
   onItemClicked(item) {
     return () => {
+      const {data}=this.state;
       const dataString = JSON.parse(localStorage.getItem(storageKey));
       const isComplete = item.isComplete;
-      const index = this.state.data.indexOf(item);
+      const index = data.indexOf(item);
       dataString[index].isComplete = !isComplete;
       localStorage.setItem(storageKey, JSON.stringify(dataString));
       this.setState({
@@ -124,6 +128,7 @@ export default class App extends React.Component {
     };
   }
   render() {
+    console.log('render');
     const {data, trigger, newItem } = this.state;
     const filterTodoByDone = data.filter(item => item.isComplete);
     const filterTodoByNotDone = data.filter(item => !item.isComplete);
@@ -168,7 +173,7 @@ export default class App extends React.Component {
                       ok={this.inputElement}
                       value={newItem}
                       onClickAdd={this.onClickAdd}
-                      onClick={this.isClick()}
+                      onClick={this.isClick}
                       onKeyUp={this.onKeyUp}
                       onChange={this.onChange}
                     />
@@ -221,7 +226,7 @@ export default class App extends React.Component {
             {!filterTodoByNotDone.length && <EmptyList />}
             <div className="TodoList-foot">
               <div className="TodoList-foot-wrap">
-                <div onClick={this.isClick()} className="TodoList-foot-add">
+                <div onClick={this.isClick} className="TodoList-foot-add">
                   <img src={add} alt="add" width="32" height="32" />
                 </div>
               </div>

@@ -16,6 +16,7 @@ import './css/main.css';
 // import ImageWrap from './components/HighOrderComponents/ImageWrap';
 import LifeCycles from './components/LifeCycles/LifeCycles';
 import {NumberProvider} from './components/ContextAPI/NumberProvider';
+import Test from './components/Test';
 // import NumberIncrease from './components/ContextAPI/NumberIncrease';
 
 // const FirstImage=ImageEffects(ImageWrap);
@@ -31,6 +32,7 @@ export default class App extends Component{
     };
   }
   componentDidMount(){
+    console.log('App did mount')
     axios.get('https://demoexpress200.herokuapp.com/api/books?fbclid=IwAR0IC1IHPxpKQlW8zJ2URaq9tfG6sAWxqrZreqz3HxTiDsY9p3ooeS6ZsKA')
     .then(res=>{
       this.setState({
@@ -104,6 +106,7 @@ export default class App extends Component{
           {/* <FirstImage src="https://picsum.photos/500/300/"/> */}
           {/* <NumberIncrease/> */}
           <LifeCycles/>
+          <Test/>
         </div>
       </NumberProvider>
     );
