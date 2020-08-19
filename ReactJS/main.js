@@ -49,9 +49,9 @@
 //     },item)
 // })
 
-// const {sum, mul} = require('./mathmax');
+const s= require('./mathmax');
 
-// console.log(sum(5,6));
+console.log(s(5,6));
 
 // Date.prototype.vnFormat=function(){
 //     const dd=this.getDate();
@@ -63,11 +63,11 @@
 // const date = new Date(2020,06,12);
 // console.log(date.vnFormat());
 
-const Person=()=>{
-    console.log(this);
-}
+// const Person=()=>{
+//     console.log(this);
+// }
 
-Person();
+// Person();
 
 // Person.prototype.info=function(){
 //     console.log(`${this.name} is ${this.age}`);

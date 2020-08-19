@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import '../css/NewTodo.css'
 import classNames from 'classnames'
-export default class NewTodo extends Component {
+export default class NewTodo extends React.PureComponent {
     render() {
         const {item, index, onClick}=this.props;
         const content=`${index}. ${item.title}`;

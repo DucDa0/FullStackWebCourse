@@ -1,9 +1,9 @@
-import React, { Component} from 'react'
+import React from 'react'
 // import classNames from 'classnames'
 import close from '../img/close.svg'
 import '../css/SearchBox.css'
 
-export default class SearchBox extends Component {
+export default class SearchBox extends React.PureComponent {
     render() {
         const {ok, onClickAdd, onClick, onKeyUp, onChange, value}=this.props;
         return (

@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import box from '../img/box.svg'
 import '../css/EmptyList.css'
-export default class EmptyList extends Component {
+export default class EmptyList extends React.PureComponent {
     render() {
         return (
             <div className="empty-list">

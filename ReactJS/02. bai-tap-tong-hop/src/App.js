@@ -28,8 +28,14 @@ export default class App extends Component{
       trigger: false,
       error: null,
       isLoaded: false,
-      books: []
+      books: [],
+      showCounter: true
     };
+  }
+  handleShowCounter=()=>{
+    this.setState({
+      showCounter: false
+    })
   }
   componentDidMount(){
     console.log('App did mount')
@@ -106,7 +112,8 @@ export default class App extends Component{
           {/* <FirstImage src="https://picsum.photos/500/300/"/> */}
           {/* <NumberIncrease/> */}
           <LifeCycles/>
-          <Test/>
+          <button onClick={this.handleShowCounter}>Hit</button>
+          {/* <Test/> */}
         </div>
       </NumberProvider>
     );

@@ -27,3 +27,4 @@ export default class FunctionalsetState extends Component {
     );
   }
 }
+//* https://giaphiep.com/blog/yeu-react-chang-can-co-can-hieu-ro-setstate-co-25297

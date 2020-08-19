@@ -4,4 +4,4 @@ const sum=(a,b)=>{
 const mul=(a,b)=>{
     return a*b;
 }
-module.exports={sum, mul};
+module.exports=sum;

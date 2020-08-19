@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class LifeCycles extends Component {
+export default class LifeCycles extends React.PureComponent {
     constructor(){
         console.log('Count constructor')
         super();
@@ -31,3 +31,4 @@ export default class LifeCycles extends Component {
         )
     }
 }
+// export default React.memo(LifeCycles)
