@@ -6,14 +6,14 @@
 // * https://viblo.asia/p/stateful-va-stateless-functional-components-trong-react-3P0lPkymZox
 //* 1. JSX
 /**
- * *JSX (viết tắt của cụm từ JavaScript XML) là một loại cú pháp mở rộng dành cho ngôn ngữ JavaScript viết theo kiểu XML. 
+ * *JSX (viết tắt của cụm từ JavaScript XML) là một loại cú pháp mở rộng dành cho ngôn ngữ JavaScript viết theo kiểu XML.
  * *JSX cung cấp cú pháp ngọt (syntactic sugar) để thay cho câu lệnh React.createElement() trong React.
  */
 // * 2. Ý nghĩa của props và state
 /**
  * * Thành phần cơ bản của ReactJS là component. Component cho phép chúng ta chia nhỏ các thành phần UI độc lập mục đích để dễ quản lý
- * * và tái sử dụng nó. ReactJS kiểm soát luồng dữ liệu thông qua props và state. Dữ liệu trong states và props được sử dụng để render 
- * * ra các component với dữ liệu động (dynamic dữ liệu). 
+ * * và tái sử dụng nó. ReactJS kiểm soát luồng dữ liệu thông qua props và state. Dữ liệu trong states và props được sử dụng để render
+ * * ra các component với dữ liệu động (dynamic dữ liệu).
  * * Component của React là Virtual DOM
  */
 // * Props
@@ -26,7 +26,7 @@
  */
 // * State
 /**
- * *State giống như một kho lưu trữ dữ liệu cho các component trong ReactJS. 
+ * *State giống như một kho lưu trữ dữ liệu cho các component trong ReactJS.
  * *Nó chủ yếu được sử dụng để cập nhật component khi người dùng thực hiện một số hành động như nhấp vào nút
  * *, nhập một số văn bản, nhấn một số phím, v.v.
  */
@@ -39,8 +39,6 @@
  * * https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318
  */
 
-
- 
 // let arr =[10,25,5,150,50,1]
 
 // arr.forEach(item=>{
@@ -49,9 +47,9 @@
 //     },item)
 // })
 
-const s= require('./mathmax');
+// const s= require('./mathmax');
 
-console.log(s(5,6));
+// console.log(s(5,6));
 
 // Date.prototype.vnFormat=function(){
 //     const dd=this.getDate();
@@ -90,3 +88,42 @@ console.log(s(5,6));
 // newUser.say();
 // newUser.info();
 // person.say();
+// function kFormatter(num) {
+//     return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
+// }
+// function nFormatter(num, digits) {
+//     var si = [
+//       { value: 1, symbol: "" },
+//       { value: 1E3, symbol: "k" },
+//       { value: 1E6, symbol: "M" },
+//       { value: 1E9, symbol: "G" },
+//       { value: 1E12, symbol: "T" },
+//       { value: 1E15, symbol: "P" },
+//       { value: 1E18, symbol: "E" }
+//     ];
+//     var rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
+//     var i;
+//     for (i = si.length - 1; i > 0; i--) {
+//       if (num >= si[i].value) {
+//         break;
+//       }
+//     }
+//     return (num / si[i].value).toFixed(digits).replace(rx, "$1") + si[i].symbol;
+//   }
+// console.log(kFormatter(4793000));
+// console.log(nFormatter(4793000,2));
+
+const action = [1, 2, 3, 4];
+
+console.log(typeof action);
+
+const obj = {
+  0: 1,
+  1: 5,
+};
+function test() {
+  console.log(arguments);
+  console.log(Array.from(arguments));
+}
+console.log(Array.from(obj));
+test(1, 2, 3, 4, 5, 6);

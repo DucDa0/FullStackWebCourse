@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import './css/main.css';
-// import Header from './components/Header';
-// import LoginForm from './components/LoginForm';
-// import TabMenu from './components/TabMenu';
+import Header from './components/Header';
+import LoginForm from './components/LoginForm';
+import TabMenu from './components/TabMenu';
 // import RecommendedFriends from './components/RecommendedFriends';
 // import DynamicClassNames from './components/DynamicClassNames';
 // import Notification from './components/Notification';
@@ -14,60 +14,63 @@ import './css/main.css';
 // import Counter from './components/RenderProps/Counter'
 // import ImageEffects from './components/HighOrderComponents/ImageEffects';
 // import ImageWrap from './components/HighOrderComponents/ImageWrap';
-import LifeCycles from './components/LifeCycles/LifeCycles';
-import {NumberProvider} from './components/ContextAPI/NumberProvider';
-import Test from './components/Test';
+// import LifeCycles from './components/LifeCycles/LifeCycles';
+import { NumberProvider } from './components/ContextAPI/NumberProvider';
+// import Test from './components/Test';
 // import NumberIncrease from './components/ContextAPI/NumberIncrease';
 
 // const FirstImage=ImageEffects(ImageWrap);
-export default class App extends Component{
-  constructor(){
+export default class App extends Component {
+  constructor() {
     console.log('App constructor');
     super();
-    this.state={
+    this.state = {
       trigger: false,
       error: null,
       isLoaded: false,
       books: [],
-      showCounter: true
+      showCounter: true,
     };
   }
-  handleShowCounter=()=>{
+  handleShowCounter = () => {
     this.setState({
-      showCounter: false
-    })
-  }
-  componentDidMount(){
-    console.log('App did mount')
-    axios.get('https://demoexpress200.herokuapp.com/api/books?fbclid=IwAR0IC1IHPxpKQlW8zJ2URaq9tfG6sAWxqrZreqz3HxTiDsY9p3ooeS6ZsKA')
-    .then(res=>{
-      this.setState({
-        books: res.data
+      showCounter: false,
+    });
+  };
+  componentDidMount() {
+    console.log('App did mount');
+    axios
+      .get(
+        'https://demoexpress200.herokuapp.com/api/books?fbclid=IwAR0IC1IHPxpKQlW8zJ2URaq9tfG6sAWxqrZreqz3HxTiDsY9p3ooeS6ZsKA'
+      )
+      .then((res) => {
+        this.setState({
+          books: res.data,
+        });
       })
-    })
-    .catch(err=>{
-      console.log(err);
-    })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   isClick() {
-    return ()=>{
-      const {trigger}=this.state;
+    return () => {
+      const { trigger } = this.state;
       this.setState({
-        trigger: !trigger
-      })
-    }
+        trigger: !trigger,
+      });
+    };
   }
-  render(){
+  render() {
     console.log('App render');
     // const {trigger}=this.state;
     // const { books } = this.state;
     // const data=['A','B','C'];
     return (
       <NumberProvider>
-        <div className="main">
-        {/* <Header/>
-        <TabMenu/>
-        <LoginForm content="Dao Van Duc"/> */}
+        <div className='main'>
+          <Header />
+          <TabMenu />
+          <LoginForm content='Dao Van Duc' />
           {/* <RecommendedFriends/> */}
           {/* <DynamicClassNames/> */}
           {/* <Notification hasUnread={true}/> */}
@@ -111,8 +114,8 @@ export default class App extends Component{
           </Counter> */}
           {/* <FirstImage src="https://picsum.photos/500/300/"/> */}
           {/* <NumberIncrease/> */}
-          <LifeCycles/>
-          <button onClick={this.handleShowCounter}>Hit</button>
+          {/* <LifeCycles/>
+          <button onClick={this.handleShowCounter}>Hit</button> */}
           {/* <Test/> */}
         </div>
       </NumberProvider>
@@ -123,5 +126,3 @@ export default class App extends Component{
 // LoginForm.defaultProps={
 //   emailDefault: 'ducdao0906@gmail.com'
 // }
-
-

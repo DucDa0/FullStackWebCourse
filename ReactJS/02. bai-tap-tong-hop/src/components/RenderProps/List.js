@@ -4,7 +4,7 @@ export default function List({data, render}) {
     return (
         <div>
             {
-                data.map(item=>render(item))
+                data.map(render)
             }
         </div>
     )

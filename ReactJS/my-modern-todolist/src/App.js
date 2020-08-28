@@ -1,30 +1,30 @@
-import React from "react";
-import shortid from "shortid";
-import wifi from "./img/wifi.svg";
-import battery from "./img/battery.svg";
-import menu from "./img/open-menu.svg";
-import add from "./img/plus.svg";
-import NewTodo from "./components/NewTodo";
-import SearchBox from "./components/SearchBox";
-import EmptyList from "./components/EmptyList";
-import "./css/TodoList.css";
-const storageKey = "todoItems";
+import React from 'react';
+import shortid from 'shortid';
+import wifi from './img/wifi.svg';
+import battery from './img/battery.svg';
+import menu from './img/open-menu.svg';
+import add from './img/plus.svg';
+import NewTodo from './components/NewTodo';
+import SearchBox from './components/SearchBox';
+import EmptyList from './components/EmptyList';
+import './css/TodoList.css';
+const storageKey = 'todoItems';
 export default class App extends React.PureComponent {
   constructor() {
     super();
     this.state = {
       trigger: false,
-      newItem: "",
+      newItem: '',
       data: [],
     };
-    console.log("Khoi tao");
+    console.log('Khoi tao');
     this.inputElement = React.createRef();
     this.onKeyUp = this.onKeyUp.bind(this);
     this.onChange = this.onChange.bind(this);
     // this.onClickAdd = this.onClickAdd.bind(this);// sử dụng arrow function để thay thế
   }
   componentDidMount() {
-    console.log("Gan data");
+    console.log('Gan data');
     const dataString = localStorage.getItem(storageKey);
     if (dataString) {
       this.setState({
@@ -62,7 +62,7 @@ export default class App extends React.PureComponent {
     });
     localStorage.setItem(storageKey, JSON.stringify(dataString));
     this.setState({
-      newItem: "",
+      newItem: '',
       data: [
         ...this.state.data,
         { id: shortid.generate(), title: newItem, isComplete: false },
@@ -87,7 +87,7 @@ export default class App extends React.PureComponent {
       });
       localStorage.setItem(storageKey, JSON.stringify(dataString));
       this.setState({
-        newItem: "",
+        newItem: '',
         data: [
           ...this.state.data,
           { id: shortid.generate(), title: newItem, isComplete: false },
@@ -128,46 +128,46 @@ export default class App extends React.PureComponent {
     };
   }
   render() {
-    console.log("render");
+    console.log('render');
     const { data, trigger, newItem } = this.state;
     const filterTodoByDone = data.filter((item) => item.isComplete);
     const filterTodoByNotDone = data.filter((item) => !item.isComplete);
     return (
-      <div className="TodoList">
-        <div className="TodoList-wrap">
-          <div className="TodoList-content">
-            <div className="TodoList-head">
-              <div className="signal">
-                <div className="signal-phone">
-                  <div className="dot" />
-                  <div className="dot" />
-                  <div className="dot" />
-                  <div className="dot" />
-                  <div className="dot" />
+      <div className='TodoList'>
+        <div className='TodoList-wrap'>
+          <div className='TodoList-content'>
+            <div className='TodoList-head'>
+              <div className='signal'>
+                <div className='signal-phone'>
+                  <div className='dot' />
+                  <div className='dot' />
+                  <div className='dot' />
+                  <div className='dot' />
+                  <div className='dot' />
                 </div>
-                <div className="signal-wifi">
-                  <img width="16" height="16" src={wifi} alt="wifi" />
+                <div className='signal-wifi'>
+                  <img width='16' height='16' src={wifi} alt='wifi' />
                 </div>
               </div>
-              <div className="time">
-                <span className="time-text">9:06 AM</span>
+              <div className='time'>
+                <span className='time-text'>9:06 AM</span>
               </div>
-              <div className="battery">
-                <div style={{ marginRight: "6px" }} className="battery-text">
+              <div className='battery'>
+                <div style={{ marginRight: '6px' }} className='battery-text'>
                   100%
                 </div>
-                <img width="20" height="20" src={battery} alt="battery" />
+                <img width='20' height='20' src={battery} alt='battery' />
               </div>
             </div>
-            <div className="TodoList-body">
-              <div className="TodoList-body_wrap">
-                <div className="TodoList-body_wrap-head">
-                  <div className="menu">
-                    <img width="22" height="22" src={menu} alt="menu" />
+            <div className='TodoList-body'>
+              <div className='TodoList-body_wrap'>
+                <div className='TodoList-body_wrap-head'>
+                  <div className='menu'>
+                    <img width='22' height='22' src={menu} alt='menu' />
                   </div>
-                  <div className="Dailist">DAILIST</div>
+                  <div className='Dailist'>DAILIST</div>
                 </div>
-                <div className="TodoList-body_wrap-newTodo">
+                <div className='TodoList-body_wrap-newTodo'>
                   {trigger && (
                     <SearchBox
                       ok={this.inputElement}
@@ -180,8 +180,8 @@ export default class App extends React.PureComponent {
                   )}
                   {filterTodoByNotDone.length ? (
                     <div>
-                      <div className="upComing">UPCOMING</div>
-                      <div className="newTodo">
+                      <div className='upComing'>UPCOMING</div>
+                      <div className='newTodo'>
                         {filterTodoByNotDone.map((item, index) => {
                           return (
                             <NewTodo
@@ -197,9 +197,9 @@ export default class App extends React.PureComponent {
                   ) : null}
                 </div>
                 {filterTodoByNotDone.length ? (
-                  <div className="TodoList-body_wrap-todoDone">
-                    <div className="finish">FINISHED</div>
-                    <div className="completedTodo">
+                  <div className='TodoList-body_wrap-todoDone'>
+                    <div className='finish'>FINISHED</div>
+                    <div className='completedTodo'>
                       {filterTodoByDone.map((item, index) => {
                         return (
                           <NewTodo
@@ -216,10 +216,10 @@ export default class App extends React.PureComponent {
               </div>
             </div>
             {!filterTodoByNotDone.length && <EmptyList />}
-            <div className="TodoList-foot">
-              <div className="TodoList-foot-wrap">
-                <div onClick={this.isClick} className="TodoList-foot-add">
-                  <img src={add} alt="add" width="32" height="32" />
+            <div className='TodoList-foot'>
+              <div className='TodoList-foot-wrap'>
+                <div onClick={this.isClick} className='TodoList-foot-add'>
+                  <img src={add} alt='add' width='32' height='32' />
                 </div>
               </div>
             </div>
