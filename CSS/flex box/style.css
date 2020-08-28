@@ -1,40 +1,32 @@
-body{
-    margin: 0;
-}
-
-.container{
-    height: 400px;
-    background-color: #DDD;
-    color: #FFF;
-    display: flex;/* Làm cho element con thành 1 hàng*/
-    flex-direction: row;/* cái này mặc định là row, địng hướng chiều là hàng từ trái qua, cột từ trên xuống*/
-    justify-content: center;/*Điều chỉnh vị trí các element con theo flex-direction là row
-    Các value như: flex-start(căn về bên trái), flex-end(căn về bên phải), center(căn ở giữa), space-between(chia đều các element con ra hết màn hình)
-    ,space-around(chia đề các element con với width giữa các element = 2 lần width từ bên trái, hoặc phải màn hình đến element đầu tiên
-    ,space-evenly: chia đều các element con)*/
-    align-items: baseline;/*Căn chỉnh các element con theo hướng vuông góc với hướng hiện tại. Thì hướng hiện tại(flex-direction: row) là row
-    , vậy hướng vuông góc là column. Các value: flex-start(end)(height của elelment = content của nó), center, baseline,stretch(height = h của thằng cha)*/
-   
-}
-/* .child-1,.child-2,.child-3{
-    width: 400px;;
-    text-align: center;
-} */
-.child-1{
-    background-color: red;
-    flex-basis: auto;/*giãn độ dài của element ra theo hướng hiện tại, value px*/
-    flex-grow: 1;/*chia width cho các element ở khoảng trống còn lại của thằng cha, ở đây là chia đều 3 phần, value nhận vào là number*/
-    flex-shrink: unset;/* nào cần sài thì tra cứu*/
-    order: 1;/*đảo thứ tự của 2 element liền kề, trong trường hợp này vd chỉ có 2 element, thì sẽ đảo element-first qua phải, còn lại qua trái
-    , đc ứng dụng trong layout như chứ bên trái, hình bên phải, r đổi ngc lại cho ngầu*/
-}
-.child-2{
-    background-color: green;
-    flex-basis: auto;/*giãn độ dài của element ra theo hướng hiện tại*/
-    flex-grow: 1;
-}
-.child-3{
-    background-color: blue;
-    flex-basis: auto;/*giãn độ dài của element ra theo hướng hiện tại*/
-    flex-grow: 1;
-}
+.box {
+    display: flex;
+    flex-wrap: wrap;/**nếu là nowrap thì khi resize browser lại các item con sẽ co lại(thay đổi kích thước),
+     /**còn wrap thì nó sẽ rớt xuống(ko thay đổi kích thước)*/
+    justify-content: space-around;
+    align-items: stretch;/** mặc định là stretch, nếu height của item con là auto(1) thì nó sẽ dài ra theo chiều dài của thằng cha */
+    width: 100%;
+    background-color: #1a1c28;
+    height: 1000px;
+  }
+  .item {
+    /* width: 200px; */
+    flex-basis: 200px;/**thằng này nó sẽ override lại width của item con, nếu hướng là row, còn height nếu hướng là column*/
+    flex-shrink: 0;/**thằng này ngược lại 1 chút vs flex-grow, mặc định là 1(sẽ co lại khi resize trình duyệt), 0 sẽ ko co lại */
+    height: auto;/**(1)*/
+    flex-grow: 1;/**thằng này làm cho các item rộng ra sao cho lấp hết khoảng trống của thằng cha, nếu set riêng(2) thì thằng nào nhiều hơn sẽ to hơn*/
+  }
+  .item:nth-of-type(1) {
+    background-color: #bf4470;
+    flex-grow: 1;/**(2)*/
+  }
+  .item:nth-of-type(2) { 
+    background-color: #ffa400; 
+    height: 200px;/**set position riêng cho item con*/
+    align-self: center;
+    flex-grow: 5;/**(2)*/
+    flex-shrink: 0;/**(3)ko co lại khi resize trình duyệt, lấy giá trị thuộc tính width*/
+  }
+  .item:nth-of-type(3) {
+    background-color: #07a787;
+    flex-grow: 1;/**(2)*/
+  }

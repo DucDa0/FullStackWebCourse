@@ -47,9 +47,9 @@
 //     },item)
 // })
 
-// const s= require('./mathmax');
+const { sum } = require('./mathmax');
 
-// console.log(s(5,6));
+console.log(sum(5, 6));
 
 // Date.prototype.vnFormat=function(){
 //     const dd=this.getDate();
