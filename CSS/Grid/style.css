@@ -1,4 +1,4 @@
-.body{
+.body {
     display: flex;
 }
 .container {
@@ -9,8 +9,8 @@
     padding: 50px;
     display: grid;
     max-width: 1200px;
-    grid-template-columns:repeat(5,20%);
-    gap: 10px/**tạo khoảng cách giữa các item, gap: row column, row-gap, column-gap*/
+    grid-template-columns: repeat(5, 20%);
+    gap: 10px; /**tạo khoảng cách giữa các item, gap: row column, row-gap, column-gap*/
 }
 .item {
     color: black;

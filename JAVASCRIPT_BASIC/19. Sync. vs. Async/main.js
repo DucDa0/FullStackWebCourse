@@ -16,38 +16,36 @@
 
 // ex
 async function test() {
-    var result = await db.collection('hospitals').findOne({ name: 'xxx' })
-    console.log('after findResult: ', result)
-    //... more code here ...
+  var result = await db.collection('hospitals').findOne({ name: 'xxx' });
+  console.log('after findResult: ', result);
+  //... more code here ...
 }
 
 // tương đương với
 function test() {
-    db.collection('hospitals').findOne({ name: 'xxx' }, function (result) {
-        console.log('after findResult: ', result)
-        //... more code here ...
-    })
+  db.collection('hospitals').findOne({ name: 'xxx' }, function (result) {
+    console.log('after findResult: ', result);
+    //... more code here ...
+  });
 }
 
-
-
 // * Another ex
-function sum(x,y) {
-    return x+y;
-  }
-    
-  async function process(){
-    console.log('begin');
-    let res=await sum(9,6);
-    console.log(res);
-    console.log('end');
-  }
-  process();
-  console.log('A');
-  
-  /**
-   * begin
-   * A
-   * 15
-   * end
-   */
+function sum(x, y) {
+  return x + y;
+}
+
+async function process() {
+  console.log('begin');
+  let res = await sum(9, 6);
+  console.log(res);
+  console.log('end');
+}
+process();
+console.log('A');
+
+/**
+ * begin
+ * A
+ * 15
+ * end
+ */

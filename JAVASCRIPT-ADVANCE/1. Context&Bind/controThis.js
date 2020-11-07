@@ -1,24 +1,31 @@
 //* ============= Con trỏ This ==============//
 //* Con trỏ this tham chiếu đến giá trị đối tượng mà nó được gọi, hay nó gắn liền với context mà nó được gọi
+
 //* ex:
-var num=6;
+var num = 6;
 //* thêm phương thức square(tính bình phương) vào Number thông qua thuộc tính prototype
-Number.prototype.square=function(){return this*this};
-console.log(num.square());// 36
+Number.prototype.square = function () {
+  return this * this;
+};
+console.log(num.square()); // 36
 //* 1. Con trỏ this trong sử dụng hàm callback
 const obj = {
-    name: 'Dao Van Duc',
-    sayHi: function () {
-        console.log(this.name);
-    }
+  name: 'Dao Van Duc',
+  sayHi: function () {
+    console.log(this.name);
+  },
+};
+
+function sayHiOutSide(cb) {
+  // con trỏ this trong sử dụng call back
+  cb();
 }
 
-function sayHiOutSide(cb) {// con trỏ this trong sử dụng call back
-    cb();
-}
+sayHiOutSide(obj.sayHi); // kết quả ra undefined
+sayHiOutSide(obj.sayHi.bind(obj)); // kết quả ra Dao Van Duc
 
-sayHiOutSide(obj.sayHi);// kết quả ra undefined
-sayHiOutSide(obj.sayHi.bind(obj));// kết quả ra Dao Van Duc
+//* biến ngữ cảnh this chỉ được xác định khi trực tiếp gọi phương thức của đối tượng đó, hoặc thông qua .bind()
+sayHiOutSide(() => obj.sayHi()); // kết quả ra Dao Van Duc
 
 //* 2. Con trỏ this trong closure
 /**
@@ -26,24 +33,24 @@ sayHiOutSide(obj.sayHi.bind(obj));// kết quả ra Dao Van Duc
  * closure thì không thể truy cập tới con trỏ this của hàm cha (outer function)
  */
 var user = {
-    tournament: "The Masters",
-    data: [
-        { name: "T. Woods", age: 37 },
-        { name: "P. Mickelson", age: 43 }
-    ],
+  tournament: 'The Masters',
+  data: [
+    { name: 'T. Woods', age: 37 },
+    { name: 'P. Mickelson', age: 43 },
+  ],
 
-    clickHandler: function () {
-        //Sử dụng con trỏ this ở đây thì OK, this đang mang giá trị tham chiếu tới đối tượng “user”
-        this.data.forEach(function (person) {
-            //Tuy nhiên, trong closure này thì this không còn tham chiếu tới đối tượng “user” nữa
-            // Hàm inner function này không thể truy cập tới this của outer function
+  clickHandler: function () {
+    //Sử dụng con trỏ this ở đây thì OK, this đang mang giá trị tham chiếu tới đối tượng “user”
+    this.data.forEach(
+      function (person) {
+        //Tuy nhiên, trong closure này thì this không còn tham chiếu tới đối tượng “user” nữa
+        // Hàm inner function này không thể truy cập tới this của outer function
 
-            console.log(person.name + " is playing at " + this.tournament);
-        }.bind(this))
-
-    }
-
-}
+        console.log(person.name + ' is playing at ' + this.tournament);
+      }.bind(this)
+    );
+  },
+};
 
 user.clickHandler();
 // results:
@@ -74,15 +81,14 @@ user.clickHandler();
 //     console.log(person.name + " is playing at " + this.tournament);
 // }.bind(this))
 
-
 //* 3. Con trỏ this trong trường hợp gán hàm cho một biến khác
 //Định nghĩa 1 đối tượng với phương thức hiển thị thuộc tính ra màn hình
-var name = "Peter";
+var name = 'Peter';
 var Hocsinh = {
-    name: "John",
-    printName: function(){
-        console.log(this.name);
-    }
+  name: 'John',
+  printName: function () {
+    console.log(this.name);
+  },
 };
 
 //Gán hàm Hocsinh.printName vào một biến
@@ -91,7 +97,6 @@ var printHocsinhName = Hocsinh.printName;
 //Gọi hàm printHocsinhName để hiển thị tên học sinh
 printHocsinhName();
 
-
 //------> Kết quả
 // Peter
 
@@ -99,23 +104,23 @@ printHocsinhName();
 // Chúng ta có 2 đối tượng, 1 đối tượng có hàm computeAvg() và 1 đối tượng thì không
 // Chúng ta sẽ thực hiện mượn hàm này
 var gameController = {
-    scores: [10, 15, 20],
-    avgScore: null,
-    players: [
-        {name: "Tommy", playerID: 987, age: 23},
-        {name: "Pau", playerID: 87, age: 33}
-    ]
+  scores: [10, 15, 20],
+  avgScore: null,
+  players: [
+    { name: 'Tommy', playerID: 987, age: 23 },
+    { name: 'Pau', playerID: 87, age: 33 },
+  ],
 };
 
 var appController = {
-    scores: [30, 40, 50],
-    avgScore: null,
-    computeAvg: function () {      
-       var sumOfScores = this.scores.reduce (function (prev, cur) {
-           return prev + cur;
-       });
-       this.avgScore = sumOfScores / this.scores.length;
-   }
+  scores: [30, 40, 50],
+  avgScore: null,
+  computeAvg: function () {
+    var sumOfScores = this.scores.reduce(function (prev, cur) {
+      return prev + cur;
+    });
+    this.avgScore = sumOfScores / this.scores.length;
+  },
 };
 
 /**
