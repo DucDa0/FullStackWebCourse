@@ -1,7 +1,9 @@
 .parent {
   display: flex;
-  justify-content: space-between; }
-  .parent .child {
-    height: 200px;
-    width: 200px;
-    background-color: royalblue; }
+  justify-content: space-between;
+}
+.parent .child {
+  height: 200px;
+  width: 200px;
+  background-color: royalblue;
+}

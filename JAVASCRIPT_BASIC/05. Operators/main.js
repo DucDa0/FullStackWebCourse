@@ -5,14 +5,14 @@
  * + Arithmetic operators (Toán tử toán học): +, -, *, /, %, ++, --
  * + Assignment operators (Toán tử gán): +=, -=,*=,/=,=
  * + Comparison operators (Toán tử so sánh): <,>,>=,<=,===,!==
- * + Logical operators (Toán tử logic): 
+ * + Logical operators (Toán tử logic):
  *  - Toán tử AND &&: Kết quả trả về true khi cả a và b đều có giá trị true, Trả về false khi một trong hai false
  *  - Toán tử OR ||: Kết quả trả về false khi cả a và b đều có giá trị false, Trả về true khi một trong hai true
  *  - Toán tử NOT !: rả về giá trị nghịch đảo của toán hạng.
- * + Bitwise operators (Toán tử bit) 
- * + String operators (Toán tử chuỗi) 
+ * + Bitwise operators (Toán tử bit)
+ * + String operators (Toán tử chuỗi)
  * + Conditional (ternary) operator (Toán tử điều kiện)
- * + Comma operator (Toán tử dấu phẩy) 
+ * + Comma operator (Toán tử dấu phẩy)
  * + Unary operators (Toán tử đơn phương): có 3 loại là: delete, typeof, void
  * + Relational operators (Toán tử quan hệ) : gồm 2 loại: in và instacnceof
  * 2. Truthy và Falsy
@@ -25,4 +25,8 @@
  * + undefined
  * + NaN
  * - Còn lại là Truthy
+ * &&: bo qua cac gia tri Truthy, gap Falsy la dung lai, tra ve ket qua Falsy do luon
+ * ||: bo qua cac gia trị Falsy, gặp Truthy là dừng lại, trả về kết quả Truthy đó luôn
+ * split: tìm điểm chung để cắt
+ * ex: "JS, PHP, Python" => diem chung la /, / split(", ")
  */

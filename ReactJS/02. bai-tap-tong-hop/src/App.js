@@ -14,8 +14,8 @@ import TabMenu from './components/TabMenu';
 // import Counter from './components/RenderProps/Counter'
 // import ImageEffects from './components/HighOrderComponents/ImageEffects';
 // import ImageWrap from './components/HighOrderComponents/ImageWrap';
-// import LifeCycles from './components/LifeCycles/LifeCycles';
-import { NumberProvider } from './components/ContextAPI/NumberProvider';
+import LifeCycles from './components/LifeCycles/LifeCycles';
+// import { NumberProvider } from './components/ContextAPI/NumberProvider';
 // import Test from './components/Test';
 // import NumberIncrease from './components/ContextAPI/NumberIncrease';
 
@@ -68,9 +68,9 @@ export default class App extends Component {
     return (
       <NumberProvider>
         <div className='main'>
-          <Header />
+          {/* <Header />
           <TabMenu />
-          <LoginForm content='Dao Van Duc' />
+          <LoginForm content='Dao Van Duc' /> */}
           {/* <RecommendedFriends/> */}
           {/* <DynamicClassNames/> */}
           {/* <Notification hasUnread={true}/> */}
@@ -114,8 +114,8 @@ export default class App extends Component {
           </Counter> */}
           {/* <FirstImage src="https://picsum.photos/500/300/"/> */}
           {/* <NumberIncrease/> */}
-          {/* <LifeCycles/>
-          <button onClick={this.handleShowCounter}>Hit</button> */}
+          <LifeCycles />
+          <button onClick={this.handleShowCounter}>Hit</button>
           {/* <Test/> */}
         </div>
       </NumberProvider>
