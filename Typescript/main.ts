@@ -1,1 +1,1 @@
-let _name:string='duc'
+let _name:string='duc';
