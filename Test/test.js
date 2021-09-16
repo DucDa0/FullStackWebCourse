@@ -1,10 +1,27 @@
-function* generateId() {
-  yield 1;
-  console.log('Continue to run');
-  return 2;
-}
-const newId = generateId();
-console.log(newId.next());
-console.log(newId.next());
+const app = (function(){
+  const money = [];
+  return{
+    get(){
+      return money;
+    },
+    add(value){
+      money.push(value);
+    },
+    edit(index, value){
+      money[index] = value;
+    },
+    remove(index){
+      money.splice(index,1);
+    }
+  }
+})()
 
-console.log(newId.next());
+
+app.add(5000);
+app.add(35235);
+
+app.add(6758);
+
+app.add(4777);
+
+console.log(app.get());
