@@ -13,6 +13,7 @@
 // https://ehkoo.com/bai-viet/tat-tan-tat-ve-promise-va-async-await
 // https://kipalog.com/posts/Co-ban-ve-async-await-trong-javascript
 // https://blog.daovanhung.com/post/event-loop-trong-nodejs
+//https://codelearn.io/sharing/ajax-co-ban-cho-lap-trinh-front-end
 
 // ex
 async function test() {
