@@ -37,93 +37,19 @@
 /**
  * * Tại sao gán key khi render một list lại quan tọng:(liên quan đến hiệu suất)
  * * https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318
+ * 
+ * * 3. Performance khi truyền props: 
+ * * Những component chỉ có nhiệm vụ render UI thì ko nên viết func xử lí logic trong đó, mà nên viết từ container chứa component đó
+ * * rồi truyền qua props
+ * 
+ * * 4. Two way binding
+ * * Two-way binding là ràng buộc dữ liệu 2 chiều, thường được nhắc tới khi làm việc với form.
+ * * Giả sử có 1 thẻ input, có state sau: [value, setValue], trong event onChange của thẻ input, ta setValue(e.target.value),
+ * * khi nhập dữ liệu vào input, state value sẽ thay đổi, nhưng UI cập nhật lại value trong thẻ input ko phải là state value => one way binding.
+ * * Ta set thuộc tính value ở thẻ input vào state value, thì khi state thay đổi value của input là value của state => two way binding
+ * * 5. useEffect
+ * * Callback luôn được gọi sau khi component mounted
+ * * Cleanup func luôn được gọi trước khi component unmounted
+ * * Cleanup func luôn gọi trước callback func được gọi(trừ lần đầu mounted)
  */
 
-// let arr =[10,25,5,150,50,1]
-
-// arr.forEach(item=>{
-//     setTimeout(()=>{
-//         console.log(item)
-//     },item)
-// })
-
-const { sum } = require('./mathmax');
-
-console.log(sum(5, 6));
-
-// Date.prototype.vnFormat=function(){
-//     const dd=this.getDate();
-//     const mm=this.getMonth();
-//     const yyyy=this.getFullYear();
-//     return dd+'/'+mm+'/'+yyyy;
-// }
-
-// const date = new Date(2020,06,12);
-// console.log(date.vnFormat());
-
-// const Person=()=>{
-//     console.log(this);
-// }
-
-// Person();
-
-// Person.prototype.info=function(){
-//     console.log(`${this.name} is ${this.age}`);
-// }
-
-// Person.prototype.say=function(){
-//     console.log('I am a person');
-// }
-
-// function User(name, age){
-//     this.name=name;
-//     this.age=age;
-// }
-
-// User.prototype = new Person('Duc',21);
-
-// const newUser = new User('Kien',22);
-// const person = new Person('Ok',96);
-
-// newUser.say();
-// newUser.info();
-// person.say();
-// function kFormatter(num) {
-//     return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
-// }
-// function nFormatter(num, digits) {
-//     var si = [
-//       { value: 1, symbol: "" },
-//       { value: 1E3, symbol: "k" },
-//       { value: 1E6, symbol: "M" },
-//       { value: 1E9, symbol: "G" },
-//       { value: 1E12, symbol: "T" },
-//       { value: 1E15, symbol: "P" },
-//       { value: 1E18, symbol: "E" }
-//     ];
-//     var rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
-//     var i;
-//     for (i = si.length - 1; i > 0; i--) {
-//       if (num >= si[i].value) {
-//         break;
-//       }
-//     }
-//     return (num / si[i].value).toFixed(digits).replace(rx, "$1") + si[i].symbol;
-//   }
-// console.log(kFormatter(4793000));
-// console.log(nFormatter(4793000,2));
-
-const action = [1, 2, 3, 4];
-
-console.log(typeof action);
-
-const obj = {
-  0: 1,
-  1: 5,
-};
-function test() {
-  console.log(arguments);
-  console.log(Array.from(arguments));
-}
-console.log(Array.from(obj));
-test(1, 2, 3, 4, 5, 6);

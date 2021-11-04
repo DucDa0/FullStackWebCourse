@@ -25,7 +25,8 @@ class Person {
 
 class Student extends Person {
 	public Student(String name) {
-		super(name);
+		super(name); //  Từ khóa super để chỉ cho lớp con biết cần phải gọi tới constructor nào của lớp cha 
+		// Từ khóa super khác từ khóa this ở chỗ từ khóa super sẽ tham chiếu tới lớp cha còn từ khóa this sẽ tham chiếu tới lớp hiện tại.
 	}
 }
 
