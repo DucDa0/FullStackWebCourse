@@ -41,6 +41,7 @@
  * * 3. Performance khi truyền props: 
  * * Những component chỉ có nhiệm vụ render UI thì ko nên viết func xử lí logic trong đó, mà nên viết từ container chứa component đó
  * * rồi truyền qua props
+ * * renderProps: https://codesandbox.io/s/little-glitter-67v7j?file=/src/CountDown.js
  * 
  * * 4. Two way binding
  * * Two-way binding là ràng buộc dữ liệu 2 chiều, thường được nhắc tới khi làm việc với form.
@@ -51,5 +52,8 @@
  * * Callback luôn được gọi sau khi component mounted
  * * Cleanup func luôn được gọi trước khi component unmounted
  * * Cleanup func luôn gọi trước callback func được gọi(trừ lần đầu mounted)
+ * * 6. useImperativeHanlde, forwardRef: https://codesandbox.io/s/purple-cherry-54dfu?file=/src/App.js
+ * * Thằng forwardRef dùng với component, useRef dùng với element
+ * * useImperativeHanlde dùng để publish những method, state, .... từ component con cho thằng cha sài
  */
 
