@@ -1,27 +1,13 @@
-const app = (function(){
-  const money = [];
-  return{
-    get(){
-      return money;
-    },
-    add(value){
-      money.push(value);
-    },
-    edit(index, value){
-      money[index] = value;
-    },
-    remove(index){
-      money.splice(index,1);
-    }
-  }
-})()
+const DucDao_SECRET_KEY = 96;
+const QuinQuin_SECRET_KEY = 1710;
 
+const SERVER_KEY = 113;
 
-app.add(5000);
-app.add(35235);
+const DucDao_PUBLIC_KEY = DucDao_SECRET_KEY + SERVER_KEY; // 96 + 113
+const QuinQuin_PUBLIC_KEY = QuinQuin_SECRET_KEY + SERVER_KEY; // 1710 + 113
 
-app.add(6758);
+const DucDao_COMMON_KEY = QuinQuin_PUBLIC_KEY + DucDao_SECRET_KEY; // 1710 + 113 + 96
+const QuinQuin_COMMON_KEY = DucDao_PUBLIC_KEY + QuinQuin_SECRET_KEY; // 96 + 113 + 1710
 
-app.add(4777);
-
-console.log(app.get());
+console.log('DucDao_COMMON_KEY: ', DucDao_COMMON_KEY)
+console.log('QuinQuin_COMMON_KEY: ', QuinQuin_COMMON_KEY)
