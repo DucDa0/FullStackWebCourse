@@ -1,7 +1,6 @@
 // ===Lí thuyết=== //
 /**
  * - Bất cứ function nào được truyền vào một function khác như một tham số và được gọi sau đó, thì gọi là callback function
- * - Function sẽ được thực thi sau khi 1 function khác được thực thi xong được gọi là Callback
  */
 
  /**

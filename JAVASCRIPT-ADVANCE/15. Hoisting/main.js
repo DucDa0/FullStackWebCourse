@@ -13,7 +13,7 @@ var subtract = function (num1, num2) {
 };
 /**
  * *Hoisting là hành động mặc định của Javascript, nó sẽ chuyển phần khai báo
- * *lên phía trên top Trong Javascript, một biến (variable) có thể được khai báo sau khi được sử dụng.
+ * *lên phía trên top của scope đó. Trong Javascript, một biến (variable) có thể được khai báo sau khi được sử dụng.
  * * const, let hoisting sẽ khác vs var, phần khai báo cũng được đưa lên top và lưu vào bộ nhớ, nhưng lại đc ưa vào Temporal Dead Zone nên sẽ ko sử dụng được
  */
 
