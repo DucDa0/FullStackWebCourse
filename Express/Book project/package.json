@@ -12,11 +12,11 @@
   "dependencies": {
     "@sendgrid/mail": "^7.2.3",
     "bcrypt": "^5.0.0",
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.20.1",
     "cloudinary": "^1.22.0",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "lodash": "^4.17.20",
     "lowdb": "^1.0.0",
     "md5": "^2.3.0",
